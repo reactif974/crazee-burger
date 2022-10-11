@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function OrderPage() {
     // state
@@ -6,11 +6,12 @@ export default function OrderPage() {
         const {name} = useParams();
     // comportements
 
-
     // affichage(render)
     return <div>
         <h1>Bonjour {name}</h1>
         <br />
-        <button>Déconnexion</button>
+        <Link to="/">
+            <button>Déconnexion</button>
+        </Link>
     </div>
 }
