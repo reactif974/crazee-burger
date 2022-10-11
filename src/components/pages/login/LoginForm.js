@@ -1,18 +1,33 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
 
     // state
     const [newName, setNewName] = useState("");
+        // is authorized to access the order page
+        const [goToOrderPage, setGoToOrderPage] = useState(false);
+        // users account
+        const users = [
+            {username: 'bob'},
+            {username: 'claire'}
+        ];
+    const account = users.find((user) => user.username === newName);
+    const navigate = useNavigate();
 
     // comportements
 
     // form submission
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert(`Bonjour ${newName}`);
-        // input clear
-        setNewName("");
+        // redirection order page
+        if(goToOrderPage) {
+            navigate(`/order/${newName}`);
+        } else {
+            // input clear
+            setNewName("");
+            navigate('/');
+        }
     }
 
     // registration of the new name from the input form
@@ -35,7 +50,11 @@ export default function LoginForm() {
             onChange={handleChange}
             required 
         />
-        <button type="submit">Accédez à votre espace</button>
+        <button 
+            onClick={() => !account ? setGoToOrderPage(false) : setGoToOrderPage(true)} 
+            type="submit">
+                Accédez à votre espace
+        </button>
     </form>
   )
 }
