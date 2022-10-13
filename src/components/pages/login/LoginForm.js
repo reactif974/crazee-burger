@@ -1,19 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { checkHasExistingAccount } from '../../../utils/user/User';
+import { users } from '../../../utils/user/UserDataBase';
 
 export default function LoginForm() {
 
     // state
     const [newName, setNewName] = useState("");
-        // is authorized to access the order page
-        const [isAuthorisedUser, setIsAuthorisedUser] = useState(false);
-        // users account
-        const users = [
-            {username: 'bob'},
-            {username: 'claire'}
-        ];
-
-    const hasAccount = users.find((user) => user.username === newName);
     const navigate = useNavigate();
 
     // comportements
@@ -22,12 +15,16 @@ export default function LoginForm() {
     const handleSubmit = (event) => {
 
         event.preventDefault();
+
+        // check if user is authorized or not to access orderPage
+        const hasAccount = checkHasExistingAccount(users,newName);
+
         // input clear
         setNewName("");
         navigate(`/order/${newName}`);
         
-        // redirection loginPage if user no authorized
-        if(!isAuthorisedUser)
+        // redirection loginPage if user has no account
+        if(!hasAccount)
             navigate('/');
     }
 
@@ -52,7 +49,6 @@ export default function LoginForm() {
             required 
         />
         <button 
-            onClick={() => hasAccount && setIsAuthorisedUser(true)}
             type="submit">
                 Accédez à votre espace
         </button>
