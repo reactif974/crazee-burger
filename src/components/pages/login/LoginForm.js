@@ -23,7 +23,6 @@ export default function LoginForm() {
         setNewName("");
         navigate(`/order/${newName}`);
         
-        // redirection loginPage if user has no account
         if(!hasAccount)
             navigate('/');
     }
