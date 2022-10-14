@@ -1,18 +1,30 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { checkHasExistingAccount } from '../../../utils/user/User';
+import { users } from '../../../utils/user/UserDataBase';
 
 export default function LoginForm() {
 
     // state
     const [newName, setNewName] = useState("");
+    const navigate = useNavigate();
 
     // comportements
 
     // form submission
     const handleSubmit = (event) => {
+
         event.preventDefault();
-        alert(`Bonjour ${newName}`);
+
+        // check if user is authorized or not to access orderPage
+        const hasAccount = checkHasExistingAccount(users,newName);
+
         // input clear
         setNewName("");
+        navigate(`/order/${newName}`);
+        
+        if(!hasAccount)
+            navigate('/');
     }
 
     // registration of the new name from the input form
@@ -35,7 +47,10 @@ export default function LoginForm() {
             onChange={handleChange}
             required 
         />
-        <button type="submit">Accédez à votre espace</button>
+        <button 
+            type="submit">
+                Accédez à votre espace
+        </button>
     </form>
   )
 }
