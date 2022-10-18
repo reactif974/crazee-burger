@@ -1,0 +1,38 @@
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    width:100%;
+    height:100vh;
+    background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.7), 
+      rgba(0, 0, 0, 0.7)
+    ), url("../../assets/burger background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.login-form-container .login-title {
+    margin-top:55px;
+}
+
+.login-form-container .login-title > span{
+    color: #FF9A00;
+    font-size: 135px;
+}
+
+.login-form-container .login-title .crazee-span:after {
+    content: "";
+    width: 280px;
+    height: 188px;
+    display: inline-block;
+    position: relative;
+    top: 60px;
+    left:13px;
+    background-image: url('../../assets/logo-orange.png');
+    background-size: 243px 160px;
+    background-repeat: no-repeat;
+}
