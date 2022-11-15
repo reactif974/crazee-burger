@@ -16,7 +16,8 @@ const colors = {
     greySemiDark: "#93a2b1",
     greyDark: "#6f737e",
     greyBlue: "#747b91",
-    background_orange: "#FF5F00"
+    background_orange: "#FF5F00",
+    background_button_submit: "#FF9900"
   }
   
   const spacing = {

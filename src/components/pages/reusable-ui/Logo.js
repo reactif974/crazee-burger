@@ -14,7 +14,8 @@ export default function Logo() {
 }
 
 const LogoStyled = styled.h1`
-    margin-top:55px;
+    margin-top:35px;
+    transform: scale(1.05);
     > span {
         color: ${theme.colors.primary_burger};
         font-size: ${parseInt(theme.fonts.P6, 10)*2}px;
