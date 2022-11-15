@@ -39,6 +39,7 @@ export default function LoginForm() {
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
         <h2>Bienvenue chez nous !</h2>
         <br/>
+        <hr />
         <h3>Connectez-vous</h3>
         <input 
             value={newName}
@@ -58,10 +59,23 @@ export default function LoginForm() {
 }
 
 const LoginFormStyled = styled.form`
-  h2,
-  h3 {
-    font-family: 'Amatic SC', cursive;
-    font-weight: ${theme.weights.regular};
-    color:${theme.colors.white};
-  }
+    width: 30%;
+    h2,
+    h3 {
+        font-family: 'Amatic SC', cursive;
+        font-weight: ${theme.weights.regular};
+        color:${theme.colors.white};
+        text-align:center;
+    }
+    h2 {
+        font-size:${theme.fonts.P6};
+    }
+    h3 {
+        font-size:${theme.fonts.P4};
+    }
+    hr {
+        height: 3px;
+        background-color: ${theme.colors.background_orange};
+        border:none;
+    }
 `
