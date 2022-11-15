@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { checkHasExistingAccount } from '../../../utils/user/User';
 import { users } from '../../../utils/user/UserDataBase';
 import styled from 'styled-components';
+import { theme } from '../../../theme';
 
 export default function LoginForm() {
 
@@ -57,5 +58,10 @@ export default function LoginForm() {
 }
 
 const LoginFormStyled = styled.form`
-  
+  h2,
+  h3 {
+    font-family: 'Amatic SC', cursive;
+    font-weight: ${theme.weights.regular};
+    color:${theme.colors.white};
+  }
 `

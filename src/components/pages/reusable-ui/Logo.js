@@ -18,6 +18,8 @@ const LogoStyled = styled.h1`
     > span {
         color: ${theme.colors.primary_burger};
         font-size: ${parseInt(theme.fonts.P6, 10)*2}px;
+        font-family: 'Amatic SC', cursive;
+        font-weight: ${theme.weights.bold};
     }
     .crazee-span {
         &::after {
