@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { checkHasExistingAccount } from '../../../utils/user/User';
 import { users } from '../../../utils/user/UserDataBase';
+import styled from 'styled-components';
 
 export default function LoginForm() {
 
@@ -34,7 +35,7 @@ export default function LoginForm() {
 
 
   return (
-    <form action="submit" onSubmit={handleSubmit}>
+    <LoginFormStyled action="submit" onSubmit={handleSubmit}>
         <h2>Bienvenue chez nous !</h2>
         <br/>
         <h3>Connectez-vous</h3>
@@ -51,6 +52,10 @@ export default function LoginForm() {
             type="submit">
                 Accédez à votre espace
         </button>
-    </form>
+    </LoginFormStyled>
   )
 }
+
+const LoginFormStyled = styled.form`
+  
+`
