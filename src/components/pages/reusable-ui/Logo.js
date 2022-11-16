@@ -16,6 +16,7 @@ export default function Logo() {
 const LogoStyled = styled.h1`
     margin-top:35px;
     transform: scale(1.05);
+    // device tablet
     @media ${theme.devices.tablet} {
         transform: scale(0.8);
     }

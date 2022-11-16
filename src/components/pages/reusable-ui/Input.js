@@ -24,18 +24,18 @@ const InputStyled = styled.div`
     .input-icon {
         position:absolute;
         top:38%;
-        left:6%;
-        color: ${theme.colors.greyMedium};
+        left:4%;
+        color: ${theme.colors.greyDark};
         font-size: ${theme.fonts.P2}
     }
     input {
         width: 100%;
-        height: 70px;
+        height: 65px;
         border:none;
-        border-radius: 5px;
+        border-radius: ${theme.borderRadius.round};
         font-size: ${theme.fonts.P2};
         color: ${theme.colors.greyDark};
-        padding:0 0 0 62px;
+        padding:0 0 0 ${theme.spacing.xl};
         text-align: left;
         box-sizing: border-box;
         &::placeholder {

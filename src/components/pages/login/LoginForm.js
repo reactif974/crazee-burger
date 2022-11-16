@@ -58,7 +58,6 @@ export default function LoginForm() {
 }
 
 const LoginFormStyled = styled.form`
-    // background-color:green;
     h2,
     h3 {
         font-family: 'Amatic SC', cursive;
@@ -82,7 +81,6 @@ const LoginFormStyled = styled.form`
         border:none;
     }
     .submit-container {
-        // background-color: red;
         width:480px;
         height:200px;
         margin:0 auto;

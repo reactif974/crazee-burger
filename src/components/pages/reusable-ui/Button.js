@@ -21,13 +21,13 @@ const ButtonStyled = styled.div`
     }
     .button_submit {
         width: 100%;
-        height: 70px;
+        height: 65px;
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
         border:none;
-        border-radius: 5px;
+        border-radius: ${theme.borderRadius.round};
         background-color: ${theme.colors.background_button_submit};
         color: ${theme.colors.white};
         font-family: 'Open Sans', sans-serif;
