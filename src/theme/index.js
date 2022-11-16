@@ -58,6 +58,24 @@ const colors = {
     bold: 700,
     heavy: 800,
   }
+
+  // responsive
+  const sizes = {
+    mobileS: "320px",
+    mobileM: "375px",
+    mobileL: "425px",
+    tablet: "768px",
+    laptop: "1440px",
+    desktopHd: "2560px",
+  }
+  const devices = {
+    mobileS: `(max-width:${sizes.mobileS})`,
+    mobileM: `(max-width:${sizes.mobileM})`,
+    mobileL: `(max-width:${sizes.mobileL})`,
+    tablet: `(max-width:${sizes.tablet})`,
+    laptop: `(max-width:${sizes.laptop})`,
+    desktopHd: `(max-width:${sizes.desktopHd})`,
+  }
   
   export const theme = {
     colors,
@@ -67,5 +85,7 @@ const colors = {
     shadows,
     weights,
     spacing,
+    sizes,
+    devices,
   }
   

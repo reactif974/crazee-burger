@@ -4,18 +4,21 @@ import { theme } from '../../../theme';
 export default function Logo() {
     // affichage
     return (
-        <div>
+        <>
             <LogoStyled>
                 <span className='crazee-span'>crazee</span>
                 <span>burger</span>
             </LogoStyled>
-        </div>
+        </>
     )
 }
 
 const LogoStyled = styled.h1`
     margin-top:35px;
     transform: scale(1.05);
+    @media ${theme.devices.tablet} {
+        transform: scale(0.8);
+    }
     > span {
         color: ${theme.colors.primary_burger};
         font-size: ${parseInt(theme.fonts.P6, 10)*2}px;

@@ -89,5 +89,8 @@ const LoginFormStyled = styled.form`
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-around;
+        @media ${theme.devices.mobileL} {
+            width:100%;
+        }
     }
 `
