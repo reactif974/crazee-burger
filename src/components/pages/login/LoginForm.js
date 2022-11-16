@@ -69,11 +69,32 @@ const LoginFormStyled = styled.form`
         font-size:${theme.fonts.P6};
         margin-bottom: 20px;
         font-weight: ${theme.weights.heavy};
+        @media ${theme.devices.mobileL} {
+            font-size:${theme.fonts.P5};
+            margin-top: -50px;
+        }
+        @media ${theme.devices.mobileM} {
+            font-size:${theme.fonts.P5};
+            margin-top: -20px;
+        }
+        @media all and (min-width: 425px) and (max-width: 768px) {
+            font-size:${theme.fonts.P5};
+            margin-top: -10px;
+        }
     }
     h3 {
         font-size:${theme.fonts.P5};
         margin-bottom:20px;
         font-weight: ${theme.weights.light};
+        @media ${theme.devices.mobileL} {
+            font-size:${theme.fonts.P3};
+        }
+        @media ${theme.devices.mobileM} {
+            font-size:${theme.fonts.P3};
+        }
+        @media all and (min-width: 425px) and (max-width: 768px) {
+            font-size:${theme.fonts.P3};
+        }
     }
     hr {
         height: 3px;
@@ -88,6 +109,12 @@ const LoginFormStyled = styled.form`
         flex-flow: column nowrap;
         justify-content: space-around;
         @media ${theme.devices.mobileL} {
+            width:100%;
+        }
+        @media ${theme.devices.mobileM} {
+            width:100%;
+        }
+        @media all and (min-width: 425px) and (max-width: 768px) {
             width:100%;
         }
     }

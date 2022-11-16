@@ -20,6 +20,27 @@ const LogoStyled = styled.h1`
     @media ${theme.devices.tablet} {
         transform: scale(0.8);
     }
+    @media ${theme.devices.mobileL} {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top:-40px;
+    }
+    @media ${theme.devices.mobileM} {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top:-40px;
+    }
+    @media all and (min-width: 425px) and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top:-40px;
+    }
     > span {
         color: ${theme.colors.primary_burger};
         font-size: ${parseInt(theme.fonts.P6, 10)*2}px;
@@ -27,6 +48,21 @@ const LogoStyled = styled.h1`
         font-weight: ${theme.weights.bold};
     }
     .crazee-span {
+        @media ${theme.devices.mobileL} {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        @media ${theme.devices.mobileM} {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        @media all and (min-width: 425px) and (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         &::after {
           content: "";
           width: 280px;
@@ -38,6 +74,15 @@ const LogoStyled = styled.h1`
           background-image: url('images/logo-orange.png');
           background-size: 243px 160px;
           background-repeat: no-repeat;
+            @media ${theme.devices.mobileL} {
+                top: 30px;
+            }
+            @media ${theme.devices.mobileM} {
+                top: 30px;
+            }
+            @media all and (min-width: 425px) and (max-width: 768px) {
+                top: 30px;
+            }
         }
     }
 `
