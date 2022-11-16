@@ -4,6 +4,9 @@ import { checkHasExistingAccount } from '../../../utils/user/User';
 import { users } from '../../../utils/user/UserDataBase';
 import styled from 'styled-components';
 import { theme } from '../../../theme';
+import Input from '../reusable-ui/Input';
+import {BsPersonCircle} from 'react-icons/bs';
+import Button from '../reusable-ui/Button';
 
 export default function LoginForm() {
 
@@ -42,19 +45,13 @@ export default function LoginForm() {
         <hr />
         <h3>Connectez-vous</h3>
         <div className="submit-container">
-            <input 
-                className="input-username"
-                value={newName}
-                type="text" 
-                name="name" 
-                id="name" 
-                placeholder='Entrez votre prénom'
-                onChange={handleChange}
-                required 
-            />
-            <button type="submit" className="button_submit">
-                    Accédez à votre espace
-            </button>
+            <Input 
+                value={newName} 
+                placeholder="Entrez votre prénom" 
+                handleChange={handleChange}
+                icon={<BsPersonCircle />}
+                />
+            <Button text="Accéder à mon espace" type="submit"/>
         </div>
     </LoginFormStyled>
   )
@@ -62,7 +59,6 @@ export default function LoginForm() {
 
 const LoginFormStyled = styled.form`
     // background-color:green;
-    width: 30%;
     h2,
     h3 {
         font-family: 'Amatic SC', cursive;
@@ -77,8 +73,8 @@ const LoginFormStyled = styled.form`
     }
     h3 {
         font-size:${theme.fonts.P5};
-        margin-bottom:0;
-        font-weight: ${theme.weights.bold};
+        margin-bottom:20px;
+        font-weight: ${theme.weights.light};
     }
     hr {
         height: 3px;
@@ -87,33 +83,11 @@ const LoginFormStyled = styled.form`
     }
     .submit-container {
         // background-color: red;
-        width:100%;
+        width:480px;
         height:200px;
         margin:0 auto;
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-around;
-        .input-username,
-        .button_submit {
-            height: 70px;
-            border:none;
-            border-radius: 5px;
-        }
-        .input-username {
-            text-align: left;
-            padding-left: ${theme.spacing.sm};
-            &::placeholder {
-                font-family: 'Open Sans', sans-serif;
-                font-size: ${theme.fonts.P0};
-                font-weight: ${theme.weights.light};
-            }
-        }
-        .button_submit {
-            background-color: ${theme.colors.background_button_submit};
-            color: ${theme.colors.white};
-            font-family: 'Open Sans', sans-serif;
-            font-size: ${theme.fonts.P1};
-            font-weight: ${theme.weights.bold};
-        }
     }
 `
