@@ -49,7 +49,7 @@ export default function LoginForm() {
                 value={newName} 
                 placeholder="Entrez votre prénom" 
                 handleChange={handleChange}
-                icon={<BsPersonCircle />}
+                Icon={<BsPersonCircle />}
                 />
             <Button text="Accéder à mon espace" type="submit"/>
         </div>
