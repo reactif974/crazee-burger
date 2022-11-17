@@ -6,13 +6,13 @@ export default function Logo({picsBurgerSize, textSize, picsPath}) {
 
     // affichage
     return (
-        <>
+        <div onClick={() => window.location.reload(false)} style={{ cursor:"pointer"}}>
             <LogoStyled textSize={textSize}>
                 crazee 
                 <img src={picsPath} alt="logo-crazy-burger" height={picsBurgerSize}/> 
                 burger
             </LogoStyled>
-        </>
+        </div>
     )
 }
 
