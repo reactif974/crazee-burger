@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { checkHasExistingAccount } from '../../../utils/user/User';
 import { users } from '../../../utils/user/UserDataBase';
+import styled from 'styled-components';
+import { theme } from '../../../theme';
+import Input from '../reusable-ui/Input';
+import {BsPersonCircle} from 'react-icons/bs';
+import Button from '../reusable-ui/Button';
 
 export default function LoginForm() {
 
@@ -34,23 +39,83 @@ export default function LoginForm() {
 
 
   return (
-    <form action="submit" onSubmit={handleSubmit}>
-        <h1>Bienvenue chez nous !</h1>
+    <LoginFormStyled action="submit" onSubmit={handleSubmit}>
+        <h2>Bienvenue chez nous !</h2>
         <br/>
-        <h2>Connectez-vous</h2>
-        <input 
-            value={newName}
-            type="text" 
-            name="name" 
-            id="name" 
-            placeholder='Entrez votre prénom...'
-            onChange={handleChange}
-            required 
-        />
-        <button 
-            type="submit">
-                Accédez à votre espace
-        </button>
-    </form>
+        <hr />
+        <h3>Connectez-vous</h3>
+        <div className="submit-container">
+            <Input 
+                value={newName} 
+                placeholder="Entrez votre prénom" 
+                handleChange={handleChange}
+                Icon={<BsPersonCircle />}
+                />
+            <Button text="Accéder à mon espace" type="submit"/>
+        </div>
+    </LoginFormStyled>
   )
 }
+
+const LoginFormStyled = styled.form`
+    h2,
+    h3 {
+        font-family: 'Amatic SC', cursive;
+        font-weight: ${theme.weights.regular};
+        color:${theme.colors.white};
+        text-align:center;
+    }
+    h2 {
+        font-size:${theme.fonts.P6};
+        margin-bottom: 20px;
+        font-weight: ${theme.weights.heavy};
+        @media ${theme.devices.mobileL} {
+            font-size:${theme.fonts.P5};
+            margin-top: -50px;
+        }
+        @media ${theme.devices.mobileM} {
+            font-size:${theme.fonts.P5};
+            margin-top: -20px;
+        }
+        @media all and (min-width: 425px) and (max-width: 768px) {
+            font-size:${theme.fonts.P5};
+            margin-top: -10px;
+        }
+    }
+    h3 {
+        font-size:${theme.fonts.P5};
+        margin-bottom:20px;
+        font-weight: ${theme.weights.light};
+        @media ${theme.devices.mobileL} {
+            font-size:${theme.fonts.P3};
+        }
+        @media ${theme.devices.mobileM} {
+            font-size:${theme.fonts.P3};
+        }
+        @media all and (min-width: 425px) and (max-width: 768px) {
+            font-size:${theme.fonts.P3};
+        }
+    }
+    hr {
+        height: 3px;
+        background-color: ${theme.colors.background_orange};
+        border:none;
+    }
+    .submit-container {
+        width:480px;
+        height:200px;
+        margin:0 auto;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        @media ${theme.devices.mobileL} {
+            width:100%;
+        }
+        @media ${theme.devices.mobileM} {
+            width:100%;
+        }
+        @media all and (min-width: 425px) and (max-width: 768px) {
+            width:100%;
+        }
+    }
+`
