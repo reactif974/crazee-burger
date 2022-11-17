@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import { theme } from '../../../theme';
 
 
-export default function Logo({picsBurgerSize, textSize}) {
+export default function Logo({picsBurgerSize, textSize, picsPath}) {
 
     // affichage
     return (
         <>
             <LogoStyled textSize={textSize}>
                 crazee 
-                <img src={"images/logo-orange.png"} alt="logo-crazy-burger" height={picsBurgerSize}/> 
+                <img src={picsPath} alt="logo-crazy-burger" height={picsBurgerSize}/> 
                 burger
             </LogoStyled>
         </>

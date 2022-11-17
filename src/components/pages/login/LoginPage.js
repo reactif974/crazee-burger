@@ -10,7 +10,7 @@ export default function LoginPage() {
   // affichage (render)
   return (
     <LoginPageStyled>
-      <Logo picsBurgerSize={picsBurgerSize} textSize="120px"/>
+      <Logo picsBurgerSize={picsBurgerSize} textSize="120px" picsPath="images/logo-orange.png"/>
       <LoginForm />
     </LoginPageStyled>
   )

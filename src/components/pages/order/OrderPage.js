@@ -1,17 +1,22 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import NavBar from '../reusable-ui/NavBar';
+import styled from "styled-components";
 
 export default function OrderPage() {
     // state
         // get name param in url
         const {name} = useParams();
-    // comportements
 
     // affichage(render)
-    return <div>
-        <h1>Bonjour {name}</h1>
-        <br />
-        <Link to="/">
-            <button>Déconnexion</button>
-        </Link>
-    </div>
+    return (
+        <OrderPageStyled>
+            <NavBar userName={name} picsPath="../images/logo-orange.png"/>
+        </OrderPageStyled>
+    )
 }
+
+const OrderPageStyled = styled.div`
+    height:100vh;
+    background-color: #FF9E1C;
+
+`
