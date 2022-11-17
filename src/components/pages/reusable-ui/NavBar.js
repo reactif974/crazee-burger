@@ -62,6 +62,11 @@ const NavBarStyled = styled.div`
                 font-family: 'Open Sans', sans-serif;
                 font-size: ${theme.fonts.XS};
                 color:${theme.colors.greyDark};
+                border-bottom: 2px solid transparent;
+
+                &:hover {
+                    border-color: ${theme.colors.greyDark};
+                }
             }
             h3 {
                 font-family: 'Open Sans', sans-serif;
