@@ -48,7 +48,7 @@ const NavBarStyled = styled.div`
         justify-content: center;
         align-items: center;
         .userPanel-icon {
-            font-size: ${theme.fonts.P4};
+            font-size: 43px;
             color:${theme.colors.greyDark};
         }
         .user-infos {
@@ -63,7 +63,6 @@ const NavBarStyled = styled.div`
                 font-size: ${theme.fonts.XS};
                 color:${theme.colors.greyDark};
                 border-bottom: 2px solid transparent;
-
                 &:hover {
                     border-color: ${theme.colors.greyDark};
                 }

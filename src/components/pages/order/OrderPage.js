@@ -17,6 +17,7 @@ export default function OrderPage() {
 
 const OrderPageStyled = styled.div`
     height:100vh;
-    background-color: #FF9E1C;
-
+    background: url("../images/logo-orange.png"), #FF9E1C;
+    background-size: 80px;
+    // background-color: #FF9E1C;
 `
