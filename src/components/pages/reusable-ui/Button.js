@@ -14,10 +14,6 @@ export default function Button({text,type}) {
 }
 
 const ButtonStyled = styled.div`
-    .submit-icon {
-        color: ${theme.colors.white};
-        font-size: ${theme.fonts.P3}
-    }
     .button_submit {
         width: 100%;
         height: 65px;
