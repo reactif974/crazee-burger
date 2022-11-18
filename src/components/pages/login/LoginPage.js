@@ -1,16 +1,15 @@
 import LoginForm from './LoginForm';
 import styled from 'styled-components';
 import Logo from '../reusable-ui/Logo';
-import { theme } from '../../../theme';
+import burgerBg from '../../../assets/burger-background.jpg'
 
 export default function LoginPage() {
-
-  const picsBurgerSize = `${parseInt(theme.fonts.P6, 12)*2}px`;
-
-  // affichage (render)
+  
   return (
     <LoginPageStyled>
-      <Logo picsBurgerSize={picsBurgerSize} textSize="120px" picsPath="images/logo-orange.png"/>
+      <div className="logo-container">
+        <Logo />
+      </div>
       <LoginForm />
     </LoginPageStyled>
   )
@@ -27,9 +26,13 @@ const LoginPageStyled = styled.div`
   linear-gradient(
     rgba(0, 0, 0, 0.7), 
     rgba(0, 0, 0, 0.7)
-  ), url("images/burger-background.jpg");
+  ), url(${burgerBg});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-`;
+  .logo-container {
+    transform: scale(3);
+    margin-top: 130px;
+  }
+`
 

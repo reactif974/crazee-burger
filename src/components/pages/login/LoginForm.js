@@ -14,8 +14,6 @@ export default function LoginForm() {
     const [newName, setNewName] = useState("");
     const navigate = useNavigate();
 
-    // comportements
-
     // form submission
     const handleSubmit = (event) => {
 
@@ -67,8 +65,9 @@ const LoginFormStyled = styled.form`
     }
     h2 {
         font-size:${theme.fonts.P6};
-        margin-bottom: 20px;
+        margin: 100px 0 20px 0;
         font-weight: ${theme.weights.heavy};
+
         @media ${theme.devices.mobileL} {
             font-size:${theme.fonts.P5};
             margin-top: -50px;

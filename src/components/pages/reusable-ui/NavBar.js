@@ -4,10 +4,10 @@ import { theme } from "../../../theme"
 import Logo from "./Logo"
 import { BsPersonCircle } from 'react-icons/bs'
 
-export default function NavBar({userName, picsPath}) {
+export default function NavBar({userName}) {
     return (
         <NavBarStyled>
-            <Logo picsBurgerSize="57px" textSize="34px" picsPath={picsPath}/>
+            <Logo />
             <div className="user-panel">
                 <div className="user-infos">
                     <h3>

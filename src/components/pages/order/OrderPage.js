@@ -12,7 +12,7 @@ export default function OrderPage() {
     return (
         <OrderPageStyled>
             <div className="section-container">
-                <NavBar userName={name} picsPath="../images/logo-orange.png"/>
+                <NavBar userName={name}/>
             </div>
         </OrderPageStyled>
     )
