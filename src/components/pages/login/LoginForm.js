@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { checkHasExistingAccount } from '../../../utils/user/User';
-import { users } from '../../../utils/user/UserDataBase';
+import { checkHasExistingAccount } from '../../../utils/user/user';
+import { users } from '../../../utils/user/userDataBase';
 import styled from 'styled-components';
 import { theme } from '../../../theme';
 import Input from '../reusable-ui/Input';

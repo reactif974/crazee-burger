@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { theme } from '../../../theme'
 import logo from '../../../assets/logo-orange.png'
-import refreshPage from '../../../utils/refresh'
+import refreshPage from '../../../utils/window/refresh'
 
 
 
