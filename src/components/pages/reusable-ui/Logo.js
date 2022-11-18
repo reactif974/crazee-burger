@@ -19,9 +19,14 @@ export default function Logo() {
 }
 
 const LogoStyled = styled.div`
-    width:100%;
     cursor:pointer;
     @media ${theme.devices.mobileM} {
+        width:30vw;
+    }
+    @media ${theme.devices.mobileL} {
+        width:30vw;
+    }
+    @media all and (min-width: 425px) and (max-width: 632px) {
         width:30vw;
     }
     h1 {
@@ -47,8 +52,8 @@ const LogoStyled = styled.div`
         @media ${theme.devices.mobileM} {
             transform: scale(.5);
         }
-        @media all and (min-width: 425px) and (max-width: 768px) {
-            transform: scale(.8);
+        @media all and (min-width: 425px) and (max-width: 632px) {
+            transform: scale(.7);
         }
     }
 `

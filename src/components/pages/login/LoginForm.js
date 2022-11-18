@@ -70,10 +70,10 @@ const LoginFormStyled = styled.form`
 
         @media ${theme.devices.mobileL} {
             font-size:${theme.fonts.P5};
-            margin-top: 60px;
+            margin-top: 100px;
         }
         @media ${theme.devices.mobileM} {
-            font-size:${theme.fonts.P5};
+            font-size:${theme.fonts.P4};
             margin-top: 80px;
         }
         @media all and (min-width: 425px) and (max-width: 768px) {
