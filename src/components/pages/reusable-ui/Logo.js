@@ -19,7 +19,11 @@ export default function Logo() {
 }
 
 const LogoStyled = styled.div`
+    width:100%;
     cursor:pointer;
+    @media ${theme.devices.mobileM} {
+        width:30vw;
+    }
     h1 {
         display: flex;
         flex-flow: row nowrap;
@@ -38,25 +42,13 @@ const LogoStyled = styled.div`
             transform: scale(0.8);
         }
         @media ${theme.devices.mobileL} {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top:-40px;
+            transform: scale(.6);
         }
         @media ${theme.devices.mobileM} {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top:-40px;
+            transform: scale(.5);
         }
         @media all and (min-width: 425px) and (max-width: 768px) {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top:-40px;
+            transform: scale(.8);
         }
     }
 `
