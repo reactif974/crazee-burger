@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import NavBar from '../reusable-ui/NavBar';
 import styled from "styled-components";
 import { theme } from '../../../theme';
+import logoOrange from '../../../assets/logo-orange.png'
 
 export default function OrderPage() {
     // state
@@ -22,8 +23,22 @@ const OrderPageStyled = styled.div`
     position:absolute;
     width:100%;
     height:100vh;
-    background: url("../images/logo-orange.png"), #FF9E1C;
-    background-size: 80px;
+    background-color: #FF9E1C ;
+    &::before {
+        position:absolute;
+        content: "";
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        width:100%;
+        height:100vh;
+        background: url(${logoOrange});
+        background-size: 50px;
+        background-repeat: repeat;
+        background-position:cover;
+        transform: rotate(20deg);
+    }
     top:0;
     left:0;
     right:0;
