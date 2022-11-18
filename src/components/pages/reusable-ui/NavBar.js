@@ -39,6 +39,7 @@ const NavBarStyled = styled.div`
     padding: 0 ${theme.spacing.xxl} 0 ${theme.spacing.md};
     box-sizing: border-box;
     border-radius: ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound} 0 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     h1 {
         margin-top: 0;
     }
