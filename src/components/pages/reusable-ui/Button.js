@@ -28,5 +28,8 @@ const ButtonStyled = styled.div`
         font-family: 'Open Sans', sans-serif;
         font-size: ${theme.fonts.P1};
         font-weight: ${theme.weights.bold};
+        &:hover {
+            cursor:pointer;
+        }
     }
 `
