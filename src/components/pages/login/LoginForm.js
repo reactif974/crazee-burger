@@ -5,7 +5,6 @@ import { users } from '../../../utils/user/userDataBase';
 import styled from 'styled-components';
 import { theme } from '../../../theme';
 import Input from '../reusable-ui/Input';
-import {BsPersonCircle} from 'react-icons/bs';
 import Button from '../reusable-ui/Button';
 
 export default function LoginForm() {
@@ -47,7 +46,8 @@ export default function LoginForm() {
                 value={newName} 
                 placeholder="Entrez votre prénom" 
                 handleChange={handleChange}
-                Icon={<BsPersonCircle />}
+                iconName="BsPersonCircle"
+                iconClassName="input-icon"
                 />
             <Button text="Accéder à mon espace" type="submit"/>
         </div>

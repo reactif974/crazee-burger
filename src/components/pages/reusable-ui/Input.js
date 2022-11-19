@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { theme } from '../../../theme';
+import Icon from './Icon';
 
-export default function Input({value,placeholder,Icon,handleChange}) {
+export default function Input({value,placeholder,iconName,iconClassName,handleChange}) {
 
     return (
         <InputStyled>
-            <span className="input-icon">{Icon && Icon}</span>
+            <Icon iconName={iconName} iconClassName={iconClassName}/>
             <input
                 value={value}
                 type="text" 

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { theme } from "../../../theme"
 import Logo from "./Logo"
-import { BsPersonCircle } from 'react-icons/bs'
+import Icon from "./Icon"
 
 export default function NavBar({userName}) {
     return (
@@ -16,7 +16,7 @@ export default function NavBar({userName}) {
                     </h3>
                     <Link to="/">Se Déconnecter</Link>
                 </div>
-                <span className="userPanel-icon"><BsPersonCircle /></span>
+                <Icon iconName="BsPersonCircle" iconClassName="userPanel-icon"/>
             </div>
         </NavBarStyled>
     )
@@ -48,10 +48,6 @@ const NavBarStyled = styled.div`
         flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
-        .userPanel-icon {
-            font-size: 43px;
-            color:${theme.colors.greyDark};
-        }
         .user-infos {
             display: flex;
             flex-direction: column;

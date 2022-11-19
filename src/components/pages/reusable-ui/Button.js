@@ -1,13 +1,13 @@
 import styled from "styled-components"
 import { theme } from "../../../theme"
-import {MdOutlineKeyboardArrowRight} from 'react-icons/md';
+import Icon from "./Icon"
 
 export default function Button({text,type}) {
     return (
         <ButtonStyled>
             <button type={type} className="button_submit">
                 {text}
-                <span className="arrow-icon"><MdOutlineKeyboardArrowRight /></span>
+                <Icon iconName="MdOutlineKeyboardArrowRight" iconClassName="button-submit-icon"/>
             </button>
         </ButtonStyled>
     )
@@ -28,10 +28,5 @@ const ButtonStyled = styled.div`
         font-family: 'Open Sans', sans-serif;
         font-size: ${theme.fonts.P1};
         font-weight: ${theme.weights.bold};
-        .arrow-icon {
-            font-size: ${theme.fonts.P3};
-            padding-top:8px;
-            padding-left: 8px;
-        }
     }
 `
