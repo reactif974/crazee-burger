@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { theme } from '../../../theme';
 import Input from '../reusable-ui/Input';
 import Button from '../reusable-ui/Button';
+import { BsPersonCircle } from 'react-icons/bs';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 export default function LoginForm() {
 
@@ -43,13 +45,14 @@ export default function LoginForm() {
         <h3>Connectez-vous</h3>
         <div className="submit-container">
             <Input 
-                value={newName} 
-                placeholder="Entrez votre prénom" 
+                value={newName}
                 handleChange={handleChange}
-                iconName="BsPersonCircle"
-                iconClassName="input-icon"
+                placeholder="Entrez votre prénom"
+                type="text"
+                Icon={<BsPersonCircle />}
+                required
                 />
-            <Button text="Accéder à mon espace" type="submit"/>
+            <Button text="Accéder à mon espace" type="submit" Icon={<MdOutlineKeyboardArrowRight />}/>
         </div>
     </LoginFormStyled>
   )

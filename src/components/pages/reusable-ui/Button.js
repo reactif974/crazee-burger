@@ -1,13 +1,12 @@
 import styled from "styled-components"
 import { theme } from "../../../theme"
-import Icon from "./Icon"
 
-export default function Button({text,type}) {
+export default function Button({text,type,Icon}) {
     return (
         <ButtonStyled>
             <button type={type} className="button_submit">
                 {text}
-                <Icon iconName="MdOutlineKeyboardArrowRight" iconClassName="button-submit-icon"/>
+                {Icon && Icon}
             </button>
         </ButtonStyled>
     )

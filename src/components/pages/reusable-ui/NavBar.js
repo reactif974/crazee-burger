@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { theme } from "../../../theme"
 import Logo from "./Logo"
-import Icon from "./Icon"
+import { BsPersonCircle } from 'react-icons/bs'
 
 export default function NavBar({userName}) {
     return (
@@ -16,7 +16,7 @@ export default function NavBar({userName}) {
                     </h3>
                     <Link to="/">Se déconnecter</Link>
                 </div>
-                <Icon iconName="BsPersonCircle" iconClassName="userPanel-icon"/>
+                <span className="profil-icon"><BsPersonCircle /></span>
             </div>
         </NavBarStyled>
     )
@@ -65,6 +65,16 @@ const NavBarStyled = styled.div`
         @media ${theme.devices.mobileM} {
             width: 100px;
         }
+        .profil-icon {
+            font-size: ${theme.fonts.P4};
+            color:${theme.colors.greyDark};
+            @media ${theme.devices.mobileL} {
+                font-size:${theme.fonts.P3};
+            }
+            @media ${theme.devices.mobileM} {
+                font-size:${theme.fonts.P3};
+            }
+        }
         .user-infos {
             display: flex;
             flex-direction: column;
@@ -106,8 +116,7 @@ const NavBarStyled = styled.div`
                     font-size: ${theme.fonts.XXS};
                     margin-top:-2px;
                 }
-
-                > span {
+                span {
                     color: ${theme.colors.background_button_submit};
                     padding-left: ${theme.spacing.xs};
                 }
