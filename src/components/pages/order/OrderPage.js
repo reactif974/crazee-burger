@@ -5,11 +5,9 @@ import { theme } from '../../../theme';
 import logoOrange from '../../../assets/logo-orange.png'
 
 export default function OrderPage() {
-    // state
-        // get name param in url
-        const {name} = useParams();
 
-    // affichage(render)
+    const {name} = useParams();
+    
     return (
         <OrderPageStyled>
             <div className="section-container">
