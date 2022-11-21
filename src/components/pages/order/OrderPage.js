@@ -58,6 +58,10 @@ const OrderPageStyled = styled.div`
             width:75%;
             margin:110px auto 0 auto;
         }
+        @media ${theme.devices.mobileL} {
+            width:90%;
+            margin:110px auto 0 auto;
+        }
     }
     
 `

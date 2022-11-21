@@ -33,7 +33,7 @@ const LogoStyled = styled.div`
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         font-size: 34px;
         color: ${theme.colors.primary_burger};
         font-family: 'Amatic SC', cursive;
@@ -44,16 +44,16 @@ const LogoStyled = styled.div`
             height: 50px;
         }
         @media ${theme.devices.tablet} {
-            transform: scale(0.8);
+            transform: scale(1);
         }
         @media ${theme.devices.mobileL} {
-            transform: scale(.6);
-        }
-        @media ${theme.devices.mobileM} {
-            transform: scale(.5);
+            transform: scale(.7);
         }
         @media all and (min-width: 425px) and (max-width: 632px) {
-            transform: scale(.7);
+            transform: scale(.8);
+        }
+        @media ${theme.devices.mobileM} {
+            transform: scale(.6);
         }
     }
 `

@@ -38,5 +38,14 @@ const IconStyled = styled.div`
     .userPanel-icon {
         font-size: 43px;
         color:${theme.colors.greyDark};
+        @media ${theme.devices.tablet} {
+            font-size:${theme.fonts.P4};
+        }
+        @media ${theme.devices.mobileL} {
+            font-size:${theme.fonts.P4};
+        }
+        @media ${theme.devices.mobileM} {
+            font-size:${theme.fonts.P3};
+        }
     }
 `
