@@ -21,13 +21,11 @@ export default function Logo() {
 const LogoStyled = styled.div`
     cursor:pointer;
     @media ${theme.devices.mobileM} {
-        width:30vw;
+        width:100%
     }
     @media ${theme.devices.mobileL} {
-        width:30vw;
-    }
-    @media all and (min-width: 425px) and (max-width: 632px) {
-        width:30vw;
+        background-color: red;
+        width:100%;
     }
     h1 {
         display: flex;
@@ -47,13 +45,13 @@ const LogoStyled = styled.div`
             transform: scale(1);
         }
         @media ${theme.devices.mobileL} {
-            transform: scale(.7);
+            transform: scale(.6);
         }
         @media all and (min-width: 425px) and (max-width: 632px) {
             transform: scale(.8);
         }
         @media ${theme.devices.mobileM} {
-            transform: scale(.6);
+            transform: scale(.5);
         }
     }
 `
