@@ -71,7 +71,13 @@ const NavBarStyled = styled.div`
             justify-content: space-around;
             text-align:right;
             padding-right: ${theme.spacing.md};
+            @media ${theme.devices.tablet} {
+                padding-right: ${theme.spacing.xs};
+            }
             @media ${theme.devices.mobileM} {
+                padding-right: ${theme.spacing.xs};
+            }
+            @media all and (min-width: 425px) and (max-width: 768px) {
                 padding-right: ${theme.spacing.xs};
             }
             a {

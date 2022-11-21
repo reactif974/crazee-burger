@@ -24,7 +24,6 @@ const LogoStyled = styled.div`
         width:100%
     }
     @media ${theme.devices.mobileL} {
-        background-color: red;
         width:100%;
     }
     h1 {
