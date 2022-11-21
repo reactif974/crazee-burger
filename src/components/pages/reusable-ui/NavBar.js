@@ -14,7 +14,7 @@ export default function NavBar({userName}) {
                         Hey,
                         <span>{userName}</span>
                     </h3>
-                    <Link to="/">Se Déconnecter</Link>
+                    <Link to="/">Se déconnecter</Link>
                 </div>
                 <Icon iconName="BsPersonCircle" iconClassName="userPanel-icon"/>
             </div>

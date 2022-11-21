@@ -23,7 +23,7 @@ const OrderPageStyled = styled.div`
     position:absolute;
     width:100%;
     height:100vh;
-    background-color: #FF9E1C ;
+    background-color: #FF9E1C;
     &::before {
         position:absolute;
         content: "";
@@ -54,6 +54,7 @@ const OrderPageStyled = styled.div`
         width:95%;
         height:85%;
         background-color:${theme.colors.white};
+        border-radius: 0 0 ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
     }
     
 `
