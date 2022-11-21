@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
-import NavBar from '../reusable-ui/NavBar';
-import styled from "styled-components";
-import { theme } from '../../../theme';
+import { useParams } from 'react-router-dom'
+import NavBar from '../reusable-ui/NavBar'
+import styled from 'styled-components'
+import { theme } from '../../../theme'
 import logoOrange from '../../../assets/logo-orange.png'
 
 export default function OrderPage() {
 
     const {name} = useParams();
-    
+
     return (
         <OrderPageStyled>
             <div className="section-container">

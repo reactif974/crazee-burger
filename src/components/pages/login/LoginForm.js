@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { checkHasExistingAccount } from '../../../utils/user/user';
-import { users } from '../../../utils/user/userDataBase';
-import styled from 'styled-components';
-import { theme } from '../../../theme';
-import Input from '../reusable-ui/Input';
-import Button from '../reusable-ui/Button';
-import { BsPersonCircle } from 'react-icons/bs';
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom'
+import { checkHasExistingAccount } from '../../../utils/user/user'
+import { users } from '../../../utils/user/userDataBase'
+import styled from 'styled-components'
+import { theme } from '../../../theme'
+import Input from '../reusable-ui/Input'
+import Button from '../reusable-ui/Button'
+import { BsPersonCircle } from 'react-icons/bs'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 export default function LoginForm() {
-
-    // state
+    
     const [newName, setNewName] = useState("");
     const navigate = useNavigate();
 

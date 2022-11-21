@@ -1,9 +1,10 @@
 import { BsPersonCircle } from 'react-icons/bs'
-import { theme } from "../../../theme"
-import { Link } from "react-router-dom"
+import { theme } from '../../../theme'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default function UserProfil({userName}) {
+    
     return (
         <UserProfilStyled>
             <div className="user-infos">

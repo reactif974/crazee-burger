@@ -1,9 +1,10 @@
-import styled from "styled-components"
-import { theme } from "../../../theme"
-import UserProfil from "../order/UserProfil"
-import Logo from "./Logo"
+import styled from 'styled-components'
+import { theme } from '../../../theme'
+import UserProfil from '../order/UserProfil'
+import Logo from './Logo'
 
 export default function NavBar({userName}) {
+    
     return (
         <NavBarStyled>
             <Logo />

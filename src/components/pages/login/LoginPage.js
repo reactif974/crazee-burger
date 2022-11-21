@@ -1,8 +1,8 @@
-import LoginForm from './LoginForm';
-import styled from 'styled-components';
-import Logo from '../reusable-ui/Logo';
+import LoginForm from './LoginForm'
+import styled from 'styled-components'
+import Logo from '../reusable-ui/Logo'
 import burgerBg from '../../../assets/burger-background.jpg'
-import { theme } from '../../../theme';
+import { theme } from '../../../theme'
 
 export default function LoginPage() {
 
