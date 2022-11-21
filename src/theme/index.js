@@ -65,6 +65,7 @@ const colors = {
     mobileM: "375px",
     mobileL: "425px",
     tablet: "768px",
+    laptopM: "1280px",
     laptop: "1440px",
     desktopHd: "2560px",
   }
@@ -73,6 +74,7 @@ const colors = {
     mobileM: `(max-width:${sizes.mobileM})`,
     mobileL: `(max-width:${sizes.mobileL})`,
     tablet: `(max-width:${sizes.tablet})`,
+    laptopM: `(max-width:${sizes.laptopM})`,
     laptop: `(max-width:${sizes.laptop})`,
     desktopHd: `(max-width:${sizes.desktopHd})`,
   }

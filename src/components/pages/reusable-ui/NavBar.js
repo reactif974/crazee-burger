@@ -40,6 +40,9 @@ const NavBarStyled = styled.div`
     box-sizing: border-box;
     border-radius: ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound} 0 0;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    @media ${theme.devices.laptopM} {
+            width:75%;
+    }
     h1 {
         margin-top: 0;
     }

@@ -34,10 +34,9 @@ const OrderPageStyled = styled.div`
         width:100%;
         height:100vh;
         background: url(${logoOrange});
-        background-size: 50px;
+        background-size: 110px;
         background-repeat: repeat;
         background-position:cover;
-        transform: rotate(20deg);
     }
     top:0;
     left:0;
@@ -55,6 +54,10 @@ const OrderPageStyled = styled.div`
         height:85%;
         background-color:${theme.colors.white};
         border-radius: 0 0 ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
+        @media ${theme.devices.laptopM} {
+            width:75%;
+            margin:110px auto 0 auto;
+        }
     }
     
 `
