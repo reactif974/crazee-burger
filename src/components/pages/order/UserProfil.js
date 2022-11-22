@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default function UserProfil({userName}) {
-    
+
     return (
         <UserProfilStyled>
             <div className="user-infos">
@@ -69,8 +69,8 @@ const UserProfilStyled = styled.div`
             font-family: 'Open Sans', sans-serif;
             font-weight: ${theme.weights.light};
             color:${theme.colors.greyDark};
-            margin-top:-10px;
-            margin-bottom: 5px;
+            margin-top: -9px;
+            margin-bottom: 1px;
             @media ${theme.devices.tablet} {
                 font-size: ${theme.fonts.XS};
             }
