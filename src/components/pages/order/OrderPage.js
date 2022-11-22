@@ -10,56 +10,33 @@ export default function OrderPage() {
 
     return (
         <OrderPageStyled>
-            <div className="section-container">
-                <NavBar userName={name}/>
-            </div>
+            <NavBar userName={name}/>
+            <main className="main-container"></main>
         </OrderPageStyled>
     )
 }
 
 const OrderPageStyled = styled.div`
-    position:absolute;
+    display: flex;
     width:100%;
     height:100vh;
-    background-color: #FF9E1C;
-    &::before {
-        position:absolute;
-        content: "";
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        width:100%;
-        height:100vh;
-        background: url(${logoOrange});
-        background-size: 110px;
-        background-repeat: repeat;
-        background-position:cover;
-    }
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    .section-container {
-        position:fixed;
-        top:0;
-        left:0;
-        right:0;
-        margin:110px auto 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    // background: url(${logoOrange}), #FF9E1C;
+    background: #FF9E1C;
+    background-size: 110px;
+    background-repeat: repeat;
+    background-position:cover;
+    .main-container {
         display:flex;
-        flex-direction:row;
-        width:95%;
-        height:85%;
-        background-color:${theme.colors.white};
-        border-radius: 0 0 ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-        @media ${theme.devices.laptopM} {
-            width:75%;
-            margin:110px auto 0 auto;
-        }
-        @media ${theme.devices.mobileL} {
-            width:90%;
-            margin:110px auto 0 auto;
-        }
+        width:1400px;
+        max-width:1400px;
+        height:80vh;
+        margin:0 auto;
+        border-bottom-left-radius: ${theme.borderRadius.extraRound};
+        border-bottom-right-radius: ${theme.borderRadius.extraRound};
+        background-color: ${theme.colors.background_white};
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+        box-shadow: inset 0px 0px 12px 0px ${theme.colors.greySemiDark};
     }
-    
 `
