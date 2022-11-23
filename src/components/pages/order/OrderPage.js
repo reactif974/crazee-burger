@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { theme } from '../../../theme'
 import logoOrange from '../../../assets/logo-orange.png'
 import { fakeMenu2 } from '../../../fakeData/fakeMenu'
+import MenuCard from '../reusable-ui/MenuCard'
 
 export default function OrderPage() {
 
@@ -14,7 +15,7 @@ export default function OrderPage() {
             <NavBar userName={name}/>
             <main className="main-container">
                 {fakeMenu2.map((menu) => {
-                    return <div className="grille-item">{menu.id}</div>
+                    return <div className="grille-item"><MenuCard id={menu.id}/></div>
                 })}
             </main>
         </OrderPageStyled>
