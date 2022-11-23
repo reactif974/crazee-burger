@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { theme } from '../../../theme';
+import formatNumber from '../../../utils/number/math';
 import Button from './Button';
 
 export default function MenuCard({menu}) {
@@ -9,7 +10,7 @@ export default function MenuCard({menu}) {
         <div className='pics-container'></div>
         <h2>{menu.title}</h2>
         <div className="price-container">
-            <h3>{menu.price}</h3>
+            <h3>{formatNumber(menu.price)}€</h3>
             <Button text="Ajouter" type="submit"/>
         </div>
     </MenuCardStyled>
