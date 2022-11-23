@@ -5,10 +5,13 @@ import formatNumber from '../../../utils/number/math';
 import Button from './Button';
 
 export default function MenuCard({menu}) {
+
+    const shortTitle = menu.title.length > 20 ? menu.title.substring(0,16) + "..." : menu.title
+
   return (
-    <MenuCardStyled image={menu.imageSource}>
+    <MenuCardStyled image={menu.imageSource} title={menu.title}>
         <div className='pics-container'></div>
-        <h2>{menu.title}</h2>
+        <h2>{shortTitle}</h2>
         <div className="price-container">
             <h3>{formatNumber(menu.price)}€</h3>
             <Button text="Ajouter" type="submit"/>
