@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import { theme } from '../../../theme'
 
-export default function Input({value,handleChange,Icon, ...extraProps}) {
+export default function Input({value,onChange,Icon, ...extraProps}) {
 
     return (
         <InputStyled>
             <span className="icon">{Icon && Icon}</span>
             <input
                 value={value}
-                onChange={handleChange}
+                onChange={onChange}
                 {...extraProps}
             />
         </InputStyled>

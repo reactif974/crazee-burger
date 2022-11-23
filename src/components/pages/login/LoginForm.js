@@ -10,7 +10,8 @@ import { BsPersonCircle } from 'react-icons/bs'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 export default function LoginForm() {
-    
+
+    // state
     const [newName, setNewName] = useState("");
     const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ export default function LoginForm() {
     }
 
     // registration of the new name from the input form
-    const handleChange = (event) => {
+    const onChange = (event) => {
         setNewName(event.target.value);
     }
 
@@ -45,7 +46,7 @@ export default function LoginForm() {
         <div className="submit-container">
             <Input 
                 value={newName}
-                handleChange={handleChange}
+                onChange={onChange}
                 placeholder="Entrez votre prénom"
                 type="text"
                 Icon={<BsPersonCircle />}
