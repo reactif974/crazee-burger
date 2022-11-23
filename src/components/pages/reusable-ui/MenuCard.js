@@ -31,7 +31,7 @@ const MenuCardStyled = styled.div`
     .pics-container {
         width: 90%;
         height: 145px;
-        margin: 20px auto;
+        margin: 40px auto;
         background: url(${(props) => props.image}) no-repeat;
         background-size: contain;
         background-position: center;
@@ -47,14 +47,17 @@ const MenuCardStyled = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 10px 10px 30px;
+        padding: 4px 30px 10px 30px;
         h3 {
             font-family: 'Open Sans', sans-serif;
+            color: ${theme.colors.primary_burger};
+            font-size: ${theme.fonts.P0};
+            font-weight: ${theme.weights.light};
         }
         button {
             width:100px;
             height:42px;
-            font-size: ${theme.fonts.P0};
+            font-size: ${theme.fonts.XS};
         }
     }
-`;
+`
