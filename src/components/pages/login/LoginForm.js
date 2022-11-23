@@ -52,7 +52,7 @@ export default function LoginForm() {
                 Icon={<BsPersonCircle />}
                 required
                 />
-            <Button text="Accéder à mon espace" type="submit" Icon={<MdOutlineKeyboardArrowRight />}/>
+            <Button text="Accéder à mon espace" type="submit" Icon={<MdOutlineKeyboardArrowRight />} className="button_submit"/>
         </div>
     </LoginFormStyled>
   )

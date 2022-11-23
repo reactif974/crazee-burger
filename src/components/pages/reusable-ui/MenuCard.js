@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { theme } from '../../../theme';
-import formatNumber from '../../../utils/number/math';
-import Button from './Button';
+import PriceContainer from './PriceContainer';
 
 export default function MenuCard({menu}) {
 
@@ -11,10 +10,7 @@ export default function MenuCard({menu}) {
         <MenuCardStyled image={menu.imageSource} title={menu.title}>
             <div className='pics-container'></div>
             <h2>{shortTitle}</h2>
-            <div className="price-container">
-                <h3>{formatNumber(menu.price)}€</h3>
-                <Button text="Ajouter" type="submit"/>
-            </div>
+            <PriceContainer menu={menu}/>
         </MenuCardStyled>
     )
 }
@@ -41,33 +37,5 @@ const MenuCardStyled = styled.div`
         padding-left:27px;
         font-size: ${theme.fonts['P3.1']};
         margin:0;
-    }
-    .price-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 4px 30px 10px 30px;
-        h3 {
-            font-family: 'Open Sans', sans-serif;
-            color: ${theme.colors.primary_burger};
-            font-size: ${theme.fonts.P0};
-            font-weight: ${theme.weights.light};
-        }
-        button {
-            width:100px;
-            height:42px;
-            font-size: ${theme.fonts.XS};
-            border: 1px solid ${theme.colors.primary_burger};
-            background-color: ${theme.colors.primary_burger};
-            transition: background-color .6s ease, color .6s ease;
-            &:hover {
-                background-color: ${theme.colors.white};
-                color: ${theme.colors.primary_burger};
-            }
-            &:active {
-                background-color: ${theme.colors.primary_burger};
-                color: ${theme.colors.white};
-            }
-        }
     }
 `
