@@ -15,7 +15,7 @@ export default function OrderPage() {
             <NavBar userName={name}/>
             <main className="main-container">
                 {fakeMenu2.map((menu) => {
-                    return <div className="grille-item"><MenuCard image={menu.imageSource}/></div>
+                    return <div className="grille-item"><MenuCard menu={menu}/></div>
                 })}
             </main>
         </OrderPageStyled>
