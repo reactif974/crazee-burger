@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { theme } from '../../../theme';
 import formatNumber from '../../../utils/number/math';
@@ -58,6 +57,17 @@ const MenuCardStyled = styled.div`
             width:100px;
             height:42px;
             font-size: ${theme.fonts.XS};
+            border: 1px solid ${theme.colors.primary_burger};
+            background-color: ${theme.colors.primary_burger};
+            transition: background-color .6s ease, color .6s ease;
+            &:hover {
+                background-color: ${theme.colors.white};
+                color: ${theme.colors.primary_burger};
+            }
+            &:active {
+                background-color: ${theme.colors.primary_burger};
+                color: ${theme.colors.white};
+            }
         }
     }
 `
