@@ -8,16 +8,16 @@ export default function MenuCard({menu}) {
 
     const shortTitle = menu.title.length > 20 ? menu.title.substring(0,16) + "..." : menu.title
 
-  return (
-    <MenuCardStyled image={menu.imageSource} title={menu.title}>
-        <div className='pics-container'></div>
-        <h2>{shortTitle}</h2>
-        <div className="price-container">
-            <h3>{formatNumber(menu.price)}€</h3>
-            <Button text="Ajouter" type="submit"/>
-        </div>
-    </MenuCardStyled>
-  )
+    return (
+        <MenuCardStyled image={menu.imageSource} title={menu.title}>
+            <div className='pics-container'></div>
+            <h2>{shortTitle}</h2>
+            <div className="price-container">
+                <h3>{formatNumber(menu.price)}€</h3>
+                <Button text="Ajouter" type="submit"/>
+            </div>
+        </MenuCardStyled>
+    )
 }
 
 const MenuCardStyled = styled.div`
