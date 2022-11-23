@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { checkHasExistingAccount } from '../../../utils/user/User';
-import { users } from '../../../utils/user/UserDataBase';
-import styled from 'styled-components';
-import { theme } from '../../../theme';
-import Input from '../reusable-ui/Input';
-import {BsPersonCircle} from 'react-icons/bs';
-import Button from '../reusable-ui/Button';
+import { useNavigate } from 'react-router-dom'
+import { checkHasExistingAccount } from '../../../utils/user/user'
+import { users } from '../../../utils/user/userDataBase'
+import styled from 'styled-components'
+import { theme } from '../../../theme'
+import Input from '../reusable-ui/Input'
+import Button from '../reusable-ui/Button'
+import { BsPersonCircle } from 'react-icons/bs'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 export default function LoginForm() {
 
     // state
     const [newName, setNewName] = useState("");
     const navigate = useNavigate();
-
-    // comportements
 
     // form submission
     const handleSubmit = (event) => {
@@ -33,7 +32,7 @@ export default function LoginForm() {
     }
 
     // registration of the new name from the input form
-    const handleChange = (event) => {
+    const onChange = (event) => {
         setNewName(event.target.value);
     }
 
@@ -46,12 +45,14 @@ export default function LoginForm() {
         <h3>Connectez-vous</h3>
         <div className="submit-container">
             <Input 
-                value={newName} 
-                placeholder="Entrez votre prénom" 
-                handleChange={handleChange}
+                value={newName}
+                onChange={onChange}
+                placeholder="Entrez votre prénom"
+                type="text"
                 Icon={<BsPersonCircle />}
+                required
                 />
-            <Button text="Accéder à mon espace" type="submit"/>
+            <Button text="Accéder à mon espace" type="submit" Icon={<MdOutlineKeyboardArrowRight />}/>
         </div>
     </LoginFormStyled>
   )
@@ -67,19 +68,20 @@ const LoginFormStyled = styled.form`
     }
     h2 {
         font-size:${theme.fonts.P6};
-        margin-bottom: 20px;
+        margin: 100px 0 20px 0;
         font-weight: ${theme.weights.heavy};
+
         @media ${theme.devices.mobileL} {
             font-size:${theme.fonts.P5};
-            margin-top: -50px;
+            margin-top: 100px;
         }
         @media ${theme.devices.mobileM} {
-            font-size:${theme.fonts.P5};
-            margin-top: -20px;
+            font-size:${theme.fonts.P4};
+            margin-top: 80px;
         }
         @media all and (min-width: 425px) and (max-width: 768px) {
             font-size:${theme.fonts.P5};
-            margin-top: -10px;
+            margin-top: 100px;
         }
     }
     h3 {
