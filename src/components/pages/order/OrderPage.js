@@ -15,7 +15,7 @@ export default function OrderPage() {
             <NavBar userName={name}/>
             <main className="main-container">
                 {fakeMenu2.map((menu) => {
-                    return <div className="grille-item"><MenuCard id={menu.id}/></div>
+                    return <div className="grille-item"><MenuCard image={menu.imageSource}/></div>
                 })}
             </main>
         </OrderPageStyled>
@@ -51,7 +51,7 @@ const OrderPageStyled = styled.div`
         overflow-y: scroll;
         .grille-item {
             height:330px;
-            background-color:#333;
+            background-color:${theme.colors.white};
             border-radius: ${theme.borderRadius.extraRound};
         }
     }
