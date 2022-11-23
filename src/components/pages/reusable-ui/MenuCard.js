@@ -1,12 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { theme } from '../../../theme';
+import Button from './Button';
 
 export default function MenuCard({menu}) {
   return (
     <MenuCardStyled image={menu.imageSource}>
         <div className='pics-container'></div>
         <h2>{menu.title}</h2>
+        <div className="price-container">
+            <h3>{menu.price}</h3>
+            <Button text="Ajouter" type="submit"/>
+        </div>
     </MenuCardStyled>
   )
 }
@@ -16,10 +21,13 @@ const MenuCardStyled = styled.div`
     height:330px;
     display:flex;
     flex-direction: column;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: ${theme.borderRadius.extraRound};
     .pics-container {
-        width:90%;
-        height:145px;
-        margin: 65px 10px 25px 15px;
+        width: 90%;
+        height: 145px;
+        margin: 20px auto;
         background: url(${(props) => props.image}) no-repeat;
         background-size: contain;
         background-position: center;
@@ -28,7 +36,21 @@ const MenuCardStyled = styled.div`
         text-align: left;
         font-family: 'Amatic SC', cursive;
         padding-left:27px;
-        font-size: ${theme.fonts.P4};
+        font-size: ${theme.fonts['P3.1']};
         margin:0;
+    }
+    .price-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px 10px 30px;
+        h3 {
+            font-family: 'Open Sans', sans-serif;
+        }
+        button {
+            width:100px;
+            height:42px;
+            font-size: ${theme.fonts.P0};
+        }
     }
 `;
