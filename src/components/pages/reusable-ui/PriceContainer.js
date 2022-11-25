@@ -34,7 +34,7 @@ const PriceContainerStyled = styled.div`
         border-radius: ${theme.borderRadius.round};
         background-color: ${theme.colors.primary_burger};
         color: ${theme.colors.white};
-        transition: background-color .6s ease, color .6s ease;
+        transition: background-color .4s ease, color .4s ease;
         cursor:pointer;
         &:hover {
             background-color: ${theme.colors.white};
