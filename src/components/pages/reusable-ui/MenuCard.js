@@ -26,7 +26,7 @@ const MenuCardStyled = styled.div`
     .pics-container {
         width: 90%;
         height: 145px;
-        margin: 40px auto;
+        margin: 29px auto;
         background: url(${(props) => props.image}) no-repeat;
         background-size: contain;
         background-position: center;

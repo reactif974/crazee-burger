@@ -18,7 +18,7 @@ const PriceContainerStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 30px 10px 30px;
+    padding: 4px 30px 30px 30px;
     h3 {
         font-family: 'Open Sans', sans-serif;
         color: ${theme.colors.primary_burger};
