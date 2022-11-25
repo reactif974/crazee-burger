@@ -28,6 +28,7 @@ const NavBarStyled = styled.nav`
     height:93px;
     background-color: ${theme.colors.white};
     padding: 0 ${theme.spacing.xxl} 0 ${theme.spacing.md};
+    border-bottom: 1px solid ${theme.colors.greyLight};
     border-radius: ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound} 0 0;
     h1 {
         margin-top: 0;
