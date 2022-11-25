@@ -25,7 +25,7 @@ const MenuCardStyled = styled.div`
     border-radius: ${theme.borderRadius.extraRound};
     .pics-container {
         height: 145px;
-        margin: 29px 30px 20px 9px;
+        margin: 29px 30px 20px 27px;
         background: url(${(props) => props.image}) no-repeat;
         background-size: contain;
         background-position: center;
