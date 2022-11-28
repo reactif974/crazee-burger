@@ -46,6 +46,7 @@ const OrderPageStyled = styled.div`
             background-color: ${theme.colors.background_dark};
             height:80vh;
             width:100%;
+            border-bottom-left-radius: ${theme.borderRadius.extraRound};
         }
         .menu-container {
             display: grid;
