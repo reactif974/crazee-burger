@@ -14,9 +14,12 @@ export default function OrderPage() {
         <OrderPageStyled>
             <NavBar userName={name}/>
             <main className="main-container">
-                {fakeMenu2.map((menu) => {
-                    return <div key={menu.id} className="grille-item"><MenuCard menu={menu}/></div>
-                })}
+                <div className="sideBar-left"></div>
+                <div className="menu-container">
+                    {fakeMenu2.map((menu) => {
+                        return <div key={menu.id} className="grille-item"><MenuCard menu={menu}/></div>
+                    })}
+                </div>
             </main>
         </OrderPageStyled>
     )
@@ -34,25 +37,34 @@ const OrderPageStyled = styled.div`
     background-repeat: repeat;
     background-position:cover;
     .main-container {
-        display: grid;
-        grid-template-columns: repeat(4, 240px);
-        grid-gap: 76.67px;
-        justify-content: center;
+        display:grid;
+        grid-template-columns: 18% 1fr;
         width:1400px;
-        max-width:1400px;
-        height:80vh;
+        max-width: 1400px;
         margin: 0 auto;
-        padding: 60px 0 80px 0;
-        border-bottom-left-radius: ${theme.borderRadius.extraRound};
-        border-bottom-right-radius: ${theme.borderRadius.extraRound};
-        background-color: ${theme.colors.background_white};
-        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-        box-shadow: inset 0px 0px 12px 0px ${theme.colors.greySemiDark};
-        overflow-y: scroll;
-        .grille-item {
-            height:330px;
-            background-color:${theme.colors.white};
-            border-radius: ${theme.borderRadius.extraRound};
+        .sideBar-left {
+            background-color: ${theme.colors.background_dark};
+            height:80vh;
+            width:100%;
+        }
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(4, 240px);
+            grid-gap: 40px;
+            justify-content: center;
+            height:80vh;
+            padding: 60px 0 80px 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: ${theme.borderRadius.extraRound};
+            background-color: ${theme.colors.background_white};
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+            box-shadow: inset 0px 0px 12px 0px ${theme.colors.greySemiDark};
+            overflow-y: scroll;
+            .grille-item {
+                height:330px;
+                background-color:${theme.colors.white};
+                border-radius: ${theme.borderRadius.extraRound};
+            }
         }
     }
 `
