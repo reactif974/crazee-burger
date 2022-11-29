@@ -5,8 +5,11 @@ import { theme } from '../../../theme'
 import logoOrange from '../../../assets/logo-orange.png'
 import { fakeMenu2 } from '../../../fakeData/fakeMenu'
 import MenuCard from '../reusable-ui/MenuCard'
+import { useState } from 'react'
 
 export default function OrderPage() {
+
+    const [menuFake, setMenuFake] = useState(fakeMenu2)
 
     const {name} = useParams();
 
@@ -16,8 +19,7 @@ export default function OrderPage() {
             <main className="main-container">
                 <div className="sideBar-left"></div>
                 <div className="menu-container">
-                    {fakeMenu2.map((menu) => {
-                        console.log({...menu});
+                    {menuFake.map((menu) => {
                         return <div key={menu.id} className="grille-item"><MenuCard {...menu} /></div>
                     })}
                 </div>
