@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 import { theme } from '../../../theme';
-import formatNumber from '../../../utils/number/math';
+import { formatPrice } from '../../../utils/number/format';
 import Button from './Button';
 
 export default function PriceContainer({price}) {
 
   return (
     <PriceContainerStyled>
-        <h3>{formatNumber(price)}€</h3>
+        <h3>{formatPrice(price)}</h3>
         <Button text="Ajouter" type="submit" className="add-button"/>
     </PriceContainerStyled>
   )
