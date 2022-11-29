@@ -17,7 +17,8 @@ export default function OrderPage() {
                 <div className="sideBar-left"></div>
                 <div className="menu-container">
                     {fakeMenu2.map((menu) => {
-                        return <div key={menu.id} className="grille-item"><MenuCard menu={menu}/></div>
+                        console.log({...menu});
+                        return <div key={menu.id} className="grille-item"><MenuCard {...menu} /></div>
                     })}
                 </div>
             </main>
@@ -38,7 +39,7 @@ const OrderPageStyled = styled.div`
     background-position:cover;
     .main-container {
         display:grid;
-        grid-template-columns: 18% 1fr;
+        grid-template-columns: 17% 1fr;
         width:1400px;
         max-width: 1400px;
         margin: 0 auto;

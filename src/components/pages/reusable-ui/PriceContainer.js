@@ -4,11 +4,11 @@ import { theme } from '../../../theme';
 import formatNumber from '../../../utils/number/math';
 import Button from './Button';
 
-export default function PriceContainer({menu}) {
+export default function PriceContainer({price}) {
 
   return (
     <PriceContainerStyled>
-        <h3>{formatNumber(menu.price)}€</h3>
+        <h3>{formatNumber(price)}€</h3>
         <Button text="Ajouter" type="submit" className="add-button"/>
     </PriceContainerStyled>
   )
