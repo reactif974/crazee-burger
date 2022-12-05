@@ -19,7 +19,7 @@ const [menu, setMenu] = useState(fakeMenu2)
 
 const MenuCardStyled = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 240px);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 40px;
     justify-content: center;
     height:80vh;
@@ -31,8 +31,7 @@ const MenuCardStyled = styled.div`
     box-shadow: inset 0px 0px 12px 0px ${theme.colors.greySemiDark};
     overflow-y: scroll;
     .grille-item {
-        height:330px;
-        background-color:${theme.colors.white};
-        border-radius: ${theme.borderRadius.extraRound};
+        display: flex;
+        justify-content: center;
     }   
 `;

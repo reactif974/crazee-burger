@@ -34,10 +34,10 @@ const OrderPageStyled = styled.div`
     .main-container {
         display:grid;
         /* grid-template-columns: 17% 1fr; */
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr auto;
         width:1400px;
         max-width: 1400px;
-        margin: 0 auto;
+        align-self: center;
         .sideBar-left {
             background-color: ${theme.colors.background_dark};
             height:80vh;
