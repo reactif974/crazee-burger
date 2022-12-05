@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { theme } from '../../../theme';
-import PriceContainer from './PriceContainer';
+import PriceContainer from '../order/main/PriceContainer';
 
 export default function Card({title, imageSource, price }) {
 

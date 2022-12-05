@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
-import { theme } from '../../../theme';
-import { formatPrice } from '../../../utils/number/format';
-import Button from './Button';
+import { theme } from '../../../../theme';
+import { formatPrice } from '../../../../utils/number/format';
+import Button from '../../reusable-ui/Button';
 
 export default function PriceContainer({price}) {
 
