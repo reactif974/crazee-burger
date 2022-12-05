@@ -2,20 +2,20 @@ import styled from 'styled-components'
 import { theme } from '../../../theme';
 import PriceContainer from './PriceContainer';
 
-export default function MenuCard({title, imageSource, price }) {
+export default function Card({title, imageSource, price }) {
 
     const shortTitle = title.length > 20 ? title.substring(0,16) + "..." : title
 
     return (
-        <MenuCardStyled image={imageSource} title={title}>
+        <CardStyled image={imageSource} title={title}>
             <div className='pics-container'></div>
             <h2>{shortTitle}</h2>
             <PriceContainer price={price} />
-        </MenuCardStyled>
+        </CardStyled>
     )
 }
 
-const MenuCardStyled = styled.div`
+const CardStyled = styled.div`
     width:240px;
     height:330px;
     display:flex;
