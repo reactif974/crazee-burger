@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 export default function OrderPage() {
 
-    const [menuFake, setMenuFake] = useState(fakeMenu2)
+    const [menu, setMenu] = useState(fakeMenu2)
 
     const {name} = useParams();
 
@@ -19,7 +19,7 @@ export default function OrderPage() {
             <main className="main-container">
                 {/* <div className="sideBar-left"></div> */}
                 <div className="menu-container">
-                    {menuFake.map((menu) => {
+                    {menu.map((menu) => {
                         return <div key={menu.id} className="grille-item"><MenuCard {...menu} /></div>
                     })}
                 </div>
