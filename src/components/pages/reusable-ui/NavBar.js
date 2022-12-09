@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import UserProfil from "../order/UserProfil";
@@ -5,11 +6,16 @@ import Logo from "./Logo";
 import ToggleButton from "./ToggleButton";
 
 export default function NavBar({ userName }) {
+  const [isChecked, setIsChecked] = useState(false);
+
   return (
     <NavBarStyled>
       <Logo />
       <div className="user-profile-right-side">
-        <ToggleButton />
+        <ToggleButton
+          isChecked={isChecked}
+          onToggle={() => setIsChecked(!isChecked)}
+        />
         <UserProfil userName={userName} />
       </div>
     </NavBarStyled>
