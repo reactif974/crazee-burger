@@ -19,7 +19,7 @@ export default function ToggleButton({
   }, [isChecked]);
 
   // Toast notify params
-  const toastNotify = () => {
+  const showToastNotification = () => {
     if (!isChecked) {
       toast.info("Mode admin activé!", {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -43,7 +43,7 @@ export default function ToggleButton({
         id="rounded"
         checked={isChecked}
         onChange={onToggle}
-        onClick={toastNotify}
+        onClick={showToastNotification}
       />
       <label
         htmlFor="rounded"
