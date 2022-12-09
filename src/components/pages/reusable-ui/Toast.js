@@ -5,7 +5,7 @@ import { theme } from "../../../theme";
 export default function Toast() {
   return (
     <StyledToastContainer>
-      <ToastContainer pauseOnFocusLoss={true} />
+      <ToastContainer />
     </StyledToastContainer>
   );
 }
