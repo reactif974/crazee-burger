@@ -1,8 +1,9 @@
 import React from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components/macro";
 import { theme } from "../../../theme";
+import Toast from "./Toast";
 
 export default function ToggleButton({
   isChecked,
@@ -10,6 +11,7 @@ export default function ToggleButton({
   labelIfChecked = "DÉSACTIVER LE MODE ADMIN",
   labelIfUnchecked = "ACTIVER LE MODE ADMIN",
 }) {
+  // Toast notify params
   const toastNotify = () => {
     toast.info("Mode admin activé!", {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -40,16 +42,12 @@ export default function ToggleButton({
         data-checked={labelIfChecked}
         data-unchecked={labelIfUnchecked}
       ></label>
-      <StyledToastContainer>
-        <ToastContainer pauseOnFocusLoss={true} />
-      </StyledToastContainer>
+      <Toast />
     </ToggleButtonStyled>
   );
 }
 
 const ToggleButtonStyled = styled.div`
-  /* border: 1px solid red; */
-
   display: flex;
   margin-right: 50px;
   font-family: "Open Sans", sans-serif;
@@ -151,33 +149,5 @@ const ToggleButtonStyled = styled.div`
       left: 162px;
       background-color: ${theme.colors.primary};
     }
-  }
-  .foo-bar {
-    background-color: ${theme.colors.background_dark};
-    color: ${theme.colors.background_white};
-    .Toastify__close-button {
-      color: ${theme.colors.background_white};
-    }
-  }
-`;
-
-const StyledToastContainer = styled(ToastContainer).attrs({
-  className: "toast-container",
-  toastClassName: "toast",
-  bodyClassName: "body",
-  progressClassName: "progress",
-})`
-  /* .toast is passed to toastClassName */
-  .toast {
-    color: ${theme.colors.background_white};
-    font-family: "Open Sans", sans-serif;
-  }
-  button[aria-label="close"] {
-    color: ${theme.colors.background_white};
-    font-weight: ${theme.weights.bold};
-  }
-  /* .body is passed to bodyClassName */
-  .body > div:last-child {
-    padding-left: 20px;
   }
 `;
