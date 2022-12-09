@@ -26,7 +26,7 @@ const MenuStyled = styled.div`
   grid-gap: 40px;
   justify-content: center;
   height: 80vh;
-  padding: 60px 0 80px 0;
+  padding: 60px 54px 80px 60px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
   background-color: ${theme.colors.background_white};
