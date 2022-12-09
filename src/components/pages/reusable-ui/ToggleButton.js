@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components/macro";
 import { theme } from "../../../theme";
-import Toast from "./Toast";
+import NavbarRightSideIncomplet from "./NavbarRightSideIncomplet";
 
 export default function ToggleButton({
   isChecked,
@@ -20,17 +20,19 @@ export default function ToggleButton({
 
   // Toast notify params
   const toastNotify = () => {
-    toast.info("Mode admin activé!", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-      className: "foo-bar",
-      theme: "dark",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    if (!isChecked) {
+      toast.info("Mode admin activé!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        className: "foo-bar",
+        theme: "dark",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
@@ -41,7 +43,7 @@ export default function ToggleButton({
         id="rounded"
         checked={isChecked}
         onChange={onToggle}
-        onClick={!isChecked ? toastNotify : null}
+        onClick={toastNotify}
       />
       <label
         htmlFor="rounded"
@@ -49,7 +51,7 @@ export default function ToggleButton({
         data-checked={labelIfChecked}
         data-unchecked={labelIfUnchecked}
       ></label>
-      <Toast />
+      <NavbarRightSideIncomplet />
     </ToggleButtonStyled>
   );
 }
