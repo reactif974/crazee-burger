@@ -27,7 +27,7 @@ const MenuStyled = styled.div`
   justify-content: center;
   height: 80vh;
   padding: 60px 54px 80px 60px;
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
   background-color: ${theme.colors.background_white};
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
