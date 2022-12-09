@@ -38,6 +38,7 @@ const colors = {
     P1: "18px",
     P2: "20px",
     P3: "24px",
+    "P3.1": "33px",
     P4: "36px",
     P5: "48px",
     P6: "60px",

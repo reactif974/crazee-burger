@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { theme } from '../../../theme'
 
-export default function Button({text,type,Icon}) {
+export default function Button({text,type,Icon,className}) {
     return (
         <ButtonStyled>
-            <button type={type} className="button_submit">
+            <button type={type} className={className}>
                 {text}
                 {Icon && Icon}
             </button>
