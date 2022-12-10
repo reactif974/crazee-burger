@@ -47,7 +47,7 @@ export default function NavBar({ userName }) {
           labelIfUnchecked={"ACTIVER LE MODE ADMIN"}
         />
         <UserProfil userName={userName} />
-        <Toast />
+        <Toast className={"toaster"} bodyClassName={"body-toast"} />
       </div>
     </NavBarStyled>
   );

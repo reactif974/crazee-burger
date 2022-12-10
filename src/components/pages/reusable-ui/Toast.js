@@ -4,10 +4,10 @@ import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 
-export default function Toast() {
+export default function Toast({ className, bodyClassName }) {
   return (
     <ToastStyled>
-      <ToastContainer className="toaster" bodyClassName="body-toast" />
+      <ToastContainer className={className} bodyClassName={bodyClassName} />
     </ToastStyled>
   );
 }
