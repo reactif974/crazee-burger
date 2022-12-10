@@ -1,39 +1,13 @@
 import React from "react";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components/macro";
 import { theme } from "../../../theme";
-import Toast from "./Toast";
 
 export default function ToggleButton({
   isChecked,
   onToggle,
-  labelIfChecked = "DÉSACTIVER LE MODE ADMIN",
-  labelIfUnchecked = "ACTIVER LE MODE ADMIN",
+  labelIfChecked = "Fermer",
+  labelIfUnchecked = "Ouvrir",
 }) {
-  useEffect(() => {
-    if (!isChecked) {
-      toast.dismiss();
-    }
-  }, [isChecked]);
-
-  // Toast notify params
-  const showToastNotification = () => {
-    if (!isChecked) {
-      toast.info("Mode admin activé!", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-        theme: "dark",
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
-
   return (
     <ToggleButtonStyled>
       <input
@@ -42,7 +16,6 @@ export default function ToggleButton({
         id="rounded"
         checked={isChecked}
         onChange={onToggle}
-        onClick={showToastNotification}
       />
       <label
         htmlFor="rounded"
@@ -50,7 +23,6 @@ export default function ToggleButton({
         data-checked={labelIfChecked}
         data-unchecked={labelIfUnchecked}
       ></label>
-      <Toast />
     </ToggleButtonStyled>
   );
 }
