@@ -5,14 +5,10 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 
 export default function Toast({ className, bodyClassName }) {
-  return (
-    <ToastStyled>
-      <ToastContainer className={className} bodyClassName={bodyClassName} />
-    </ToastStyled>
-  );
+  return <ToastStyled className={className} bodyClassName={bodyClassName} />;
 }
 
-const ToastStyled = styled.div`
+const ToastStyled = styled(ToastContainer)`
   .toaster {
     max-width: 300px;
   }
