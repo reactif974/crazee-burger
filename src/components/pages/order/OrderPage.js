@@ -4,18 +4,28 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
+import { useState } from "react";
+import AdminContext from "../../../context/AdminContext";
 
 export default function OrderPage() {
   const { name } = useParams();
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+
+  const contextValue = {
+    isModeAdmin,
+    updateIsModeAdmin: setIsModeAdmin,
+  };
 
   return (
-    <OrderPageStyled>
-      <NavBar userName={name} />
-      <main className="main-container">
-        <div className="sideBar-left"></div>
-        <Menu />
-      </main>
-    </OrderPageStyled>
+    <AdminContext.Provider value={contextValue}>
+      <OrderPageStyled>
+        <NavBar userName={name} />
+        <main className="main-container">
+          <div className="sideBar-left"></div>
+          <Menu />
+        </main>
+      </OrderPageStyled>
+    </AdminContext.Provider>
   );
 }
 

@@ -1,23 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import Toast from "../reusable-ui/Toast";
 import ToggleButton from "../reusable-ui/ToggleButton";
 import UserProfil from "./UserProfil";
 import { FaUserSecret } from "react-icons/fa";
 import styled from "styled-components";
+import { useContext } from "react";
+import AdminContext from "../../../context/AdminContext";
 
 export default function NavBarRightSide({ userName }) {
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const contextValue = useContext(AdminContext);
 
   useEffect(() => {
-    if (!isModeAdmin) {
+    console.log(contextValue.isModeAdmin);
+    if (!contextValue.isModeAdmin) {
       toast.dismiss();
     }
-  }, [isModeAdmin]);
+  }, [contextValue.isModeAdmin]);
 
   // Toast notify params
   const showToastNotification = () => {
-    if (!isModeAdmin) {
+    if (!contextValue.isModeAdmin) {
       toast.info("Mode admin activé!", {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -30,12 +33,12 @@ export default function NavBarRightSide({ userName }) {
         progress: undefined,
       });
     }
-    setIsModeAdmin(!isModeAdmin);
+    contextValue.updateIsModeAdmin(!contextValue.isModeAdmin);
   };
   return (
     <NavBarRightSideStyled>
       <ToggleButton
-        isChecked={isModeAdmin}
+        isChecked={contextValue.isModeAdmin}
         onToggle={showToastNotification}
         labelIfChecked={"DÉSACTIVER LE MODE ADMIN"}
         labelIfUnchecked={"ACTIVER LE MODE ADMIN"}

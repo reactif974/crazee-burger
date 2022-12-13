@@ -4,10 +4,14 @@ import Button from "../reusable-ui/Button";
 import { BsChevronDown } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiPencilFill } from "react-icons/ri";
+import { useContext } from "react";
+import AdminContext from "../../../context/AdminContext";
 
 export default function PanelTabs() {
+  const contextValue = useContext(AdminContext);
+
   return (
-    <PanelTabsStyled>
+    <PanelTabsStyled contextValue={contextValue}>
       <div className="bloc-tabs">
         <Button
           text={""}
@@ -48,6 +52,7 @@ const PanelTabsStyled = styled.div`
   bottom: 0;
   right: 0;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  display: ${(props) => (props.contextValue.isModeAdmin ? "block" : "none")};
   .bloc-tabs {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
