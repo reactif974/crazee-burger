@@ -12,7 +12,7 @@ export default function OrderPage() {
     <OrderPageStyled>
       <NavBar userName={name} />
       <main className="main-container">
-        {/* <div className="sideBar-left"></div> */}
+        <div className="sideBar-left"></div>
         <Menu />
       </main>
     </OrderPageStyled>
@@ -31,16 +31,14 @@ const OrderPageStyled = styled.div`
   background-repeat: repeat;
   background-position: cover;
   .main-container {
-    display: grid;
-    /* grid-template-columns: 17% 1fr; */
-    grid-template-columns: 1fr auto;
     width: 1400px;
     max-width: 1400px;
+    display: grid;
+    grid-template-columns: 20% 1fr;
     align-self: center;
     .sideBar-left {
       background-color: ${theme.colors.background_dark};
       height: 80vh;
-      width: 100%;
       border-bottom-left-radius: ${theme.borderRadius.extraRound};
     }
   }
