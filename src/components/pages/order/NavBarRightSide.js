@@ -12,7 +12,6 @@ export default function NavBarRightSide({ userName }) {
   const contextValue = useContext(AdminContext);
 
   useEffect(() => {
-    console.log(contextValue.isModeAdmin);
     if (!contextValue.isModeAdmin) {
       toast.dismiss();
     }

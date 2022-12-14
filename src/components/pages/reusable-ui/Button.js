@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { theme } from "../../../theme";
 
-export default function Button({ text, type, Icon, className }) {
+export default function Button({ text, type, Icon, className, onClick }) {
   return (
-    <ButtonStyled type={type} className={className}>
+    <ButtonStyled type={type} className={className} onClick={onClick}>
       {className !== "button_submit" ? Icon && Icon : null}
       {text}
       {className === "button_submit" ? Icon && Icon : null}

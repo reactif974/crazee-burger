@@ -4,39 +4,72 @@ import Button from "../reusable-ui/Button";
 import { BsChevronDown } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiPencilFill } from "react-icons/ri";
+import { BiChevronUp } from "react-icons/bi";
 import { useContext } from "react";
 import AdminContext from "../../../context/AdminContext";
+import { useState } from "react";
 
 export default function PanelTabs() {
   const contextValue = useContext(AdminContext);
 
+  const [toggleTabs, setToggleTabs] = useState(2);
+
+  const [isPanelReduce, setIsPanelReduce] = useState(false);
+
+  const style = {
+    fontSize: theme.fonts.P1,
+    paddingRight: theme.spacing.xs,
+    fontSize: theme.fonts.P2,
+  };
+
+  const toggleTab = (index) => {
+    setToggleTabs(index);
+    if (isPanelReduce) {
+      setIsPanelReduce(false);
+    }
+  };
+
+  const togglePanelTabs = () => {
+    setIsPanelReduce(!isPanelReduce);
+  };
+
   return (
-    <PanelTabsStyled contextValue={contextValue}>
+    <PanelTabsStyled contextValue={contextValue} isPanelReduce={isPanelReduce}>
       <div className="bloc-tabs">
         <Button
           text={""}
-          className={"tabs tabs-one"}
-          Icon={<BsChevronDown />}
+          className="tabs tabs-one"
+          Icon={
+            isPanelReduce ? (
+              <BiChevronUp style={style} />
+            ) : (
+              <BsChevronDown style={style} />
+            )
+          }
+          onClick={togglePanelTabs}
         />
         <Button
           text={"Ajouter un produit"}
-          className={"tabs tabs-two"}
-          Icon={<AiOutlinePlus />}
+          className={
+            toggleTabs === 2 ? "tabs active-tabs tabs-two" : "tabs tabs-two"
+          }
+          Icon={<AiOutlinePlus style={style} />}
+          onClick={() => toggleTab(2)}
         />
         <Button
           text={"Modifier un produit"}
-          className={"tabs tabs-three"}
-          Icon={<RiPencilFill />}
+          className={
+            toggleTabs === 3 ? "tabs active-tabs tabs-three" : "tabs tabs-three"
+          }
+          Icon={<RiPencilFill style={style} />}
+          onClick={() => toggleTab(3)}
         />
       </div>
-      <div className="onglets-content">
-        <div className="contenu">
-          <h2>contenu 1</h2>
-        </div>
-        <div className="contenu">
+      <div className="content-tabs">
+        <div className={toggleTabs === 2 ? "active-content" : "content"}>
           <h2>contenu 2</h2>
         </div>
-        <div className="contenu">
+        <div className={toggleTabs === 3 ? "active-content" : "content"}>
           <h2>contenu 3</h2>
         </div>
       </div>
@@ -47,8 +80,8 @@ export default function PanelTabs() {
 const PanelTabsStyled = styled.div`
   position: absolute;
   width: 100%;
-  height: 250px;
-  background-color: red;
+  height: ${(props) => (props.isPanelReduce ? "0px" : "250px")};
+  background-color: ${theme.colors.background_white};
   bottom: 0;
   right: 0;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
@@ -60,13 +93,8 @@ const PanelTabsStyled = styled.div`
     background-color: transparent;
     width: 100%;
     margin-top: -35px;
-    width: 100%;
     .tabs {
       cursor: pointer;
-      svg {
-        padding-right: 5px;
-        font-size: ${theme.fonts.P1};
-      }
     }
     .tabs-one {
       grid-column-start: 2;
@@ -81,23 +109,17 @@ const PanelTabsStyled = styled.div`
       grid-column-end: 7;
     }
     .active-tabs {
-      background: white;
-      border-bottom: 1px solid transparent;
-      &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: calc(100% + 2px);
-        height: 5px;
-        background: rgb(88, 147, 241);
+      background-color: ${theme.colors.background_dark};
+      color: ${theme.colors.background_white};
+      svg {
+        color: ${theme.colors.background_white};
       }
     }
-
-    .content-tabs {
-      flex-grow: 1;
+  }
+  .content-tabs {
+    display: ${(props) => (props.isPanelReduce ? "none" : "block")};
+    .active-content {
+      display: block;
     }
     .content {
       background: white;
@@ -105,22 +127,19 @@ const PanelTabsStyled = styled.div`
       width: 100%;
       height: 100%;
       display: none;
-    }
-    .content h2 {
-      padding: 0px 0 5px 0px;
-    }
-    .content hr {
-      width: 100px;
-      height: 2px;
-      background: #222;
-      margin-bottom: 5px;
-    }
-    .content p {
-      width: 100%;
-      height: 100%;
-    }
-    .active-content {
-      display: block;
+      h2 {
+        padding: 0px 0 5px 0px;
+      }
+      hr {
+        width: 100px;
+        height: 2px;
+        background: #222;
+        margin-bottom: 5px;
+      }
+      p {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 `;
