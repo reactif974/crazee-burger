@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { theme } from "../../../theme";
 import Button from "../reusable-ui/Button";
 import { BsChevronDown } from "react-icons/bs";
@@ -16,12 +16,14 @@ export default function PanelTabs() {
 
   const [isPanelReduce, setIsPanelReduce] = useState(false);
 
+  // style for icon panel tabs
   const style = {
     fontSize: theme.fonts.P1,
     paddingRight: theme.spacing.xs,
     fontSize: theme.fonts.P2,
   };
 
+  // management of the display of different content according to the index
   const toggleTab = (index) => {
     setToggleTabs(index);
     if (isPanelReduce) {
@@ -29,6 +31,7 @@ export default function PanelTabs() {
     }
   };
 
+  // display show or hide panel tabs
   const togglePanelTabs = () => {
     setIsPanelReduce(!isPanelReduce);
   };
@@ -77,6 +80,11 @@ export default function PanelTabs() {
   );
 }
 
+const panelTabsAnimation = keyframes`
+ 0% { height: 0px; width: 100%; opacity: 0}
+ 100% { height: 250px; width: 100%; opacity: 1 }
+`;
+
 const PanelTabsStyled = styled.div`
   position: absolute;
   width: 100%;
@@ -86,6 +94,7 @@ const PanelTabsStyled = styled.div`
   right: 0;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
   display: ${(props) => (props.contextValue.isModeAdmin ? "block" : "none")};
+  animation: ${panelTabsAnimation} 0.6s ease-in-out;
   .bloc-tabs {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
