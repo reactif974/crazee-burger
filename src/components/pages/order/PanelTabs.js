@@ -88,13 +88,17 @@ const panelTabsAnimation = keyframes`
 const PanelTabsStyled = styled.div`
   position: absolute;
   width: 100%;
-  height: ${(props) => (props.isPanelReduce ? "0px" : "250px")};
+  height: ${(props) => (props.isPanelReduce ? "9px" : "250px")};
   background-color: ${theme.colors.background_white};
   bottom: 0;
   right: 0;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
   display: ${(props) => (props.contextValue.isModeAdmin ? "block" : "none")};
   animation: ${panelTabsAnimation} 0.6s ease-in-out;
+  border-top: 1px solid ${theme.colors.greyLight};
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   .bloc-tabs {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -104,6 +108,8 @@ const PanelTabsStyled = styled.div`
     margin-top: -35px;
     .tabs {
       cursor: pointer;
+      border: 1px solid ${theme.colors.greyLight};
+      color: ${theme.colors.greyDark};
     }
     .tabs-one {
       grid-column-start: 2;
