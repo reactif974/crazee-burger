@@ -16,12 +16,15 @@ export default function PanelTabs() {
   const [isPanelReduce, setIsPanelReduce] = useState(false);
 
   // class name management
+  let tabClassNameOne = "tabs tabs-one";
   let tabClassNameTwo = "tabs tabs-two";
   let tabClassNameThree = "tabs tabs-three";
   let contentTabAddProduct = "content";
   let contentTabUpdateProduct = "content";
 
-  if (toggleTabs === 2) {
+  if (toggleTabs === 1) {
+    tabClassNameOne = "tabs tabs-one tabs-active";
+  } else if (toggleTabs === 2) {
     tabClassNameTwo = "tabs tabs-two tabs-active";
     contentTabAddProduct = "active-content";
   } else if (toggleTabs === 3) {
@@ -34,12 +37,9 @@ export default function PanelTabs() {
     setToggleTabs(index);
     if (isPanelReduce) {
       setIsPanelReduce(false);
+    } else if (index === 1) {
+      setIsPanelReduce(!isPanelReduce);
     }
-  };
-
-  // display show or hide panel tabs
-  const togglePanelTabs = () => {
-    setIsPanelReduce(!isPanelReduce);
   };
 
   return (
@@ -47,9 +47,9 @@ export default function PanelTabs() {
       <div className="bloc-tabs">
         <Tab
           text={""}
-          className="tabs tabs-one"
+          className={tabClassNameOne}
           Icon={isPanelReduce ? <BsChevronUp /> : <BsChevronDown />}
-          onClick={togglePanelTabs}
+          onClick={() => toggleTab(1)}
         />
         <Tab
           text={"Ajouter un produit"}
