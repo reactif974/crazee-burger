@@ -16,12 +16,19 @@ export default function PanelTabs() {
 
   const [isPanelReduce, setIsPanelReduce] = useState(false);
 
-  // style for icon panel tabs
-  const style = {
-    fontSize: theme.fonts.P1,
-    paddingRight: theme.spacing.xs,
-    fontSize: theme.fonts.P2,
-  };
+  // class name management
+  let tabClassNameTwo = "tabs tabs-two";
+  let tabClassNameThree = "tabs tabs-three";
+  let contentTabAddProduct = "content";
+  let contentTabUpdateProduct = "content";
+
+  if (toggleTabs === 2) {
+    tabClassNameTwo = "tabs tabs-two tabs-active";
+    contentTabAddProduct = "active-content";
+  } else if (toggleTabs === 3) {
+    tabClassNameThree = "tabs tabs-three tabs-active";
+    contentTabUpdateProduct = "active-content";
+  }
 
   // management of the display of different content according to the index
   const toggleTab = (index) => {
@@ -42,37 +49,27 @@ export default function PanelTabs() {
         <Tab
           text={""}
           className="tabs tabs-one"
-          Icon={
-            isPanelReduce ? (
-              <BiChevronUp style={style} />
-            ) : (
-              <BsChevronDown style={style} />
-            )
-          }
+          Icon={isPanelReduce ? <BiChevronUp /> : <BsChevronDown />}
           onClick={togglePanelTabs}
         />
         <Tab
           text={"Ajouter un produit"}
-          className={
-            toggleTabs === 2 ? "tabs active-tabs tabs-two" : "tabs tabs-two"
-          }
-          Icon={<AiOutlinePlus style={style} />}
+          className={tabClassNameTwo}
+          Icon={<AiOutlinePlus />}
           onClick={() => toggleTab(2)}
         />
         <Tab
           text={"Modifier un produit"}
-          className={
-            toggleTabs === 3 ? "tabs active-tabs tabs-three" : "tabs tabs-three"
-          }
-          Icon={<RiPencilFill style={style} />}
+          className={tabClassNameThree}
+          Icon={<RiPencilFill />}
           onClick={() => toggleTab(3)}
         />
       </div>
       <div className="content-tabs">
-        <div className={toggleTabs === 2 ? "active-content" : "content"}>
+        <div className={contentTabAddProduct}>
           <h2>contenu 2</h2>
         </div>
-        <div className={toggleTabs === 3 ? "active-content" : "content"}>
+        <div className={contentTabUpdateProduct}>
           <h2>contenu 3</h2>
         </div>
       </div>
@@ -110,6 +107,13 @@ const PanelTabsStyled = styled.div`
       cursor: pointer;
       border: 1px solid ${theme.colors.greyLight};
       color: ${theme.colors.greyDark};
+      grid-column-start: 3;
+      grid-column-end: 5;
+      svg {
+        color: ${theme.colors.greyDark};
+        font-size: ${theme.fonts.P1};
+        padding-right: ${theme.spacing.xs};
+      }
     }
     .tabs-one {
       grid-column-start: 2;
@@ -123,11 +127,13 @@ const PanelTabsStyled = styled.div`
       grid-column-start: 5;
       grid-column-end: 7;
     }
-    .active-tabs {
+    .tabs-active {
       background-color: ${theme.colors.background_dark};
       color: ${theme.colors.background_white};
       svg {
         color: ${theme.colors.background_white};
+        font-size: ${theme.fonts.P1};
+        padding-right: ${theme.spacing.xs};
       }
     }
   }

@@ -12,7 +12,7 @@ export default function Tab({ text, className, Icon, onClick }) {
 
 const TabStyled = styled.button`
   width: 100%;
-  height: ${(props) => (props.className === "button_submit" ? "65px" : "35px")};
+  height: 35px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
