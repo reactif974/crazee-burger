@@ -5,7 +5,7 @@ import { theme } from "../../../theme";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
 import { useState } from "react";
-import AdminContext from "../../../context/AdminContext";
+import GlobalContext from "../../../context/GlobalContext";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -17,7 +17,7 @@ export default function OrderPage() {
   };
 
   return (
-    <AdminContext.Provider value={contextValue}>
+    <GlobalContext.Provider value={contextValue}>
       <OrderPageStyled>
         <NavBar userName={name} />
         <main className="main-container">
@@ -25,7 +25,7 @@ export default function OrderPage() {
           <Menu />
         </main>
       </OrderPageStyled>
-    </AdminContext.Provider>
+    </GlobalContext.Provider>
   );
 }
 

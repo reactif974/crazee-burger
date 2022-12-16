@@ -1,16 +1,16 @@
 import styled, { keyframes } from "styled-components";
 import { theme } from "../../../theme";
-import Button from "../reusable-ui/Button";
 import { BsChevronDown } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiPencilFill } from "react-icons/ri";
 import { BiChevronUp } from "react-icons/bi";
 import { useContext } from "react";
-import AdminContext from "../../../context/AdminContext";
+import GlobalContext from "../../../context/GlobalContext";
 import { useState } from "react";
+import Tab from "../reusable-ui/Tab";
 
 export default function PanelTabs() {
-  const contextValue = useContext(AdminContext);
+  const contextValue = useContext(GlobalContext);
 
   const [toggleTabs, setToggleTabs] = useState(2);
 
@@ -39,7 +39,7 @@ export default function PanelTabs() {
   return (
     <PanelTabsStyled contextValue={contextValue} isPanelReduce={isPanelReduce}>
       <div className="bloc-tabs">
-        <Button
+        <Tab
           text={""}
           className="tabs tabs-one"
           Icon={
@@ -51,7 +51,7 @@ export default function PanelTabs() {
           }
           onClick={togglePanelTabs}
         />
-        <Button
+        <Tab
           text={"Ajouter un produit"}
           className={
             toggleTabs === 2 ? "tabs active-tabs tabs-two" : "tabs tabs-two"
@@ -59,7 +59,7 @@ export default function PanelTabs() {
           Icon={<AiOutlinePlus style={style} />}
           onClick={() => toggleTab(2)}
         />
-        <Button
+        <Tab
           text={"Modifier un produit"}
           className={
             toggleTabs === 3 ? "tabs active-tabs tabs-three" : "tabs tabs-three"
@@ -144,16 +144,6 @@ const PanelTabsStyled = styled.div`
       display: none;
       h2 {
         padding: 0px 0 5px 0px;
-      }
-      hr {
-        width: 100px;
-        height: 2px;
-        background: #222;
-        margin-bottom: 5px;
-      }
-      p {
-        width: 100%;
-        height: 100%;
       }
     }
   }

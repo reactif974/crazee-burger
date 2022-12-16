@@ -6,10 +6,10 @@ import UserProfil from "./UserProfil";
 import { FaUserSecret } from "react-icons/fa";
 import styled from "styled-components";
 import { useContext } from "react";
-import AdminContext from "../../../context/AdminContext";
+import GlobalContext from "../../../context/GlobalContext";
 
 export default function NavBarRightSide({ userName }) {
-  const contextValue = useContext(AdminContext);
+  const contextValue = useContext(GlobalContext);
 
   useEffect(() => {
     if (!contextValue.isModeAdmin) {

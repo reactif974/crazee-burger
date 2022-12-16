@@ -1,42 +1,28 @@
 import styled from "styled-components";
 import { theme } from "../../../theme";
 
-export default function Button({ text, type, Icon, className, onClick }) {
+export default function Button({ text, type, Icon, className }) {
   return (
-    <ButtonStyled type={type} className={className} onClick={onClick}>
-      {className !== "button_submit" ? Icon && Icon : null}
+    <ButtonStyled type={type} className={className}>
       {text}
-      {className === "button_submit" ? Icon && Icon : null}
+      {Icon && Icon}
     </ButtonStyled>
   );
 }
 
 const ButtonStyled = styled.button`
   width: 100%;
-  height: ${(props) => (props.className === "button_submit" ? "65px" : "35px")};
+  height: 65px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  border: ${(props) =>
-    props.className === "button_submit"
-      ? "none"
-      : `0.6px solid ${theme.colors.greyDark}`};
-  border-radius: ${(props) =>
-    props.className === "button_submit"
-      ? theme.borderRadius.round
-      : `${theme.borderRadius.round} ${theme.borderRadius.round} 0 0`};
-  background-color: ${(props) =>
-    props.className === "button_submit"
-      ? theme.colors.background_button_submit
-      : theme.colors.background_white};
-  color: ${(props) =>
-    props.className === "button_submit"
-      ? theme.colors.white
-      : theme.colors.background_dark};
+  border: none;
+  border-radius: ${theme.borderRadius.round};
+  background-color: ${theme.colors.background_button_submit};
+  color: ${theme.colors.white};
   font-family: "Open Sans", sans-serif;
-  font-size: ${(props) =>
-    props.className === "button_submit" ? theme.fonts.P1 : theme.fonts.XS};
+  font-size: ${theme.fonts.P1};
   font-weight: ${theme.weights.bold};
   &:hover {
     cursor: pointer;
