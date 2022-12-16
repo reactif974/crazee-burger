@@ -9,7 +9,7 @@ import { useState } from "react";
 import Tab from "../reusable-ui/Tab";
 
 export default function PanelTabs() {
-  const contextValue = useContext(GlobalContext);
+  const { isModeAdmin } = useContext(GlobalContext);
 
   const [toggleTabs, setToggleTabs] = useState(2);
 
@@ -43,7 +43,7 @@ export default function PanelTabs() {
   };
 
   return (
-    <PanelTabsStyled contextValue={contextValue} isPanelReduce={isPanelReduce}>
+    <PanelTabsStyled isModeAdmin={isModeAdmin} isPanelReduce={isPanelReduce}>
       <div className="bloc-tabs">
         <Tab
           text={""}
@@ -89,7 +89,7 @@ const PanelTabsStyled = styled.div`
   bottom: 0;
   right: 0;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
-  display: ${(props) => (props.contextValue.isModeAdmin ? "block" : "none")};
+  display: ${(props) => (props.isModeAdmin ? "block" : "none")};
   animation: ${panelTabsAnimation} 0.6s ease-in-out;
   border-top: 1px solid ${theme.colors.greyLight};
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
