@@ -1,9 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import { theme } from "../../../theme";
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiPencilFill } from "react-icons/ri";
-import { BiChevronUp } from "react-icons/bi";
 import { useContext } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 import { useState } from "react";
@@ -49,7 +48,7 @@ export default function PanelTabs() {
         <Tab
           text={""}
           className="tabs tabs-one"
-          Icon={isPanelReduce ? <BiChevronUp /> : <BsChevronDown />}
+          Icon={isPanelReduce ? <BsChevronUp /> : <BsChevronDown />}
           onClick={togglePanelTabs}
         />
         <Tab
@@ -118,6 +117,9 @@ const PanelTabsStyled = styled.div`
     .tabs-one {
       grid-column-start: 2;
       grid-column-end: 3;
+      svg {
+        font-size: ${theme.fonts.P3};
+      }
     }
     .tabs-two {
       grid-column-start: 3;
