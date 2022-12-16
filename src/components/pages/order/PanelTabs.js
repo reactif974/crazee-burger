@@ -23,7 +23,9 @@ export default function PanelTabs() {
   let contentTabUpdateProduct = "content";
 
   if (toggleTabs === 1) {
-    tabClassNameOne = "tabs tabs-one tabs-active";
+    tabClassNameOne = isPanelReduce
+      ? "tabs tabs-one tabs-active"
+      : "tabs tabs-one";
   } else if (toggleTabs === 2) {
     tabClassNameTwo = "tabs tabs-two tabs-active";
     contentTabAddProduct = "active-content";
