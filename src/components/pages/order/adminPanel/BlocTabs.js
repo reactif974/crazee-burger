@@ -64,6 +64,7 @@ const BlocTabsStyled = styled.div`
     color: ${theme.colors.greyDark};
     &:hover {
       text-decoration: underline;
+      border-bottom: none;
     }
     svg {
       color: ${theme.colors.greyDark};
