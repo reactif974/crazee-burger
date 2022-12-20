@@ -28,7 +28,7 @@ export default function BlocTabs() {
       <BlocTabsStyled>
         <Tab
           text={""}
-          className={`tabs tabs-one ${panelTabIndex === 1 && "is-active-tab"}`}
+          className={`tabs tabs-one ${isPanelReduce && "is-active-tab"}`}
           Icon={isPanelReduce ? <BsChevronUp /> : <BsChevronDown />}
           onClick={() => hideAndShowAdminPanelContent()}
         />
