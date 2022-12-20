@@ -4,18 +4,35 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
+import { useState } from "react";
+import GlobalContext from "../../../context/GlobalContext";
 
 export default function OrderPage() {
   const { name } = useParams();
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [panelTabIndex, setPanelTabIndex] = useState(2);
+  const [isPanelReduce, setIsPanelReduce] = useState(false);
+
+  const contextValue = {
+    isModeAdmin,
+    updateIsModeAdmin: setIsModeAdmin,
+    panelTabIndex,
+    setPanelTabIndex,
+    isPanelReduce,
+    setIsPanelReduce,
+  };
 
   return (
-    <OrderPageStyled>
-      <NavBar userName={name} />
-      <main className="main-container">
-        {/* <div className="sideBar-left"></div> */}
-        <Menu />
-      </main>
-    </OrderPageStyled>
+    <GlobalContext.Provider value={contextValue}>
+      <OrderPageStyled>
+        <NavBar userName={name} />
+        <main className="main-container">
+          {/* TODO: basket container */}
+          {/* <div className="sideBar-left"></div> */}
+          <Menu />
+        </main>
+      </OrderPageStyled>
+    </GlobalContext.Provider>
   );
 }
 
@@ -31,16 +48,16 @@ const OrderPageStyled = styled.div`
   background-repeat: repeat;
   background-position: cover;
   .main-container {
-    display: grid;
-    /* grid-template-columns: 17% 1fr; */
-    grid-template-columns: 1fr auto;
     width: 1400px;
     max-width: 1400px;
+    display: grid;
+    // TODO: with basket container
+    /* grid-template-columns: 20% 1fr; */
+    grid-template-columns: 1fr;
     align-self: center;
     .sideBar-left {
       background-color: ${theme.colors.background_dark};
       height: 80vh;
-      width: 100%;
       border-bottom-left-radius: ${theme.borderRadius.extraRound};
     }
   }
