@@ -10,10 +10,16 @@ import GlobalContext from "../../../context/GlobalContext";
 export default function OrderPage() {
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [panelTabIndex, setPanelTabIndex] = useState(2);
+  const [isPanelReduce, setIsPanelReduce] = useState(false);
 
   const contextValue = {
     isModeAdmin,
     updateIsModeAdmin: setIsModeAdmin,
+    panelTabIndex,
+    setPanelTabIndex,
+    isPanelReduce,
+    setIsPanelReduce,
   };
 
   return (
@@ -21,7 +27,8 @@ export default function OrderPage() {
       <OrderPageStyled>
         <NavBar userName={name} />
         <main className="main-container">
-          <div className="sideBar-left"></div>
+          {/* TODO: basket container */}
+          {/* <div className="sideBar-left"></div> */}
           <Menu />
         </main>
       </OrderPageStyled>
@@ -44,7 +51,9 @@ const OrderPageStyled = styled.div`
     width: 1400px;
     max-width: 1400px;
     display: grid;
-    grid-template-columns: 20% 1fr;
+    // TODO: with basket container
+    /* grid-template-columns: 20% 1fr; */
+    grid-template-columns: 1fr;
     align-self: center;
     .sideBar-left {
       background-color: ${theme.colors.background_dark};

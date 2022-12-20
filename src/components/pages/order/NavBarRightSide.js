@@ -9,17 +9,17 @@ import { useContext } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 
 export default function NavBarRightSide({ userName }) {
-  const contextValue = useContext(GlobalContext);
+  const { isModeAdmin, updateIsModeAdmin } = useContext(GlobalContext);
 
   useEffect(() => {
-    if (!contextValue.isModeAdmin) {
+    if (!isModeAdmin) {
       toast.dismiss();
     }
-  }, [contextValue.isModeAdmin]);
+  }, [isModeAdmin]);
 
   // Toast notify params
   const showToastNotification = () => {
-    if (!contextValue.isModeAdmin) {
+    if (!isModeAdmin) {
       toast.info("Mode admin activé!", {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -32,12 +32,12 @@ export default function NavBarRightSide({ userName }) {
         progress: undefined,
       });
     }
-    contextValue.updateIsModeAdmin(!contextValue.isModeAdmin);
+    updateIsModeAdmin(!isModeAdmin);
   };
   return (
     <NavBarRightSideStyled>
       <ToggleButton
-        isChecked={contextValue.isModeAdmin}
+        isChecked={isModeAdmin}
         onToggle={showToastNotification}
         labelIfChecked={"DÉSACTIVER LE MODE ADMIN"}
         labelIfUnchecked={"ACTIVER LE MODE ADMIN"}

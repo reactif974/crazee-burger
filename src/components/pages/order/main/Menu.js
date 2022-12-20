@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme";
 import Card from "../../reusable-ui/Card";
-import PanelTabs from "../PanelTabs";
+import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 
 export default function Menu() {
   const [menu, setMenu] = useState(fakeMenu2);
@@ -19,13 +19,14 @@ export default function Menu() {
           );
         })}
       </div>
-      <PanelTabs />
+      <PanelAdminTabs />
     </MenuStyled>
   );
 }
 
 const MenuStyled = styled.div`
   position: relative;
+  overflow: hidden;
   .card-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
