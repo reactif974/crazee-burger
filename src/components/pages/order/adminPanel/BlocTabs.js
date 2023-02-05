@@ -16,6 +16,16 @@ export default function BlocTabs() {
     setIsPannelCollapsed,
   } = useContext(GlobalContext);
 
+  const classNameForTabOne = `tabs tabs-one ${
+    isPannelCollapsed && "is-active-tab"
+  }`;
+  const classNameForTabTwo = `tabs tabs-two ${
+    panelTabIndex === 2 && "is-active-tab"
+  }`;
+  const classNameForTabThree = `tabs tabs-three ${
+    panelTabIndex === 3 && "is-active-tab"
+  }`;
+
   // management of the display of different content according to the index
   const toggleTab = (index) => {
     setPanelTabIndex(index);
@@ -27,26 +37,25 @@ export default function BlocTabs() {
   const hideAndShowAdminPanelContent = () => {
     setIsPannelCollapsed(!isPannelCollapsed);
   };
+
   return (
     <>
       <BlocTabsStyled>
         <Tab
           text={""}
-          className={`tabs tabs-one ${isPannelCollapsed && "is-active-tab"}`}
+          className={`tabs tabs-one ${classNameForTabOne}`}
           Icon={isPannelCollapsed ? <BsChevronUp /> : <BsChevronDown />}
           onClick={() => hideAndShowAdminPanelContent()}
         />
         <Tab
           text={"Ajouter un produit"}
-          className={`tabs tabs-two ${panelTabIndex === 2 && "is-active-tab"}`}
+          className={classNameForTabTwo}
           Icon={<AiOutlinePlus />}
           onClick={() => toggleTab(2)}
         />
         <Tab
           text={"Modifier un produit"}
-          className={`tabs tabs-three ${
-            panelTabIndex === 3 && "is-active-tab"
-          }`}
+          className={classNameForTabThree}
           Icon={<RiPencilFill />}
           onClick={() => toggleTab(3)}
         />
