@@ -2,9 +2,9 @@ import { createContext } from "react";
 
 export default createContext({
   isModeAdmin: false,
-  isPanelReduce: false,
+  isPannelCollapsed: false,
   panelTabIndex: 2,
-  updateIsModeAdmin: () => {},
-  setIsPanelReduce: () => {},
+  setIsModeAdmin: () => {},
+  setIsPannelCollapsed: () => {},
   setPanelTabIndex: () => {},
 });

@@ -11,13 +11,11 @@ export default function Menu() {
   return (
     <MenuStyled className="menu-container">
       <div className="card-container">
-        {menu.map((menu) => {
-          return (
-            <div key={menu.id} className="grille-item">
-              <Card {...menu} />
-            </div>
-          );
-        })}
+        {menu.map((menu) => (
+          <div key={menu.id} className="grille-item">
+            <Card {...menu} />
+          </div>
+        ))}
       </div>
       <PanelAdminTabs />
     </MenuStyled>

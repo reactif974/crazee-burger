@@ -9,27 +9,31 @@ import GlobalContext from "../../../../context/GlobalContext";
 import BlocAdminPanelContent from "./BlocAdminPanelContent";
 
 export default function BlocTabs() {
-  const { isPanelReduce, panelTabIndex, setPanelTabIndex, setIsPanelReduce } =
-    useContext(GlobalContext);
+  const {
+    isPannelCollapsed,
+    panelTabIndex,
+    setPanelTabIndex,
+    setIsPannelCollapsed,
+  } = useContext(GlobalContext);
 
   // management of the display of different content according to the index
   const toggleTab = (index) => {
     setPanelTabIndex(index);
-    if (isPanelReduce === true) {
-      setIsPanelReduce(false);
+    if (isPannelCollapsed === true) {
+      setIsPannelCollapsed(false);
     }
   };
 
   const hideAndShowAdminPanelContent = () => {
-    setIsPanelReduce(!isPanelReduce);
+    setIsPannelCollapsed(!isPannelCollapsed);
   };
   return (
     <>
       <BlocTabsStyled>
         <Tab
           text={""}
-          className={`tabs tabs-one ${isPanelReduce && "is-active-tab"}`}
-          Icon={isPanelReduce ? <BsChevronUp /> : <BsChevronDown />}
+          className={`tabs tabs-one ${isPannelCollapsed && "is-active-tab"}`}
+          Icon={isPannelCollapsed ? <BsChevronUp /> : <BsChevronDown />}
           onClick={() => hideAndShowAdminPanelContent()}
         />
         <Tab
@@ -72,6 +76,7 @@ const BlocTabsStyled = styled.div`
       padding-right: ${theme.spacing.xs};
     }
   }
+
   .tabs-one {
     grid-column-start: 2;
     grid-column-end: 3;
@@ -79,14 +84,17 @@ const BlocTabsStyled = styled.div`
       font-size: ${theme.fonts.P3};
     }
   }
+
   .tabs-two {
     grid-column-start: 3;
     grid-column-end: 5;
   }
+
   .tabs-three {
     grid-column-start: 5;
     grid-column-end: 7;
   }
+
   .is-active-tab {
     background-color: ${theme.colors.background_dark};
     color: ${theme.colors.background_white};

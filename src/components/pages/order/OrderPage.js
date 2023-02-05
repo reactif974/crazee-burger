@@ -11,23 +11,23 @@ export default function OrderPage() {
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [panelTabIndex, setPanelTabIndex] = useState(2);
-  const [isPanelReduce, setIsPanelReduce] = useState(false);
+  const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
 
-  const contextValue = {
+  const globalContextValue = {
     isModeAdmin,
-    updateIsModeAdmin: setIsModeAdmin,
+    setIsModeAdmin: setIsModeAdmin,
     panelTabIndex,
     setPanelTabIndex,
-    isPanelReduce,
-    setIsPanelReduce,
+    isPannelCollapsed,
+    setIsPannelCollapsed,
   };
 
   return (
-    <GlobalContext.Provider value={contextValue}>
+    <GlobalContext.Provider value={globalContextValue}>
       <OrderPageStyled>
         <NavBar userName={name} />
         <main className="main-container">
-          {/* TODO: basket container */}
+          {/* @TODO: basket container */}
           {/* <div className="sideBar-left"></div> */}
           <Menu />
         </main>

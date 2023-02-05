@@ -4,10 +4,10 @@ import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
 
 export default function BlocAdminPanelContent() {
-  const { isPanelReduce, panelTabIndex } = useContext(GlobalContext);
+  const { isPannelCollapsed, panelTabIndex } = useContext(GlobalContext);
 
   return (
-    <BlocAdminPanelContentStyled isPanelReduce={isPanelReduce}>
+    <BlocAdminPanelContentStyled isPannelCollapsed={isPannelCollapsed}>
       <div
         className={`${
           panelTabIndex === 2 ? "content active-content" : "content"
@@ -27,7 +27,7 @@ export default function BlocAdminPanelContent() {
 }
 
 const BlocAdminPanelContentStyled = styled.div`
-  display: ${(props) => (props.isPanelReduce ? "none" : "block")};
+  display: ${(props) => (props.isPannelCollapsed ? "none" : "block")};
   height: 250px;
   background: ${theme.colors.background_white};
   .content {

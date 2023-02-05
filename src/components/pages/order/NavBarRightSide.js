@@ -9,7 +9,7 @@ import { useContext } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 
 export default function NavBarRightSide({ userName }) {
-  const { isModeAdmin, updateIsModeAdmin } = useContext(GlobalContext);
+  const { isModeAdmin, setIsModeAdmin } = useContext(GlobalContext);
 
   useEffect(() => {
     if (!isModeAdmin) {
@@ -32,7 +32,7 @@ export default function NavBarRightSide({ userName }) {
         progress: undefined,
       });
     }
-    updateIsModeAdmin(!isModeAdmin);
+    setIsModeAdmin(!isModeAdmin);
   };
   return (
     <NavBarRightSideStyled>

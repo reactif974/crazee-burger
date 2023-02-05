@@ -7,9 +7,11 @@ import BlocTabs from "./BlocTabs";
 export default function PanelAdminTabs() {
   const { isModeAdmin } = useContext(GlobalContext);
 
+  const bloc_tab_container = isModeAdmin ? "showAdminPanel" : "closeAdminPanel";
+
   return (
     <PanelAdminTabsStyled>
-      <div className={isModeAdmin ? "showAdminPanel" : "closeAdminPanel"}>
+      <div className={bloc_tab_container}>
         <BlocTabs />
       </div>
     </PanelAdminTabsStyled>
@@ -39,11 +41,13 @@ const PanelAdminTabsStyled = styled.div`
   width: 100%;
   bottom: 0;
   right: 0;
+
   .showAdminPanel {
     display: block;
     animation: ${showPanelTabsAnimation} 0.6s ease;
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
   }
+
   .closeAdminPanel {
     visibility: hidden;
     transition: visibility 0.5s;
