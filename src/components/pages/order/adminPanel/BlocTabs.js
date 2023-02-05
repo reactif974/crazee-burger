@@ -73,7 +73,7 @@ const BlocTabsStyled = styled.div`
   width: 100%;
   .tabs {
     cursor: pointer;
-    border: 1px solid ${theme.colors.greyLight};
+    border: 2px solid ${theme.colors.greyLight};
     color: ${theme.colors.greyDark};
     &:hover {
       text-decoration: underline;
