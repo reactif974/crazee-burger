@@ -29,14 +29,14 @@ const MenuStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 40px;
-    row-gap: 1em;
+    row-gap: 4em;
     column-gap: 1em;
     justify-content: center;
     height: 80vh;
     padding-top: 45px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 270px;
+    padding-bottom: 170px;
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
     background-color: ${theme.colors.background_white};
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
