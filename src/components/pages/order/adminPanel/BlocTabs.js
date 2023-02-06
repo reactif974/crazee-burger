@@ -70,14 +70,13 @@ const BlocTabsStyled = styled.div`
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 1fr;
   background-color: transparent;
-  width: 100%;
   .tabs {
     cursor: pointer;
-    border: 2px solid ${theme.colors.greyLight};
+    border: 1px solid ${theme.colors.greyLight};
     color: ${theme.colors.greyDark};
     &:hover {
       text-decoration: underline;
-      border-bottom: none;
+      border-bottom: 1px solid transparent;
     }
     svg {
       color: ${theme.colors.greyDark};

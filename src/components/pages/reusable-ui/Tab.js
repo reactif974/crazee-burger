@@ -12,7 +12,7 @@ export default function Tab({ text, className, Icon, onClick }) {
 
 const TabStyled = styled.button`
   width: 100%;
-  height: 35px;
+  height: 43px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
