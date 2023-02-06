@@ -66,9 +66,9 @@ export default function BlocTabs() {
 }
 
 const BlocTabsStyled = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr;
+  display: flex;
+  justify-content: start;
+  padding-left: 71px;
   background-color: transparent;
   .tabs {
     cursor: pointer;
@@ -80,27 +80,25 @@ const BlocTabsStyled = styled.div`
     }
     svg {
       color: ${theme.colors.greyDark};
-      font-size: ${theme.fonts.P1};
-      padding-right: ${theme.spacing.xs};
+      font-size: ${theme.fonts.P0};
     }
   }
 
   .tabs-one {
-    grid-column-start: 2;
-    grid-column-end: 3;
+    width: 60px;
     svg {
-      font-size: ${theme.fonts.P3};
+      font-size: ${theme.fonts.P0};
     }
   }
 
   .tabs-two {
-    grid-column-start: 3;
-    grid-column-end: 5;
+    justify-content: space-evenly;
+    width: 212px;
   }
 
   .tabs-three {
-    grid-column-start: 5;
-    grid-column-end: 7;
+    width: 220px;
+    justify-content: space-evenly;
   }
 
   .is-active-tab {
@@ -109,8 +107,7 @@ const BlocTabsStyled = styled.div`
     border: 1px solid ${theme.colors.background_dark};
     svg {
       color: ${theme.colors.background_white};
-      font-size: ${theme.fonts.P1};
-      padding-right: ${theme.spacing.xs};
+      font-size: ${theme.fonts.P0};
     }
   }
 `;
