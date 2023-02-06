@@ -44,13 +44,15 @@ const PanelAdminTabsStyled = styled.div`
 
   .showAdminPanel {
     display: block;
-    animation: ${showPanelTabsAnimation} 0.6s ease;
+    height: 100%;
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
+    animation: ${showPanelTabsAnimation} 0.6s ease;
   }
 
   .closeAdminPanel {
-    visibility: hidden;
-    transition: visibility 0.5s;
+    display: block;
+    height: 0;
+    transition: height 0.5s;
     animation: ${hidePanelTabsAnimation} 0.5s;
   }
 `;
