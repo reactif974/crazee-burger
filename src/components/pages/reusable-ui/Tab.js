@@ -22,7 +22,7 @@ const TabStyled = styled.button`
   background-color: ${theme.colors.background_white};
   color: ${theme.colors.background_dark};
   font-family: "Open Sans", sans-serif;
-  font-size: ${theme.fonts.XS};
+  font-size: 16px;
   font-weight: ${theme.weights.bold};
   &:hover {
     cursor: pointer;
