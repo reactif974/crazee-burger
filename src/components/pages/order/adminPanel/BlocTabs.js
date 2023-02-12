@@ -16,16 +16,6 @@ export default function BlocTabs() {
     setIsPannelCollapsed,
   } = useContext(GlobalContext);
 
-  const classNameForTabOne = `tabs tabs-one ${
-    isPannelCollapsed && "is-active-tab"
-  }`;
-  const classNameForTabTwo = `tabs tabs-two ${
-    panelTabIndex === 2 && "is-active-tab"
-  }`;
-  const classNameForTabThree = `tabs tabs-three ${
-    panelTabIndex === 3 && "is-active-tab"
-  }`;
-
   // management of the display of different content according to the index
   const toggleTab = (index) => {
     setPanelTabIndex(index);
@@ -38,27 +28,46 @@ export default function BlocTabs() {
     setIsPannelCollapsed(!isPannelCollapsed);
   };
 
+  const tabsConfig = [
+    {
+      label: "",
+      className: isPannelCollapsed
+        ? "tabs tabs-one is-active-tab"
+        : "tabs tabs-one",
+      Icon: isPannelCollapsed ? <BsChevronUp /> : <BsChevronDown />,
+      onClick: () => hideAndShowAdminPanelContent(),
+    },
+    {
+      label: "Ajouter un produit",
+      className:
+        panelTabIndex === 2 ? "tabs tabs-two is-active-tab" : "tabs tabs-two",
+      Icon: <AiOutlinePlus />,
+      onClick: () => toggleTab(2),
+    },
+    {
+      label: "Modifier un produit",
+      className:
+        panelTabIndex === 3
+          ? "tabs tabs-three is-active-tab"
+          : "tabs tabs-three",
+      Icon: <RiPencilFill />,
+      onClick: () => toggleTab(3),
+    },
+  ];
+
   return (
     <>
       <BlocTabsStyled>
-        <Tab
-          text={""}
-          className={`tabs tabs-one ${classNameForTabOne}`}
-          Icon={isPannelCollapsed ? <BsChevronUp /> : <BsChevronDown />}
-          onClick={() => hideAndShowAdminPanelContent()}
-        />
-        <Tab
-          text={"Ajouter un produit"}
-          className={classNameForTabTwo}
-          Icon={<AiOutlinePlus />}
-          onClick={() => toggleTab(2)}
-        />
-        <Tab
-          text={"Modifier un produit"}
-          className={classNameForTabThree}
-          Icon={<RiPencilFill />}
-          onClick={() => toggleTab(3)}
-        />
+        {tabsConfig.map((tab) => {
+          return (
+            <Tab
+              label={tab.label}
+              className={tab.className}
+              Icon={tab.Icon}
+              onClick={tab.onClick}
+            />
+          );
+        })}
       </BlocTabsStyled>
       <BlocAdminPanelContent />
     </>

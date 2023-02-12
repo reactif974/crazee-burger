@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { theme } from "../../../theme";
 
-export default function Tab({ text, className, Icon, onClick }) {
+export default function Tab({ label, className, Icon, onClick }) {
   return (
     <TabStyled className={className} onClick={onClick}>
       {Icon && Icon}
-      {text}
+      {label}
     </TabStyled>
   );
 }
