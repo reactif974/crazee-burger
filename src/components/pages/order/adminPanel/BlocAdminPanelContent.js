@@ -19,7 +19,7 @@ export default function BlocAdminPanelContent() {
             : "content"
         }`}
       >
-        {panelTabIndex === tabSelected.index && tabSelected.label}
+        {panelTabIndex === tabSelected.index && tabSelected.content}
       </div>
     </BlocAdminPanelContentStyled>
   );

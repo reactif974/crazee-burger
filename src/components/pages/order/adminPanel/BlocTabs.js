@@ -5,7 +5,6 @@ import { useContext } from "react";
 import GlobalContext from "../../../../context/GlobalContext";
 import BlocAdminPanelContent from "./BlocAdminPanelContent";
 import { getTabsConfig } from "./getTabsConfig";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
 export default function BlocTabs() {
   const {
@@ -23,31 +22,23 @@ export default function BlocTabs() {
     }
   };
 
-  const hideAndShowAdminPanelContent = () => {
-    setIsPannelCollapsed(!isPannelCollapsed);
-  };
-
-  const tabs = getTabsConfig(isPannelCollapsed, panelTabIndex);
+  const tabs = getTabsConfig(
+    isPannelCollapsed,
+    panelTabIndex,
+    toggleTab,
+    setIsPannelCollapsed
+  );
 
   return (
     <>
       <BlocTabsStyled>
-        <Tab
-          index="0"
-          label=""
-          className={
-            isPannelCollapsed ? "tabs tabs-one is-active-tab" : "tabs tabs-one"
-          }
-          Icon={isPannelCollapsed ? <BsChevronUp /> : <BsChevronDown />}
-          onClick={() => hideAndShowAdminPanelContent()}
-        />
         {tabs.map((tab) => (
           <Tab
             key={tab.index}
             label={tab.label}
             className={tab.className}
             Icon={tab.Icon}
-            onClick={() => toggleTab(tab.index)}
+            onClick={tab.onClick}
           />
         ))}
       </BlocTabsStyled>
