@@ -40,8 +40,7 @@ const MenuStyled = styled.div`
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
     border-bottom-left-radius: ${theme.borderRadius.extraRound};
     background-color: ${theme.colors.background_white};
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-    box-shadow: inset 0px 0px 12px 0px ${theme.colors.greySemiDark};
+    box-shadow: ${theme.shadows.strong};
     overflow-y: scroll;
     .grille-item {
       display: flex;
