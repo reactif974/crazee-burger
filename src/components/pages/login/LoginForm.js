@@ -111,6 +111,17 @@ const LoginFormStyled = styled.form`
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
+    button {
+      &:hover {
+        background-color: ${theme.colors.background_white};
+        color: ${theme.colors.background_orange};
+      }
+      svg {
+        margin-left: 5px;
+        margin-top: 3px;
+        font-size: 23px;
+      }
+    }
     input {
       border-radius: ${theme.borderRadius.round};
     }
