@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import Tab from "../../reusable-ui/Tab";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { AiOutlinePlus } from "react-icons/ai";
-import { RiPencilFill } from "react-icons/ri";
 import { theme } from "../../../../theme";
 import { useContext } from "react";
 import GlobalContext from "../../../../context/GlobalContext";
 import BlocAdminPanelContent from "./BlocAdminPanelContent";
+import { getTabsConfig } from "./getTabsConfig";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
 export default function BlocTabs() {
   const {
@@ -28,55 +27,29 @@ export default function BlocTabs() {
     setIsPannelCollapsed(!isPannelCollapsed);
   };
 
-  const tabsConfig = [
-    {
-      index: 0,
-      label: "",
-      className: isPannelCollapsed
-        ? "tabs tabs-one is-active-tab"
-        : "tabs tabs-one",
-      Icon: isPannelCollapsed ? <BsChevronUp /> : <BsChevronDown />,
-    },
-    {
-      index: 1,
-      label: "Ajouter un produit",
-      className:
-        panelTabIndex === 1 ? "tabs tabs-two is-active-tab" : "tabs tabs-two",
-      Icon: <AiOutlinePlus />,
-    },
-    {
-      index: 2,
-      label: "Modifier un produit",
-      className:
-        panelTabIndex === 2
-          ? "tabs tabs-three is-active-tab"
-          : "tabs tabs-three",
-      Icon: <RiPencilFill />,
-    },
-  ];
+  const tabs = getTabsConfig(isPannelCollapsed, panelTabIndex);
 
   return (
     <>
       <BlocTabsStyled>
-        {tabsConfig.map((tab) => {
-          return tab.index === 0 ? (
-            <Tab
-              key={tab.index}
-              label={tab.label}
-              className={tab.className}
-              Icon={tab.Icon}
-              onClick={() => hideAndShowAdminPanelContent()}
-            />
-          ) : (
-            <Tab
-              key={tab.index}
-              label={tab.label}
-              className={tab.className}
-              Icon={tab.Icon}
-              onClick={() => toggleTab(tab.index)}
-            />
-          );
-        })}
+        <Tab
+          index="0"
+          label=""
+          className={
+            isPannelCollapsed ? "tabs tabs-one is-active-tab" : "tabs tabs-one"
+          }
+          Icon={isPannelCollapsed ? <BsChevronUp /> : <BsChevronDown />}
+          onClick={() => hideAndShowAdminPanelContent()}
+        />
+        {tabs.map((tab) => (
+          <Tab
+            key={tab.index}
+            label={tab.label}
+            className={tab.className}
+            Icon={tab.Icon}
+            onClick={() => toggleTab(tab.index)}
+          />
+        ))}
       </BlocTabsStyled>
       <BlocAdminPanelContent />
     </>

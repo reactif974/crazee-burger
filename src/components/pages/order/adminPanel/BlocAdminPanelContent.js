@@ -2,25 +2,24 @@ import { useContext } from "react";
 import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
+import { getTabsConfig } from "./getTabsConfig";
 
 export default function BlocAdminPanelContent() {
   const { isPannelCollapsed, panelTabIndex } = useContext(GlobalContext);
+
+  const tabs = getTabsConfig(isPannelCollapsed, panelTabIndex);
+  const tabSelected = tabs.find((tab) => tab.index === panelTabIndex);
 
   return (
     <BlocAdminPanelContentStyled isPannelCollapsed={isPannelCollapsed}>
       <div
         className={`${
-          panelTabIndex === 1 ? "content active-content" : "content"
+          panelTabIndex === tabSelected.index
+            ? "content active-content"
+            : "content"
         }`}
       >
-        <h2>contenu 2</h2>
-      </div>
-      <div
-        className={`${
-          panelTabIndex === 2 ? "content active-content" : "content "
-        }`}
-      >
-        <h2>contenu 3</h2>
+        {panelTabIndex === tabSelected.index && tabSelected.label}
       </div>
     </BlocAdminPanelContentStyled>
   );
