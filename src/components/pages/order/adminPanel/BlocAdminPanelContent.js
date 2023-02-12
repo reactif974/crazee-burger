@@ -10,14 +10,14 @@ export default function BlocAdminPanelContent() {
     <BlocAdminPanelContentStyled isPannelCollapsed={isPannelCollapsed}>
       <div
         className={`${
-          panelTabIndex === 2 ? "content active-content" : "content"
+          panelTabIndex === 1 ? "content active-content" : "content"
         }`}
       >
         <h2>contenu 2</h2>
       </div>
       <div
         className={`${
-          panelTabIndex === 3 ? "content active-content" : "content "
+          panelTabIndex === 2 ? "content active-content" : "content "
         }`}
       >
         <h2>contenu 3</h2>

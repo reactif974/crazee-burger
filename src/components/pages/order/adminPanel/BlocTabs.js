@@ -11,15 +11,15 @@ import BlocAdminPanelContent from "./BlocAdminPanelContent";
 export default function BlocTabs() {
   const {
     isPannelCollapsed,
-    panelTabIndex,
     setPanelTabIndex,
+    panelTabIndex,
     setIsPannelCollapsed,
   } = useContext(GlobalContext);
 
   // management of the display of different content according to the index
   const toggleTab = (index) => {
     setPanelTabIndex(index);
-    if (isPannelCollapsed === true) {
+    if (isPannelCollapsed) {
       setIsPannelCollapsed(false);
     }
   };
@@ -30,28 +30,28 @@ export default function BlocTabs() {
 
   const tabsConfig = [
     {
+      index: 0,
       label: "",
       className: isPannelCollapsed
         ? "tabs tabs-one is-active-tab"
         : "tabs tabs-one",
       Icon: isPannelCollapsed ? <BsChevronUp /> : <BsChevronDown />,
-      onClick: () => hideAndShowAdminPanelContent(),
     },
     {
+      index: 1,
       label: "Ajouter un produit",
       className:
-        panelTabIndex === 2 ? "tabs tabs-two is-active-tab" : "tabs tabs-two",
+        panelTabIndex === 1 ? "tabs tabs-two is-active-tab" : "tabs tabs-two",
       Icon: <AiOutlinePlus />,
-      onClick: () => toggleTab(2),
     },
     {
+      index: 2,
       label: "Modifier un produit",
       className:
-        panelTabIndex === 3
+        panelTabIndex === 2
           ? "tabs tabs-three is-active-tab"
           : "tabs tabs-three",
       Icon: <RiPencilFill />,
-      onClick: () => toggleTab(3),
     },
   ];
 
@@ -59,12 +59,21 @@ export default function BlocTabs() {
     <>
       <BlocTabsStyled>
         {tabsConfig.map((tab) => {
-          return (
+          return tab.index === 0 ? (
             <Tab
+              key={tab.index}
               label={tab.label}
               className={tab.className}
               Icon={tab.Icon}
-              onClick={tab.onClick}
+              onClick={() => hideAndShowAdminPanelContent()}
+            />
+          ) : (
+            <Tab
+              key={tab.index}
+              label={tab.label}
+              className={tab.className}
+              Icon={tab.Icon}
+              onClick={() => toggleTab(tab.index)}
             />
           );
         })}

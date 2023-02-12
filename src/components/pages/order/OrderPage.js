@@ -10,7 +10,7 @@ import GlobalContext from "../../../context/GlobalContext";
 export default function OrderPage() {
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
-  const [panelTabIndex, setPanelTabIndex] = useState(2);
+  const [panelTabIndex, setPanelTabIndex] = useState(1);
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
 
   const globalContextValue = {
