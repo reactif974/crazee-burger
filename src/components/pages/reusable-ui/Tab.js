@@ -17,7 +17,6 @@ const TabStyled = styled.button`
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  border: 0.6px solid ${theme.colors.greyDark};
   border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
   background-color: ${theme.colors.background_white};
   color: ${theme.colors.background_dark};
