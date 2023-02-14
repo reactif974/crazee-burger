@@ -19,7 +19,6 @@ const CardStyled = styled.div`
   flex-direction: column;
   justify-content: space-between;
   box-shadow: ${theme.shadows.medium};
-  box-shadow: ${theme.shadows.subtle};
   border-radius: ${theme.borderRadius.extraRound};
   .pics-container {
     height: 145px;

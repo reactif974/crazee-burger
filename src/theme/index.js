@@ -52,8 +52,8 @@ const borderRadius = {
 };
 const shadows = {
   subtle: "0px -6px 8px -2px rgba(0,0,0,0.1)",
-  medium: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-  strong: "0px 8px 20px 8px rgba(0,0,0,0.2) inset",
+  medium: "-8px 8px 20px rgba(0, 0, 0, 0.2)",
+  strong: "inset 0px 8px 20px 8px rgba(0, 0, 0, 0.2)",
 };
 const weights = {
   light: 300,
