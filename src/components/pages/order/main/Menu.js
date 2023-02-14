@@ -25,6 +25,8 @@ export default function Menu() {
 const MenuStyled = styled.div`
   position: relative;
   overflow: hidden;
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
   .card-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -37,8 +39,6 @@ const MenuStyled = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 170px;
-    border-bottom-right-radius: ${theme.borderRadius.extraRound};
-    border-bottom-left-radius: ${theme.borderRadius.extraRound};
     background-color: ${theme.colors.background_white};
     box-shadow: ${theme.shadows.strong};
     overflow-y: scroll;
