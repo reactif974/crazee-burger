@@ -27,7 +27,7 @@ export default function OrderPage() {
       <OrderPageStyled>
         <NavBar userName={name} />
         <main className="main-container">
-          {/* @TODO: basket container */}
+          {/* Keep this basket container for the basket feature ticket */}
           {/* <div className="sideBar-left"></div> */}
           <Menu />
         </main>
