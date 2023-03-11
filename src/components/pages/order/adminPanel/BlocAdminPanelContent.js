@@ -5,13 +5,13 @@ import { theme } from "../../../../theme";
 import { getTabsConfig } from "./getTabsConfig";
 
 export default function BlocAdminPanelContent() {
-  const { isPannelCollapsed, panelTabIndex } = useContext(GlobalContext);
+  const { panelTabIndex } = useContext(GlobalContext);
 
-  const tabs = getTabsConfig(isPannelCollapsed, panelTabIndex);
+  const tabs = getTabsConfig(panelTabIndex);
   const tabSelected = tabs.find((tab) => tab.index === panelTabIndex);
 
   return (
-    <BlocAdminPanelContentStyled isPannelCollapsed={isPannelCollapsed}>
+    <BlocAdminPanelContentStyled>
       <div
         className={`${
           panelTabIndex === tabSelected.index
@@ -26,7 +26,6 @@ export default function BlocAdminPanelContent() {
 }
 
 const BlocAdminPanelContentStyled = styled.div`
-  display: ${(props) => (props.isPannelCollapsed ? "none" : "block")};
   height: 250px;
   background: ${theme.colors.background_white};
   .content {
