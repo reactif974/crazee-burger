@@ -8,19 +8,28 @@ export default function BlocAdminPanelContent() {
   const { panelTabIndex } = useContext(GlobalContext);
 
   const tabs = getTabsConfig(panelTabIndex);
-  const tabSelected = tabs.find((tab) => tab.index === panelTabIndex);
+
+  const dataInAdminPanelContent = (panelTabIndex) => {
+    if (panelTabIndex === "add") {
+      return (
+        <div className="content active-content">
+          <h4>Ajouter un produit</h4>
+        </div>
+      );
+    } else if (panelTabIndex === "edit") {
+      return (
+        <div className="content active-content">
+          <h4>Modifier un produit</h4>
+        </div>
+      );
+    } else {
+      return <div className="content"></div>;
+    }
+  };
 
   return (
     <BlocAdminPanelContentStyled>
-      <div
-        className={`${
-          panelTabIndex === tabSelected.index
-            ? "content active-content"
-            : "content"
-        }`}
-      >
-        {tabSelected && tabSelected.content}
-      </div>
+      {dataInAdminPanelContent(panelTabIndex)}
     </BlocAdminPanelContentStyled>
   );
 }

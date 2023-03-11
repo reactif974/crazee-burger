@@ -10,7 +10,7 @@ export const getTabsConfig = (
 ) => {
   return [
     {
-      index: 0,
+      index: "chevronUpDown",
       label: "",
       className: isPannelCollapsed
         ? "tabs tabs-one is-active-tab"
@@ -19,23 +19,25 @@ export const getTabsConfig = (
       onClick: () => setIsPannelCollapsed(!isPannelCollapsed),
     },
     {
-      index: 1,
+      index: "add",
       label: "Ajouter un produit",
       className:
-        panelTabIndex === 1 ? "tabs tabs-two is-active-tab" : "tabs tabs-two",
+        panelTabIndex === "add"
+          ? "tabs tabs-two is-active-tab"
+          : "tabs tabs-two",
       Icon: <AiOutlinePlus />,
-      onClick: () => toggleTab(1),
+      onClick: () => toggleTab("add"),
       content: "Ajouter un produit",
     },
     {
-      index: 2,
+      index: "edit",
       label: "Modifier un produit",
       className:
-        panelTabIndex === 2
+        panelTabIndex === "edit"
           ? "tabs tabs-three is-active-tab"
           : "tabs tabs-three",
       Icon: <RiPencilFill />,
-      onClick: () => toggleTab(2),
+      onClick: () => toggleTab("edit"),
       content: "modifier un produit",
     },
   ];
