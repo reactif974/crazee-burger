@@ -2,12 +2,9 @@ import { useContext } from "react";
 import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
-import { getTabsConfig } from "./getTabsConfig";
 
 export default function BlocAdminPanelContent() {
   const { panelTabIndex } = useContext(GlobalContext);
-
-  const tabs = getTabsConfig(panelTabIndex);
 
   const dataInAdminPanelContent = (panelTabIndex) => {
     if (panelTabIndex === "add") {
