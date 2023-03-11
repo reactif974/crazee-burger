@@ -7,11 +7,11 @@ import BlocTabs from "./BlocTabs";
 export default function PanelAdminTabs() {
   const { isModeAdmin } = useContext(GlobalContext);
 
-  const bloc_tab_container = isModeAdmin ? "showAdminPanel" : "closeAdminPanel";
+  const blocTabContainer = isModeAdmin ? "showAdminPanel" : "closeAdminPanel";
 
   return (
     <PanelAdminTabsStyled>
-      <div className={bloc_tab_container}>
+      <div className={blocTabContainer}>
         <BlocTabs />
       </div>
     </PanelAdminTabsStyled>
