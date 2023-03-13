@@ -1,34 +1,30 @@
-import styled from 'styled-components'
-import { theme } from '../../../theme'
+import styled from "styled-components";
+import { theme } from "../../../theme";
 
-export default function Button({text,type,Icon,className}) {
-    return (
-        <ButtonStyled>
-            <button type={type} className={className}>
-                {text}
-                {Icon && Icon}
-            </button>
-        </ButtonStyled>
-    )
+export default function Button({ text, type, Icon, className }) {
+  return (
+    <ButtonStyled type={type} className={className}>
+      {text}
+      {Icon && Icon}
+    </ButtonStyled>
+  );
 }
 
-const ButtonStyled = styled.div`
-    .button_submit {
-        width: 100%;
-        height: 65px;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-        border:none;
-        border-radius: ${theme.borderRadius.round};
-        background-color: ${theme.colors.background_button_submit};
-        color: ${theme.colors.white};
-        font-family: 'Open Sans', sans-serif;
-        font-size: ${theme.fonts.P1};
-        font-weight: ${theme.weights.bold};
-        &:hover {
-            cursor:pointer;
-        }
-    }
-`
+const ButtonStyled = styled.button`
+  width: 100%;
+  height: 65px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: ${theme.borderRadius.round};
+  background-color: ${theme.colors.background_button_submit};
+  color: ${theme.colors.white};
+  font-family: "Open Sans", sans-serif;
+  font-size: ${theme.fonts.P1};
+  font-weight: ${theme.weights.bold};
+  &:hover {
+    cursor: pointer;
+  }
+`;

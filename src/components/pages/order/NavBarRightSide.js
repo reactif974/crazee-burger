@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import Toast from "../reusable-ui/Toast";
 import ToggleButton from "../reusable-ui/ToggleButton";
 import UserProfil from "./UserProfil";
 import { FaUserSecret } from "react-icons/fa";
 import styled from "styled-components";
+import { useContext } from "react";
+import GlobalContext from "../../../context/GlobalContext";
 
 export default function NavBarRightSide({ userName }) {
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const { isModeAdmin, setIsModeAdmin } = useContext(GlobalContext);
 
   useEffect(() => {
     if (!isModeAdmin) {
