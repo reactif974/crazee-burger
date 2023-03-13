@@ -18,9 +18,7 @@ export default function BlocTabs() {
   // management of the display of different content according to the index
   const toggleTab = (index) => {
     setPanelTabIndex(index);
-    if (isPannelCollapsed) {
-      setIsPannelCollapsed(false);
-    }
+    setIsPannelCollapsed(false);
   };
 
   const tabs = getTabsConfig(
@@ -40,7 +38,11 @@ export default function BlocTabs() {
               label={tab.label}
               className={tab.className}
               Icon={tab.Icon}
-              onClick={tab.onClick}
+              onClick={
+                tab.index === "chevronUpDown"
+                  ? () => setIsPannelCollapsed(!isPannelCollapsed)
+                  : () => toggleTab(tab.index)
+              }
             />
           ))}
         </div>

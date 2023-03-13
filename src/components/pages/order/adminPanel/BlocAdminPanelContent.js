@@ -13,14 +13,13 @@ export default function BlocAdminPanelContent() {
           <h4>Ajouter un produit</h4>
         </div>
       );
-    } else if (panelTabIndex === "edit") {
+    }
+    if (panelTabIndex === "edit") {
       return (
         <div className="content active-content">
           <h4>Modifier un produit</h4>
         </div>
       );
-    } else {
-      return <div className="content"></div>;
     }
   };
 
