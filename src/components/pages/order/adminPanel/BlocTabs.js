@@ -28,6 +28,14 @@ export default function BlocTabs() {
     setIsPannelCollapsed
   );
 
+  const selectTab = (indexTab) => {
+    if (indexTab === "chevronUpDown") {
+      setIsPannelCollapsed(!isPannelCollapsed);
+    } else {
+      toggleTab(indexTab);
+    }
+  };
+
   return (
     <>
       <BlocTabsStyled>
@@ -38,11 +46,7 @@ export default function BlocTabs() {
               label={tab.label}
               className={tab.className}
               Icon={tab.Icon}
-              onClick={
-                tab.index === "chevronUpDown"
-                  ? () => setIsPannelCollapsed(!isPannelCollapsed)
-                  : () => toggleTab(tab.index)
-              }
+              onClick={() => selectTab(tab.index)}
             />
           ))}
         </div>
