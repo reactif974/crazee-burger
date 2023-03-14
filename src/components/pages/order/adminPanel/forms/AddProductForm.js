@@ -9,7 +9,6 @@ import { theme } from "../../../../../theme";
 import { useState } from "react";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
-import { useEffect } from "react";
 
 export default function AddProductForm() {
   const { menus, setMenus, isSubmitSucces, setIsSubmitSucces } =
