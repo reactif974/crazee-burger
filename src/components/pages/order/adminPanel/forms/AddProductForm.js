@@ -14,11 +14,9 @@ export default function AddProductForm() {
   const { menus, setMenus, isSubmitSucces, setIsSubmitSucces } =
     useContext(GlobalContext);
 
-  const [name, setName] = useState("Nom du produit (ex: Super Burger)");
-  const [urlPicture, setUrlPicture] = useState(
-    "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-  );
-  const [priceProduct, setPriceProduct] = useState("Prix");
+  const [name, setName] = useState("");
+  const [urlPicture, setUrlPicture] = useState("");
+  const [priceProduct, setPriceProduct] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,6 +36,7 @@ export default function AddProductForm() {
     }, 2000);
   };
 
+  console.log("urlPicture", urlPicture);
   return (
     <AddProductFormStyled
       action="submit"
@@ -54,19 +53,22 @@ export default function AddProductForm() {
           Icon={<FaHamburger />}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          onFocus={(e) => (e.target.value = "")}
+          onFocus={(e) => (e.target.placeholder = "")}
+          placeholder="Nom du produit (ex: Super Burger)"
         />
         <Input
           Icon={<BsFillCameraFill />}
           value={urlPicture}
           onChange={(e) => setUrlPicture(e.target.value)}
-          onFocus={(e) => (e.target.value = "")}
+          onFocus={(e) => (e.target.placeholder = "")}
+          placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
         />
         <Input
           Icon={<MdOutlineEuro />}
           value={priceProduct}
           onChange={(e) => setPriceProduct(e.target.value)}
-          onFocus={(e) => (e.target.value = "")}
+          onFocus={(e) => (e.target.placeholder = "")}
+          placeholder="Prix"
         />
         <span className="submit-container">
           <Button
