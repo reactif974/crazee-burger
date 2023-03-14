@@ -14,6 +14,7 @@ export default function OrderPage() {
   const [panelTabIndex, setPanelTabIndex] = useState("add");
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
   const [menus, setMenus] = useState(fakeMenu.LARGE);
+  const [isSubmitSucces, setIsSubmitSucces] = useState(false);
 
   const globalContextValue = {
     isModeAdmin,
@@ -24,6 +25,8 @@ export default function OrderPage() {
     setIsPannelCollapsed,
     menus,
     setMenus,
+    isSubmitSucces,
+    setIsSubmitSucces,
   };
 
   return (

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Input from "../../../reusable-ui/Input";
 import { FaHamburger } from "react-icons/fa";
+import { FiCheck } from "react-icons/fi";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../reusable-ui/Button";
@@ -8,9 +9,11 @@ import { theme } from "../../../../../theme";
 import { useState } from "react";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
+import { useEffect } from "react";
 
 export default function AddProductForm() {
-  const { menus, setMenus } = useContext(GlobalContext);
+  const { menus, setMenus, isSubmitSucces, setIsSubmitSucces } =
+    useContext(GlobalContext);
 
   const [name, setName] = useState("Nom du produit (ex: Super Burger)");
   const [urlPicture, setUrlPicture] = useState(
@@ -20,18 +23,20 @@ export default function AddProductForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMenus([
-      ...menus,
-      {
-        id: new Date().getTime(),
-        imageSource: urlPicture,
-        title: name,
-        price: priceProduct,
-      },
-    ]);
+    const newProduct = {
+      id: new Date().getTime(),
+      imageSource: urlPicture,
+      title: name,
+      price: priceProduct,
+    };
+    setMenus([newProduct, ...menus]);
     setName("");
     setUrlPicture("");
     setPriceProduct("");
+    setIsSubmitSucces(true);
+    setTimeout(() => {
+      setIsSubmitSucces(false);
+    }, 2000);
   };
 
   return (
@@ -64,11 +69,21 @@ export default function AddProductForm() {
           onChange={(e) => setPriceProduct(e.target.value)}
           onFocus={(e) => (e.target.value = "")}
         />
-        <Button
-          text="Ajouter un nouveau produit au menu"
-          type="submit"
-          className="submit"
-        />
+        <span className="submit-container">
+          <Button
+            text="Ajouter un nouveau produit au menu"
+            type="submit"
+            className="submit"
+          />
+          {isSubmitSucces ? (
+            <span className="succes-message">
+              <FiCheck />
+              Ajouté avec succès !
+            </span>
+          ) : (
+            <span></span>
+          )}
+        </span>
       </div>
     </AddProductFormStyled>
   );
@@ -109,6 +124,27 @@ const AddProductFormStyled = styled.form`
   .input-container {
     display: grid;
     grid-gap: 13px;
+    .submit-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .succes-message {
+        display: flex;
+        padding-left: 18px;
+        color: ${theme.colors.success};
+        font-family: "Open Sans", sans-serif;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+        svg {
+          border: 1px solid ${theme.colors.success};
+          border-radius: 20px;
+          margin-right: 8px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
     div {
       height: 35px;
       padding-left: 24px;

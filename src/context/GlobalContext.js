@@ -5,8 +5,10 @@ export default createContext({
   isPannelCollapsed: false,
   panelTabIndex: "add",
   menus: [],
+  isSubmitSucces: false,
   setIsModeAdmin: () => {},
   setIsPannelCollapsed: () => {},
   setPanelTabIndex: () => {},
   setMenus: () => {},
+  setIsSubmitSucces: () => {},
 });
