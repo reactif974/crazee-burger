@@ -6,12 +6,14 @@ import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
 import { useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
+import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 export default function OrderPage() {
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [panelTabIndex, setPanelTabIndex] = useState("add");
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
+  const [menus, setMenus] = useState(fakeMenu.LARGE);
 
   const globalContextValue = {
     isModeAdmin,
@@ -20,6 +22,8 @@ export default function OrderPage() {
     setPanelTabIndex,
     isPannelCollapsed,
     setIsPannelCollapsed,
+    menus,
+    setMenus,
   };
 
   return (

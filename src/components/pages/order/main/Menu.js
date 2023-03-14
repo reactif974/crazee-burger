@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
 import Card from "../../reusable-ui/Card";
 import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 
 export default function Menu() {
-  const [menu, setMenu] = useState(fakeMenu2);
+  const { menus } = useContext(GlobalContext);
 
   return (
     <MenuStyled className="menu-container">
       <div className="card-container">
-        {menu.map((menu) => (
+        {menus?.map((menu) => (
           <div key={menu.id} className="grille-item">
             <Card {...menu} />
           </div>

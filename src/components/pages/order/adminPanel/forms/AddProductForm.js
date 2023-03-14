@@ -5,21 +5,65 @@ import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../reusable-ui/Button";
 import { theme } from "../../../../../theme";
+import { useState } from "react";
+import { useContext } from "react";
+import GlobalContext from "../../../../../context/GlobalContext";
 
 export default function AddProductForm() {
+  const { menus, setMenus } = useContext(GlobalContext);
+
+  const [name, setName] = useState("Nom du produit (ex: Super Burger)");
+  const [urlPicture, setUrlPicture] = useState(
+    "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
+  );
+  const [priceProduct, setPriceProduct] = useState("Prix");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMenus([
+      ...menus,
+      {
+        id: new Date().getTime(),
+        imageSource: urlPicture,
+        title: name,
+        price: priceProduct,
+      },
+    ]);
+    setName("");
+    setUrlPicture("");
+    setPriceProduct("");
+  };
+
   return (
-    <AddProductFormStyled action="submit">
-      <div className="pics-container">Aucune image</div>
+    <AddProductFormStyled
+      action="submit"
+      onSubmit={handleSubmit}
+      image={urlPicture}
+    >
+      {urlPicture ? (
+        <div className="pics-preview"></div>
+      ) : (
+        <div className="pics-container">Aucune image</div>
+      )}
       <div className="input-container">
         <Input
           Icon={<FaHamburger />}
-          value="Nom du produit (ex: Super Burger)"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onFocus={(e) => (e.target.value = "")}
         />
         <Input
           Icon={<BsFillCameraFill />}
-          value="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
+          value={urlPicture}
+          onChange={(e) => setUrlPicture(e.target.value)}
+          onFocus={(e) => (e.target.value = "")}
         />
-        <Input Icon={<MdOutlineEuro />} value="Prix" />
+        <Input
+          Icon={<MdOutlineEuro />}
+          value={priceProduct}
+          onChange={(e) => setPriceProduct(e.target.value)}
+          onFocus={(e) => (e.target.value = "")}
+        />
         <Button
           text="Ajouter un nouveau produit au menu"
           type="submit"
@@ -37,6 +81,16 @@ const AddProductFormStyled = styled.form`
   grid-template-columns: 16% 48% 1fr;
   grid-gap: 15px;
   padding-left: 73px;
+  .pics-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 1;
+    height: 132.14px;
+    background: url(${(props) => props.image}) no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
   .pics-container {
     display: flex;
     justify-content: center;
