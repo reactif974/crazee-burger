@@ -3,6 +3,7 @@ import styled from "styled-components";
 import GlobalContext from "../../../context/GlobalContext";
 import { theme } from "../../../theme";
 import PriceContainer from "../order/main/PriceContainer";
+import comingSoon from "../../../assets/coming-soon.png";
 
 export default function Card({ title, imageSource, price, id }) {
   const { menus, setMenus, isModeAdmin } = useContext(GlobalContext);
@@ -48,13 +49,15 @@ const CardStyled = styled.div`
     border-radius: 20px;
     color: ${theme.colors.background_white};
     box-shadow: -8px 8px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
   }
   .pics-container {
     height: 145px;
     margin: 29px 30px 20px 27px;
-    background: url(${(props) => props.image}) no-repeat;
+    background: url(${(props) => (!props.image ? comingSoon : props.image)});
     background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
   }
   h2 {
     width: 100%;

@@ -125,6 +125,7 @@ const AddProductFormStyled = styled.form`
   .input-container {
     display: grid;
     grid-gap: 13px;
+    width: 645px;
     .submit-container {
       display: flex;
       justify-content: flex-start;
