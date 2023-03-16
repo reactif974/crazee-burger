@@ -4,19 +4,26 @@ import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
 import Card from "../../reusable-ui/Card";
 import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
+import EmptyMenu from "./EmptyMenu";
 
 export default function Menu() {
   const { menus } = useContext(GlobalContext);
 
   return (
     <MenuStyled className="menu-container">
-      <div className="card-container">
-        {menus?.map((menu) => (
-          <div key={menu.id} className="grille-item">
-            <Card {...menu} />
-          </div>
-        ))}
-      </div>
+      {!menus.length ? (
+        <>
+          <EmptyMenu />
+        </>
+      ) : (
+        <div className="card-container">
+          {menus?.map((menu) => (
+            <div key={menu.id} className="grille-item">
+              <Card {...menu} />
+            </div>
+          ))}
+        </div>
+      )}
       <PanelAdminTabs />
     </MenuStyled>
   );
