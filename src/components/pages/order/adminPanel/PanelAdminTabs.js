@@ -11,7 +11,7 @@ export default function PanelAdminTabs() {
 
   return (
     <PanelAdminTabsStyled>
-      {"@TODO : rendre les className dynamiques"}
+      {/* @TODO : rendre les className dynamiques*/}
       <div className={blocTabContainer}>
         <BlocTabs />
       </div>
