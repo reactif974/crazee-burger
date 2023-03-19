@@ -60,16 +60,12 @@ const getAddStyle = () => {
       border-radius: 5px;
       font-family: Arial, Helvetica, sans-serif;
       font-weight: 400;
-      color: ${theme.colors.greyDark};
       padding: 4px 0 0 ${theme.spacing.xl};
       font-weight: 400;
       font-size: 15px;
       line-height: 17px;
-      &:is(:invalid, [aria-invalid="true"]):is(
-          :-webkit-autofill,
-          :-webkit-autofill:focus
-        ) {
-        transition: background-color 600000s 0s, color 600000s 0s;
+      &::placeholder {
+        color: #a7a8ad;
       }
     }
   `;

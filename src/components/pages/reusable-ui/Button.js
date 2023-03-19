@@ -78,8 +78,8 @@ const getRefreshStyle = () => {
 
 const getAddStyle = () => {
   return css`
-    width: 100px;
-    height: 42px;
+    width: 95px;
+    height: 38px;
     font-size: ${theme.fonts.XS};
     font-family: "Open Sans", sans-serif;
     border: 1px solid ${theme.colors.primary_burger};
@@ -87,6 +87,7 @@ const getAddStyle = () => {
     background-color: ${theme.colors.primary_burger};
     color: ${theme.colors.white};
     transition: background-color 0.4s ease, color 0.4s ease;
+    padding: 13px, 28px, 13px, 28px;
     cursor: pointer;
     &:hover {
       background-color: ${theme.colors.white};
