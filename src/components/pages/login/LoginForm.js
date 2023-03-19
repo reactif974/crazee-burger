@@ -52,7 +52,7 @@ export default function LoginForm() {
           text="Accéder à mon espace"
           type="submit"
           Icon={<MdOutlineKeyboardArrowRight />}
-          className="button_submit"
+          variant="normal"
         />
       </div>
     </LoginFormStyled>

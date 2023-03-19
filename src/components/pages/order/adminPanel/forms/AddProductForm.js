@@ -83,7 +83,7 @@ export default function AddProductForm() {
           <Button
             text="Ajouter un nouveau produit au menu"
             type="submit"
-            className="submit"
+            variant="sucess"
           />
           {isSubmitSucces ? (
             <span className="succes-message">
@@ -155,12 +155,6 @@ const AddProductFormStyled = styled.form`
           height: 18px;
         }
       }
-    }
-    .submit {
-      width: 275px;
-      height: 34.05px;
-      font-size: 12px;
-      background-color: ${theme.colors.success};
     }
   }
 `;
