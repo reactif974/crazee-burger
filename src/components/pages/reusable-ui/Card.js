@@ -4,24 +4,14 @@ import GlobalContext from "../../../context/GlobalContext";
 import { theme } from "../../../theme";
 import PriceContainer from "../order/main/PriceContainer";
 import comingSoon from "../../../assets/coming-soon.png";
+import DeleteButton from "./DeleteButton";
 
 export default function Card({ title, imageSource, price, id }) {
-  const { menus, setMenus, isModeAdmin } = useContext(GlobalContext);
-
-  const handleDelete = (id) => {
-    const menusUpdated = menus.filter((menu) => menu.id !== id);
-    setMenus(menusUpdated);
-  };
+  const { isModeAdmin } = useContext(GlobalContext);
 
   return (
     <CardStyled image={imageSource} title={title}>
-      {isModeAdmin ? (
-        <button className="delete-icon" onClick={() => handleDelete(id)}>
-          X
-        </button>
-      ) : (
-        <div></div>
-      )}
+      {isModeAdmin && <DeleteButton id={id} />}
       <div className="pics-container"></div>
       <h2>{title}</h2>
       <PriceContainer price={price} />
