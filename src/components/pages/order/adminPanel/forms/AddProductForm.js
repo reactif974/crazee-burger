@@ -61,6 +61,7 @@ export default function AddProductForm() {
           value={newProduct.title}
           onChange={handleChange}
           placeholder="Nom du produit (ex: Super Burger)"
+          variant="add"
         />
         <Input
           Icon={<BsFillCameraFill />}
@@ -68,6 +69,7 @@ export default function AddProductForm() {
           value={newProduct.imageSource}
           onChange={handleChange}
           placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
+          variant="add"
         />
         <Input
           Icon={<MdOutlineEuro />}
@@ -75,6 +77,7 @@ export default function AddProductForm() {
           value={newProduct.price ? newProduct.price : ""}
           onChange={handleChange}
           placeholder="Prix"
+          variant="add"
         />
         <span className="submit-container">
           <Button
@@ -151,27 +154,6 @@ const AddProductFormStyled = styled.form`
           width: 18px;
           height: 18px;
         }
-      }
-    }
-    div {
-      height: 35px;
-      padding-left: 24px;
-      span {
-        svg {
-          width: 15px;
-          height: 13px;
-        }
-      }
-      input {
-        width: 577.45px;
-        height: 35px;
-        background-color: ${theme.colors.greyLight};
-        border-radius: 5px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 17.25px;
-        color: ${theme.colors.greyMedium};
       }
     }
     .submit {
