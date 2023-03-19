@@ -11,4 +11,6 @@ export default createContext({
   setPanelTabIndex: () => {},
   setMenus: () => {},
   setIsSubmitSucces: () => {},
+  handleAdd: () => {},
+  handleDelete: () => {},
 });

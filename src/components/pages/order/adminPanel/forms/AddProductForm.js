@@ -10,40 +10,46 @@ import { useState } from "react";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
 
+const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 0,
+};
+
 export default function AddProductForm() {
-  const { menus, setMenus, isSubmitSucces, setIsSubmitSucces } =
+  const { isSubmitSucces, setIsSubmitSucces, handleAdd } =
     useContext(GlobalContext);
 
-  const [name, setName] = useState("");
-  const [urlPicture, setUrlPicture] = useState("");
-  const [priceProduct, setPriceProduct] = useState("");
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newProduct = {
-      id: new Date().getTime(),
-      imageSource: urlPicture,
-      title: name,
-      price: priceProduct,
-    };
-    setMenus([newProduct, ...menus]);
-    setName("");
-    setUrlPicture("");
-    setPriceProduct("");
+  const handleChange = (event) => {
+    setNewProduct({
+      ...newProduct,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleAdd({
+      ...newProduct,
+      id: crypto.randomUUID(),
+    });
     setIsSubmitSucces(true);
     setTimeout(() => {
       setIsSubmitSucces(false);
     }, 2000);
+    setNewProduct(EMPTY_PRODUCT);
   };
 
-  console.log("urlPicture", urlPicture);
   return (
     <AddProductFormStyled
       action="submit"
       onSubmit={handleSubmit}
-      image={urlPicture}
+      image={newProduct.imageSource}
     >
-      {urlPicture ? (
+      {newProduct.imageSource ? (
         <div className="pics-preview"></div>
       ) : (
         <div className="pics-container">Aucune image</div>
@@ -51,23 +57,23 @@ export default function AddProductForm() {
       <div className="input-container">
         <Input
           Icon={<FaHamburger />}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          onFocus={(e) => (e.target.placeholder = "")}
+          name="title"
+          value={newProduct.title}
+          onChange={handleChange}
           placeholder="Nom du produit (ex: Super Burger)"
         />
         <Input
           Icon={<BsFillCameraFill />}
-          value={urlPicture}
-          onChange={(e) => setUrlPicture(e.target.value)}
-          onFocus={(e) => (e.target.placeholder = "")}
+          name="imageSource"
+          value={newProduct.imageSource}
+          onChange={handleChange}
           placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
         />
         <Input
           Icon={<MdOutlineEuro />}
-          value={priceProduct}
-          onChange={(e) => setPriceProduct(e.target.value)}
-          onFocus={(e) => (e.target.placeholder = "")}
+          name="price"
+          value={newProduct.price ? newProduct.price : ""}
+          onChange={handleChange}
           placeholder="Prix"
         />
         <span className="submit-container">

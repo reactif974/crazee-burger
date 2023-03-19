@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 
@@ -8,10 +9,12 @@ export default function Input({
   placeholder,
   ...extraProps
 }) {
+  const inputReference = useRef();
   return (
     <InputStyled>
       <span className="icon">{Icon && Icon}</span>
       <input
+        ref={inputReference}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

@@ -16,6 +16,18 @@ export default function OrderPage() {
   const [menus, setMenus] = useState(fakeMenu.LARGE);
   const [isSubmitSucces, setIsSubmitSucces] = useState(false);
 
+  const handleAdd = (productToAdd) => {
+    const menuCopy = [...menus];
+    const menuUpdated = [productToAdd, ...menuCopy];
+    setMenus(menuUpdated);
+  };
+
+  const handleDelete = (id) => {
+    const menuCopy = [...menus];
+    const menuUpdated = menuCopy.filter((menu) => menu.id !== id);
+    setMenus(menuUpdated);
+  };
+
   const globalContextValue = {
     isModeAdmin,
     setIsModeAdmin: setIsModeAdmin,
@@ -27,6 +39,8 @@ export default function OrderPage() {
     setMenus,
     isSubmitSucces,
     setIsSubmitSucces,
+    handleAdd,
+    handleDelete,
   };
 
   return (
