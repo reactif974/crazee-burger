@@ -13,6 +13,8 @@ export default function Button({ text, type, Icon, className, variant }) {
 const ButtonStyled = styled.button`
   ${(props) => props.variant === "normal" && getNormalStyle()}
   ${(props) => props.variant === "sucess" && getSucessStyle()}
+  ${(props) => props.variant === "refresh" && getRefreshStyle()}
+  ${(props) => props.variant === "add" && getAddStyle()}
 `;
 
 const getSucessStyle = () => {
@@ -52,6 +54,47 @@ const getNormalStyle = () => {
     font-weight: ${theme.weights.bold};
     &:hover {
       cursor: pointer;
+    }
+  `;
+};
+
+const getRefreshStyle = () => {
+  return css`
+    width: auto;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: ${theme.fonts.XS};
+    font-weight: ${theme.weights.regular};
+    border-radius: ${theme.borderRadius.round};
+    background-color: ${theme.colors.background_button_submit};
+    color: ${theme.colors.white};
+    padding: 19px 24px 19px 25px;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+  `;
+};
+
+const getAddStyle = () => {
+  return css`
+    width: 100px;
+    height: 42px;
+    font-size: ${theme.fonts.XS};
+    font-family: "Open Sans", sans-serif;
+    border: 1px solid ${theme.colors.primary_burger};
+    border-radius: ${theme.borderRadius.round};
+    background-color: ${theme.colors.primary_burger};
+    color: ${theme.colors.white};
+    transition: background-color 0.4s ease, color 0.4s ease;
+    cursor: pointer;
+    &:hover {
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.primary_burger};
+    }
+    &:active {
+      background-color: ${theme.colors.primary_burger};
+      color: ${theme.colors.white};
     }
   `;
 };

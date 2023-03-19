@@ -12,11 +12,8 @@ export default function EmptyMenu() {
     <EmptyMenuStyled>
       <h2>Le menu est vide ?</h2>
       <p>Cliquez ci-dessous pour le réinitialiser</p>
-      <div
-        className="button-new-product"
-        onClick={() => setMenus(fakeMenu.LARGE)}
-      >
-        <Button text="Générer de nouveaux produits"></Button>
+      <div onClick={() => setMenus(fakeMenu.LARGE)}>
+        <Button text="Générer de nouveaux produits" variant="refresh"></Button>
       </div>
     </EmptyMenuStyled>
   );
@@ -45,14 +42,5 @@ const EmptyMenuStyled = styled.div`
     font-size: ${theme.fonts.P4};
     color: ${theme.colors.greyBlue};
     margin-top: 0;
-  }
-  .button-new-product {
-    button {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: ${theme.fonts.XS};
-      font-weight: ${theme.weights.regular};
-      width: 224px;
-      height: 50px;
-    }
   }
 `;
