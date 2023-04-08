@@ -1,7 +1,13 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../../theme";
 
-export default function Button({ text, type, Icon, className, variant }) {
+export default function Button({
+  text,
+  type,
+  Icon,
+  className,
+  variant = "normal",
+}) {
   return (
     <ButtonStyled type={type} className={className} variant={variant}>
       {text}
