@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Input from "../../../reusable-ui/Input";
+import TextInput from "../../../reusable-ui/TextInput";
 import { FaHamburger } from "react-icons/fa";
 import { FiCheck } from "react-icons/fi";
 import { BsFillCameraFill } from "react-icons/bs";
@@ -55,7 +55,7 @@ export default function AddProductForm() {
         <div className="pics-container">Aucune image</div>
       )}
       <div className="input-container">
-        <Input
+        <TextInput
           Icon={<FaHamburger />}
           name="title"
           value={newProduct.title}
@@ -63,7 +63,7 @@ export default function AddProductForm() {
           placeholder="Nom du produit (ex: Super Burger)"
           variant="add"
         />
-        <Input
+        <TextInput
           Icon={<BsFillCameraFill />}
           name="imageSource"
           value={newProduct.imageSource}
@@ -71,7 +71,7 @@ export default function AddProductForm() {
           placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
           variant="add"
         />
-        <Input
+        <TextInput
           Icon={<MdOutlineEuro />}
           name="price"
           value={newProduct.price ? newProduct.price : ""}

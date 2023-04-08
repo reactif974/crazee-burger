@@ -2,7 +2,7 @@ import { useRef } from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../../theme";
 
-export default function Input({
+export default function TextInput({
   value,
   onChange,
   Icon,
@@ -13,7 +13,7 @@ export default function Input({
   const inputReference = useRef();
   return (
     <InputStyled variant={variant}>
-      <span className="icon">{Icon && Icon}</span>
+      {Icon && <span className="icon">{Icon}</span>}
       <input
         ref={inputReference}
         value={value}

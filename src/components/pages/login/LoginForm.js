@@ -4,7 +4,7 @@ import { checkHasExistingAccount } from "../../../utils/user/user";
 import { users } from "../../../utils/user/userDataBase";
 import styled from "styled-components";
 import { theme } from "../../../theme";
-import Input from "../reusable-ui/Input";
+import TextInput from "../reusable-ui/TextInput";
 import Button from "../reusable-ui/Button";
 import { BsPersonCircle } from "react-icons/bs";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
@@ -40,7 +40,7 @@ export default function LoginForm() {
       <hr />
       <h3>Connectez-vous</h3>
       <div className="submit-container">
-        <Input
+        <TextInput
           value={newName}
           onChange={onChange}
           placeholder="Entrez votre prénom"
