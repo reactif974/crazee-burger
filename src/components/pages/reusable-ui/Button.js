@@ -18,12 +18,12 @@ export default function Button({
 
 const ButtonStyled = styled.button`
   ${(props) => props.variant === "normal" && getNormalStyle()}
-  ${(props) => props.variant === "sucess" && getSucessStyle()}
+  ${(props) => props.variant === "success" && getSuccessStyle()}
   ${(props) => props.variant === "refresh" && getRefreshStyle()}
   ${(props) => props.variant === "add" && getAddStyle()}
 `;
 
-const getSucessStyle = () => {
+const getSuccessStyle = () => {
   return css`
     width: auto;
     height: 34.05px;

@@ -83,7 +83,7 @@ export default function AddProductForm() {
           <Button
             text="Ajouter un nouveau produit au menu"
             type="submit"
-            variant="sucess"
+            variant="success"
           />
           {isSubmitSuccess ? (
             <span className="succes-message">
