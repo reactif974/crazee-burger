@@ -18,7 +18,7 @@ const EMPTY_PRODUCT = {
 };
 
 export default function AddProductForm() {
-  const { isSubmitSucces, setIsSubmitSucces, handleAdd } =
+  const { isSubmitSuccess, setIsSubmitSuccess, handleAdd } =
     useContext(GlobalContext);
 
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
@@ -36,9 +36,9 @@ export default function AddProductForm() {
       ...newProduct,
       id: crypto.randomUUID(),
     });
-    setIsSubmitSucces(true);
+    setIsSubmitSuccess(true);
     setTimeout(() => {
-      setIsSubmitSucces(false);
+      setIsSubmitSuccess(false);
     }, 2000);
     setNewProduct(EMPTY_PRODUCT);
   };
@@ -85,7 +85,7 @@ export default function AddProductForm() {
             type="submit"
             variant="sucess"
           />
-          {isSubmitSucces ? (
+          {isSubmitSuccess ? (
             <span className="succes-message">
               <FiCheck />
               Ajouté avec succès !

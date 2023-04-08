@@ -14,7 +14,7 @@ export default function OrderPage() {
   const [panelTabIndex, setPanelTabIndex] = useState("add");
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
   const [menus, setMenus] = useState(fakeMenu.LARGE);
-  const [isSubmitSucces, setIsSubmitSucces] = useState(false);
+  const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
   const handleAdd = (productToAdd) => {
     const menuCopy = [...menus];
@@ -37,8 +37,8 @@ export default function OrderPage() {
     setIsPannelCollapsed,
     menus,
     setMenus,
-    isSubmitSucces,
-    setIsSubmitSucces,
+    isSubmitSuccess,
+    setIsSubmitSuccess,
     handleAdd,
     handleDelete,
   };
