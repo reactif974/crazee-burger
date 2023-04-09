@@ -17,9 +17,9 @@ export default function Menu() {
         </>
       ) : (
         <div className="card-container">
-          {menu?.map((menu) => (
-            <div key={menu.id} className="grille-item">
-              <Card {...menu} />
+          {menu?.map((product) => (
+            <div key={product.id} className="grille-item">
+              <Card {...product} />
             </div>
           ))}
         </div>
