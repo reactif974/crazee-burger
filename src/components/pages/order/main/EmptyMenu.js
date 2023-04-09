@@ -1,18 +1,17 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
-import { fakeMenu } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme";
 import Button from "../../reusable-ui/Button";
 
 export default function EmptyMenu() {
-  const { setMenus } = useContext(GlobalContext);
+  const { resetMenu } = useContext(GlobalContext);
 
   return (
     <EmptyMenuStyled>
       <h2>Le menu est vide ?</h2>
       <p>Cliquez ci-dessous pour le réinitialiser</p>
-      <div onClick={() => setMenus(fakeMenu.LARGE)}>
+      <div onClick={resetMenu}>
         <Button text="Générer de nouveaux produits" variant="refresh"></Button>
       </div>
     </EmptyMenuStyled>

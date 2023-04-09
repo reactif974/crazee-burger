@@ -7,17 +7,17 @@ import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 
 export default function Menu() {
-  const { menus } = useContext(GlobalContext);
+  const { menu } = useContext(GlobalContext);
 
   return (
     <MenuStyled className="menu-container">
-      {!menus.length ? (
+      {!menu.length ? (
         <>
           <EmptyMenu />
         </>
       ) : (
         <div className="card-container">
-          {menus?.map((menu) => (
+          {menu?.map((menu) => (
             <div key={menu.id} className="grille-item">
               <Card {...menu} />
             </div>
