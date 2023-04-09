@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
+import AddProductForm from "./forms/AddProductForm";
 
 export default function BlocAdminPanelContent() {
   const { panelTabIndex } = useContext(GlobalContext);
@@ -10,7 +11,7 @@ export default function BlocAdminPanelContent() {
     if (panelTabIndex === "add") {
       return (
         <div className="content active-content">
-          <h4>Ajouter un produit</h4>
+          <AddProductForm />
         </div>
       );
     }
@@ -37,7 +38,7 @@ const BlocAdminPanelContentStyled = styled.div`
     display: none;
     width: 100%;
     background: ${theme.colors.background_white};
-    padding: 20px;
+    padding-top: 30px;
     height: 250px;
     h2 {
       padding: 0px 0 5px 0px;
