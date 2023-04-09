@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import TextInput from "../../../reusable-ui/TextInput";
 import { FaHamburger } from "react-icons/fa";
-import { FiCheck } from "react-icons/fi";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../reusable-ui/Button";
-import { theme } from "../../../../../theme";
 import { useState } from "react";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
 import ImagePreview from "../ImagePreview";
+import SubmitMessage from "../SubmitMessage";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -78,14 +77,7 @@ export default function AddProductForm() {
             type="submit"
             variant="success"
           />
-          {isSubmitSuccess ? (
-            <span className="succes-message">
-              <FiCheck />
-              Ajouté avec succès !
-            </span>
-          ) : (
-            <span></span>
-          )}
+          {isSubmitSuccess && <SubmitMessage />}
         </span>
       </div>
     </AddProductFormStyled>
@@ -107,22 +99,6 @@ const AddProductFormStyled = styled.form`
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      .succes-message {
-        display: flex;
-        padding-left: 18px;
-        color: ${theme.colors.success};
-        font-family: "Open Sans", sans-serif;
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 400;
-        svg {
-          border: 1px solid ${theme.colors.success};
-          border-radius: 20px;
-          margin-right: 8px;
-          width: 18px;
-          height: 18px;
-        }
-      }
     }
   }
 `;
