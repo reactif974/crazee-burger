@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import GlobalContext from "../../../context/GlobalContext";
 import { theme } from "../../../theme";
 import PriceContainer from "../order/main/PriceContainer";
@@ -10,7 +10,7 @@ export default function Card({ title, imageSource, price, onDelete }) {
   const { isModeAdmin } = useContext(GlobalContext);
 
   return (
-    <CardStyled image={imageSource} title={title}>
+    <CardStyled image={imageSource} title={title} isModeAdmin={isModeAdmin}>
       {isModeAdmin && (
         <button className="delete-button" onClick={onDelete}>
           <TiDelete className="icon" />
@@ -32,6 +32,17 @@ const CardStyled = styled.div`
   justify-content: space-between;
   box-shadow: ${theme.shadows.medium};
   border-radius: ${theme.borderRadius.extraRound};
+  transition: all 0.2s ease-in-out;
+
+  ${(props) =>
+    props.isModeAdmin &&
+    css`
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        box-shadow: 0px 0px 8px #ff9a23;
+      }
+    `}
   .delete-button {
     border: 1px solid red;
     position: absolute;
@@ -47,14 +58,12 @@ const CardStyled = styled.div`
     background: none;
 
     .icon {
-      /* border: 1px solid blue; */
       height: 100%;
       width: 100%;
     }
 
     :hover {
       color: ${theme.colors.red};
-      /* background-color: red; */
     }
 
     :active {
