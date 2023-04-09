@@ -7,7 +7,7 @@ import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 
 export default function Menu() {
-  const { menu } = useContext(GlobalContext);
+  const { menu, handleDelete } = useContext(GlobalContext);
 
   return (
     <MenuStyled className="menu-container">
@@ -19,7 +19,7 @@ export default function Menu() {
         <div className="card-container">
           {menu?.map((product) => (
             <div key={product.id} className="grille-item">
-              <Card {...product} />
+              <Card {...product} onDelete={() => handleDelete(product.id)} />
             </div>
           ))}
         </div>

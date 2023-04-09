@@ -4,14 +4,18 @@ import GlobalContext from "../../../context/GlobalContext";
 import { theme } from "../../../theme";
 import PriceContainer from "../order/main/PriceContainer";
 import comingSoon from "../../../assets/coming-soon.png";
-import DeleteButton from "./DeleteButton";
+import { TiDelete } from "react-icons/ti";
 
-export default function Card({ title, imageSource, price, id }) {
+export default function Card({ title, imageSource, price, onDelete }) {
   const { isModeAdmin } = useContext(GlobalContext);
 
   return (
     <CardStyled image={imageSource} title={title}>
-      {isModeAdmin && <DeleteButton id={id} />}
+      {isModeAdmin && (
+        <button className="delete-button" onClick={onDelete}>
+          <TiDelete className="icon" />
+        </button>
+      )}
       <div className="pics-container"></div>
       <h2>{title}</h2>
       <PriceContainer price={price} />
@@ -28,18 +32,34 @@ const CardStyled = styled.div`
   justify-content: space-between;
   box-shadow: ${theme.shadows.medium};
   border-radius: ${theme.borderRadius.extraRound};
-  .delete-icon {
+  .delete-button {
+    border: 1px solid red;
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 20px;
-    height: 20px;
-    background-color: ${theme.colors.primary};
-    border: none;
-    border-radius: 20px;
-    color: ${theme.colors.background_white};
-    box-shadow: -8px 8px 20px rgba(0, 0, 0, 0.2);
+    top: 15px;
+    right: 15px;
     cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: ${theme.colors.primary};
+    z-index: 2;
+    padding: 0;
+    border: none;
+    background: none;
+
+    .icon {
+      /* border: 1px solid blue; */
+      height: 100%;
+      width: 100%;
+    }
+
+    :hover {
+      color: ${theme.colors.red};
+      /* background-color: red; */
+    }
+
+    :active {
+      color: ${theme.colors.primary};
+    }
   }
   .pics-container {
     height: 145px;
