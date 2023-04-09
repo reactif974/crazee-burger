@@ -9,6 +9,7 @@ import { theme } from "../../../../../theme";
 import { useState } from "react";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
+import ImagePreview from "../ImagePreview";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -44,16 +45,8 @@ export default function AddProductForm() {
   };
 
   return (
-    <AddProductFormStyled
-      action="submit"
-      onSubmit={handleSubmit}
-      image={newProduct.imageSource}
-    >
-      {newProduct.imageSource ? (
-        <div className="pics-preview"></div>
-      ) : (
-        <div className="pics-container">Aucune image</div>
-      )}
+    <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
+      <ImagePreview imageSource={newProduct.imageSource} />
       <div className="input-container">
         <TextInput
           Icon={<FaHamburger />}
@@ -106,31 +99,6 @@ const AddProductFormStyled = styled.form`
   grid-template-columns: 16% 48% 1fr;
   grid-gap: 15px;
   padding-left: 73px;
-  .pics-preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-column-start: 1;
-    height: 132.14px;
-    background: url(${(props) => props.image}) no-repeat;
-    background-size: contain;
-    background-position: center;
-  }
-  .pics-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    grid-column-start: 1;
-    height: 132.14px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    color: ${theme.colors.greySemiDark};
-    border: 1px solid ${theme.colors.greyLight};
-    border-radius: 5px;
-  }
   .input-container {
     display: grid;
     grid-gap: 13px;
