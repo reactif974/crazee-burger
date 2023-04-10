@@ -6,7 +6,19 @@ import AddProductForm from "./forms/AddProductForm";
 import EditProductForm from "./forms/EditProductForm";
 
 export default function BlocAdminPanelContent() {
-  const { panelTabIndex } = useContext(GlobalContext);
+  const { panelTabIndex, isProductSelected } = useContext(GlobalContext);
+
+  const handleShowEditForm = () => {
+    if (isProductSelected) {
+      return (
+        <div className="content active-content">
+          <EditProductForm />
+        </div>
+      );
+    } else {
+      return <span>test</span>;
+    }
+  };
 
   const dataInAdminPanelContent = (panelTabIndex) => {
     if (panelTabIndex === "add") {
@@ -17,11 +29,7 @@ export default function BlocAdminPanelContent() {
       );
     }
     if (panelTabIndex === "edit") {
-      return (
-        <div className="content active-content">
-          <EditProductForm />
-        </div>
-      );
+      return handleShowEditForm();
     }
   };
 
