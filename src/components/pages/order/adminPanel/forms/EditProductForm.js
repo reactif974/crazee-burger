@@ -3,54 +3,30 @@ import TextInput from "../../../reusable-ui/TextInput";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import Button from "../../../reusable-ui/Button";
-import { useState } from "react";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
 import ImagePreview from "../ImagePreview";
-import SubmitMessage from "../SubmitMessage";
+import { theme } from "../../../../../theme";
 
-const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
-
-export default function AddProductForm() {
-  const { isSubmitSuccess, setIsSubmitSuccess, handleAdd, inputTitleRef } =
+export default function EditProductForm() {
+  const { productSelected, setProductSelected, inputTitleRef } =
     useContext(GlobalContext);
 
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-
   const handleChange = (event) => {
-    setNewProduct({
-      ...newProduct,
+    setProductSelected({
+      ...productSelected,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    handleAdd({
-      ...newProduct,
-      id: crypto.randomUUID(),
-    });
-    setIsSubmitSuccess(true);
-    setTimeout(() => {
-      setIsSubmitSuccess(false);
-    }, 2000);
-    setNewProduct(EMPTY_PRODUCT);
-  };
-
   return (
-    <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
-      <ImagePreview imageSource={newProduct.imageSource} />
+    <EditProductFormStyled>
+      <ImagePreview imageSource={productSelected.imageSource} />
       <div className="input-container">
         <TextInput
           Icon={<FaHamburger />}
           name="title"
-          value={newProduct.title}
+          value={productSelected.title}
           onChange={handleChange}
           placeholder="Nom du produit (ex: Super Burger)"
           variant="add"
@@ -59,7 +35,7 @@ export default function AddProductForm() {
         <TextInput
           Icon={<BsFillCameraFill />}
           name="imageSource"
-          value={newProduct.imageSource}
+          value={productSelected.imageSource}
           onChange={handleChange}
           placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
           variant="add"
@@ -67,25 +43,21 @@ export default function AddProductForm() {
         <TextInput
           Icon={<MdOutlineEuro />}
           name="price"
-          value={newProduct.price || ""}
+          value={productSelected.price || ""}
           onChange={handleChange}
           placeholder="Prix"
           variant="add"
         />
-        <span className="submit-container">
-          <Button
-            text="Ajouter un nouveau produit au menu"
-            type="submit"
-            variant="success"
-          />
-          {isSubmitSuccess && <SubmitMessage />}
+        <span className="title-action">
+          Cliquer sur un produit du menu pour le modifier
+          <span className="underline">en temps réel</span>
         </span>
       </div>
-    </AddProductFormStyled>
+    </EditProductFormStyled>
   );
 }
 
-const AddProductFormStyled = styled.form`
+const EditProductFormStyled = styled.form`
   width: 100%;
   height: auto;
   display: grid;
@@ -96,6 +68,17 @@ const AddProductFormStyled = styled.form`
     display: grid;
     grid-gap: 13px;
     width: 645px;
+    .title-action {
+      font-family: "Open Sans", sans-serif;
+      font-weight: ${theme.weights.regular};
+      font-size: ${theme.fonts.P0};
+      color: ${theme.colors.primary};
+      padding: 8px, 16px, 8px, 24px;
+    }
+    .underline {
+      text-decoration: underline;
+      padding-left: 3px;
+    }
     .submit-container {
       display: flex;
       justify-content: flex-start;

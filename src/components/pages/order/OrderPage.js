@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 
@@ -18,6 +18,8 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState({});
   const [isProductSelected, setIsProductSelected] = useState(false);
 
+  const inputTitleRef = useRef();
+
   const handleAdd = (productToAdd) => {
     const menuCopy = [...menu];
     const menuUpdated = [productToAdd, ...menuCopy];
@@ -28,6 +30,7 @@ export default function OrderPage() {
     const menuCopy = [...menu];
     const menuUpdated = menuCopy.filter((menu) => menu.id !== id);
     setMenu(menuUpdated);
+    setIsProductSelected(false);
   };
 
   const resetMenu = () => {
@@ -40,6 +43,7 @@ export default function OrderPage() {
     setProductSelected(productSelected);
     setPanelTabIndex("edit");
     setIsProductSelected(true);
+    inputTitleRef.current.focus();
   };
 
   const globalContextValue = {
@@ -57,7 +61,9 @@ export default function OrderPage() {
     resetMenu,
     handleProductSelected,
     productSelected,
+    setProductSelected,
     isProductSelected,
+    inputTitleRef,
   };
 
   return (

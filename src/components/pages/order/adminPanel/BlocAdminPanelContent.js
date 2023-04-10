@@ -3,28 +3,10 @@ import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
 import AddProductForm from "./forms/AddProductForm";
-import { HiCursorClick } from "react-icons/hi";
+import EditProductForm from "./forms/EditProductForm";
 
 export default function BlocAdminPanelContent() {
-  const { panelTabIndex, isProductSelected } = useContext(GlobalContext);
-
-  let blocEdit;
-  if (isProductSelected) {
-    blocEdit = (
-      <div className="content active-content">
-        <AddProductForm />
-      </div>
-    );
-  } else {
-    blocEdit = (
-      <div className="update-container">
-        <span>Cliquer sur un produit du menu pour le modifier</span>
-        <span className="cursor-icon">
-          <HiCursorClick />
-        </span>
-      </div>
-    );
-  }
+  const { panelTabIndex } = useContext(GlobalContext);
 
   const dataInAdminPanelContent = (panelTabIndex) => {
     if (panelTabIndex === "add") {
@@ -35,7 +17,11 @@ export default function BlocAdminPanelContent() {
       );
     }
     if (panelTabIndex === "edit") {
-      return <div>{blocEdit}</div>;
+      return (
+        <div className="content active-content">
+          <EditProductForm />
+        </div>
+      );
     }
   };
 

@@ -26,7 +26,21 @@ export default function Menu() {
           {menu?.map((product) => (
             <div key={product.id} className="grille-item">
               <Card
-                {...product}
+                title={
+                  productSelected.id === product.id
+                    ? productSelected.title
+                    : product.title
+                }
+                imageSource={
+                  productSelected.id === product.id
+                    ? productSelected.imageSource
+                    : product.imageSource
+                }
+                price={
+                  productSelected.id === product.id
+                    ? productSelected.price
+                    : product.price
+                }
                 onDelete={() => handleDelete(product.id)}
                 onClick={
                   isModeAdmin
@@ -38,6 +52,7 @@ export default function Menu() {
                     ? "selected"
                     : ""
                 }
+                hasButton={isModeAdmin}
               />
             </div>
           ))}

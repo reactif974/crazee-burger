@@ -1,6 +1,4 @@
-import { useContext, useRef } from "react";
 import styled, { css } from "styled-components";
-import GlobalContext from "../../../context/GlobalContext";
 import { theme } from "../../../theme";
 import PriceContainer from "../order/main/PriceContainer";
 import comingSoon from "../../../assets/coming-soon.png";
@@ -13,21 +11,17 @@ export default function Card({
   onDelete,
   onClick,
   className,
+  hasButton,
 }) {
-  const { isModeAdmin } = useContext(GlobalContext);
-
-  const cardRef = useRef();
-
   return (
     <CardStyled
       image={imageSource}
       title={title}
-      isModeAdmin={isModeAdmin}
-      ref={cardRef}
+      hasButton={hasButton}
       onClick={onClick}
       className={className}
     >
-      {isModeAdmin && (
+      {hasButton && (
         <button className="delete-button" onClick={onDelete}>
           <TiDelete className="icon" />
         </button>
@@ -65,7 +59,7 @@ const CardStyled = styled.div`
         `
       : theme.colors.background_white};
   ${(props) =>
-    props.isModeAdmin &&
+    props.hasButton &&
     css`
       &:hover {
         cursor: pointer;

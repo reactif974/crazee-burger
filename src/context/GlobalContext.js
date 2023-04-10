@@ -8,6 +8,7 @@ export default createContext({
   isSubmitSuccess: false,
   isProductSelected: false,
   productSelected: {},
+  inputTitleRef: {},
   setIsModeAdmin: () => {},
   setIsPannelCollapsed: () => {},
   setPanelTabIndex: () => {},
