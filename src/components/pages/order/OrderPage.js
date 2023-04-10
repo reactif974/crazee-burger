@@ -16,6 +16,7 @@ export default function OrderPage() {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const [productSelected, setProductSelected] = useState({});
+  const [isProductSelected, setIsProductSelected] = useState(false);
 
   const handleAdd = (productToAdd) => {
     const menuCopy = [...menu];
@@ -37,6 +38,8 @@ export default function OrderPage() {
     const menuCopy = [...menu];
     const productSelected = menuCopy.find((product) => product.id === id);
     setProductSelected(productSelected);
+    setPanelTabIndex("edit");
+    setIsProductSelected(true);
   };
 
   const globalContextValue = {
@@ -54,6 +57,7 @@ export default function OrderPage() {
     resetMenu,
     handleProductSelected,
     productSelected,
+    isProductSelected,
   };
 
   return (

@@ -6,7 +6,25 @@ import AddProductForm from "./forms/AddProductForm";
 import { HiCursorClick } from "react-icons/hi";
 
 export default function BlocAdminPanelContent() {
-  const { panelTabIndex } = useContext(GlobalContext);
+  const { panelTabIndex, isProductSelected } = useContext(GlobalContext);
+
+  let blocEdit;
+  if (isProductSelected) {
+    blocEdit = (
+      <div className="content active-content">
+        <AddProductForm />
+      </div>
+    );
+  } else {
+    blocEdit = (
+      <div className="update-container">
+        <span>Cliquer sur un produit du menu pour le modifier</span>
+        <span className="cursor-icon">
+          <HiCursorClick />
+        </span>
+      </div>
+    );
+  }
 
   const dataInAdminPanelContent = (panelTabIndex) => {
     if (panelTabIndex === "add") {
@@ -17,14 +35,7 @@ export default function BlocAdminPanelContent() {
       );
     }
     if (panelTabIndex === "edit") {
-      return (
-        <div className="update-container">
-          <span>Cliquer sur un produit du menu pour le modifier</span>
-          <span className="cursor-icon">
-            <HiCursorClick />
-          </span>
-        </div>
-      );
+      return <div>{blocEdit}</div>;
     }
   };
 

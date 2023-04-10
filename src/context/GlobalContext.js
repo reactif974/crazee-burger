@@ -6,6 +6,7 @@ export default createContext({
   panelTabIndex: "add",
   menu: [],
   isSubmitSuccess: false,
+  isProductSelected: false,
   productSelected: {},
   setIsModeAdmin: () => {},
   setIsPannelCollapsed: () => {},
