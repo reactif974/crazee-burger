@@ -111,7 +111,7 @@ export default function AddProductForm() {
           name="price"
           value={
             isProductSelected && panelTabIndex === "edit"
-              ? productSelected.price
+              ? productSelected.price || ""
               : newProduct.price || ""
           }
           onChange={handleChange}
