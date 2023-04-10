@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import styled, { css } from "styled-components";
 import GlobalContext from "../../../context/GlobalContext";
 import { theme } from "../../../theme";
@@ -6,11 +6,27 @@ import PriceContainer from "../order/main/PriceContainer";
 import comingSoon from "../../../assets/coming-soon.png";
 import { TiDelete } from "react-icons/ti";
 
-export default function Card({ title, imageSource, price, onDelete }) {
+export default function Card({
+  title,
+  imageSource,
+  price,
+  onDelete,
+  onClick,
+  className,
+}) {
   const { isModeAdmin } = useContext(GlobalContext);
 
+  const cardRef = useRef();
+
   return (
-    <CardStyled image={imageSource} title={title} isModeAdmin={isModeAdmin}>
+    <CardStyled
+      image={imageSource}
+      title={title}
+      isModeAdmin={isModeAdmin}
+      ref={cardRef}
+      onClick={onClick}
+      className={className}
+    >
       {isModeAdmin && (
         <button className="delete-button" onClick={onDelete}>
           <TiDelete className="icon" />
@@ -18,7 +34,7 @@ export default function Card({ title, imageSource, price, onDelete }) {
       )}
       <div className="pics-container"></div>
       <h2>{title}</h2>
-      <PriceContainer price={price} />
+      <PriceContainer price={price} className={className} />
     </CardStyled>
   );
 }
@@ -33,7 +49,21 @@ const CardStyled = styled.div`
   box-shadow: ${theme.shadows.medium};
   border-radius: ${theme.borderRadius.extraRound};
   transition: all 0.2s ease-in-out;
-
+  ${(props) =>
+    props.className === "selected"
+      ? css`
+          background-color: ${theme.colors.primary};
+          color: ${theme.colors.white};
+          .delete-button {
+            .icon {
+              color: ${theme.colors.background_white};
+              &:hover {
+                color: ${theme.colors.red};
+              }
+            }
+          }
+        `
+      : theme.colors.background_white};
   ${(props) =>
     props.isModeAdmin &&
     css`
@@ -56,18 +86,12 @@ const CardStyled = styled.div`
     padding: 0;
     border: none;
     background: none;
-
     .icon {
       height: 100%;
       width: 100%;
     }
-
-    :hover {
+    &:hover {
       color: ${theme.colors.red};
-    }
-
-    :active {
-      color: ${theme.colors.primary};
     }
   }
   .pics-container {

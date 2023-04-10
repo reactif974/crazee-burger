@@ -6,10 +6,12 @@ export default createContext({
   panelTabIndex: "add",
   menu: [],
   isSubmitSuccess: false,
+  productSelected: {},
   setIsModeAdmin: () => {},
   setIsPannelCollapsed: () => {},
   setPanelTabIndex: () => {},
   setIsSubmitSuccess: () => {},
   handleAdd: () => {},
   handleDelete: () => {},
+  handleProductSelected: () => {},
 });

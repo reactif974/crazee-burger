@@ -15,6 +15,7 @@ export default function OrderPage() {
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
+  const [productSelected, setProductSelected] = useState({});
 
   const handleAdd = (productToAdd) => {
     const menuCopy = [...menu];
@@ -32,6 +33,12 @@ export default function OrderPage() {
     setMenu(fakeMenu.MEDIUM);
   };
 
+  const handleProductSelected = (id) => {
+    const menuCopy = [...menu];
+    const productSelected = menuCopy.find((product) => product.id === id);
+    setProductSelected(productSelected);
+  };
+
   const globalContextValue = {
     isModeAdmin,
     setIsModeAdmin: setIsModeAdmin,
@@ -45,6 +52,8 @@ export default function OrderPage() {
     handleAdd,
     handleDelete,
     resetMenu,
+    handleProductSelected,
+    productSelected,
   };
 
   return (

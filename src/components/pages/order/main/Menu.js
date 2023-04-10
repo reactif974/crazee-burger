@@ -7,7 +7,13 @@ import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 
 export default function Menu() {
-  const { menu, handleDelete } = useContext(GlobalContext);
+  const {
+    menu,
+    handleDelete,
+    handleProductSelected,
+    isModeAdmin,
+    productSelected,
+  } = useContext(GlobalContext);
 
   return (
     <MenuStyled className="menu-container">
@@ -19,7 +25,20 @@ export default function Menu() {
         <div className="card-container">
           {menu?.map((product) => (
             <div key={product.id} className="grille-item">
-              <Card {...product} onDelete={() => handleDelete(product.id)} />
+              <Card
+                {...product}
+                onDelete={() => handleDelete(product.id)}
+                onClick={
+                  isModeAdmin
+                    ? () => handleProductSelected(product.id)
+                    : undefined
+                }
+                className={
+                  isModeAdmin && productSelected.id === product.id
+                    ? "selected"
+                    : ""
+                }
+              />
             </div>
           ))}
         </div>
