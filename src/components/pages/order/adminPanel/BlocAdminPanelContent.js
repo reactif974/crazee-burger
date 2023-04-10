@@ -4,6 +4,7 @@ import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
 import AddProductForm from "./forms/AddProductForm";
 import EditProductForm from "./forms/EditProductForm";
+import { HiCursorClick } from "react-icons/hi";
 
 export default function BlocAdminPanelContent() {
   const { panelTabIndex, isProductSelected } = useContext(GlobalContext);
@@ -16,7 +17,14 @@ export default function BlocAdminPanelContent() {
         </div>
       );
     } else {
-      return <span>test</span>;
+      return (
+        <div className="update-container">
+          <span>Cliquer sur un produit du menu pour le modifier</span>
+          <span className="cursor-icon">
+            <HiCursorClick />
+          </span>
+        </div>
+      );
     }
   };
 
@@ -61,8 +69,9 @@ const BlocAdminPanelContentStyled = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding-left: 73px;
+    padding-top: 81px;
     span {
       font-family: "Amatic SC";
       font-weight: ${theme.weights.regular};

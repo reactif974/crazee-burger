@@ -43,7 +43,6 @@ export default function OrderPage() {
     setProductSelected(productSelected);
     setPanelTabIndex("edit");
     setIsProductSelected(true);
-    inputTitleRef.current.focus();
   };
 
   const globalContextValue = {
