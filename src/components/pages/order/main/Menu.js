@@ -9,7 +9,7 @@ import EmptyMenu from "./EmptyMenu";
 export default function Menu() {
   const {
     menu,
-    handleDelete,
+    onDelete,
     handleProductSelected,
     isModeAdmin,
     productSelected,
@@ -41,11 +41,9 @@ export default function Menu() {
                     ? productSelected.price
                     : product.price
                 }
-                onDelete={() => handleDelete(product.id)}
+                onDelete={(e) => onDelete(e, product.id)}
                 onClick={
-                  isModeAdmin
-                    ? () => handleProductSelected(product.id)
-                    : undefined
+                  isModeAdmin ? () => handleProductSelected(product.id) : null
                 }
                 className={
                   isModeAdmin && productSelected.id === product.id

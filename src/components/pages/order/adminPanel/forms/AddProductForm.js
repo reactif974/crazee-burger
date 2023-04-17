@@ -4,24 +4,21 @@ import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../reusable-ui/Button";
-import { useState } from "react";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
 import ImagePreview from "../ImagePreview";
 import SubmitMessage from "../SubmitMessage";
 
-const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
-
 export default function AddProductForm() {
-  const { isSubmitSuccess, setIsSubmitSuccess, handleAdd, inputTitleRef } =
-    useContext(GlobalContext);
-
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const {
+    isSubmitSuccess,
+    setIsSubmitSuccess,
+    handleAdd,
+    inputTitleRef,
+    EMPTY_PRODUCT,
+    setNewProduct,
+    newProduct,
+  } = useContext(GlobalContext);
 
   const handleChange = (event) => {
     setNewProduct({

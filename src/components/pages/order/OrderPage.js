@@ -7,47 +7,64 @@ import Menu from "./main/Menu";
 import { useRef, useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { deepClone } from "../../../utils/array/array";
 
 export default function OrderPage() {
+  const EMPTY_PRODUCT = {
+    id: "",
+    title: "",
+    imageSource: "",
+    price: 0,
+  };
+
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [panelTabIndex, setPanelTabIndex] = useState("add");
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
-  const [productSelected, setProductSelected] = useState({});
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [isProductSelected, setIsProductSelected] = useState(false);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const inputTitleRef = useRef();
 
   const handleAdd = (productToAdd) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
     const menuUpdated = [productToAdd, ...menuCopy];
     setMenu(menuUpdated);
   };
 
   const handleDelete = (id) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
     const menuUpdated = menuCopy.filter((menu) => menu.id !== id);
     setMenu(menuUpdated);
-    setIsProductSelected(false);
+    if (isProductSelected) {
+      setIsProductSelected(false);
+    }
+  };
+
+  const onDelete = (event, id) => {
+    event.stopPropagation();
+    handleDelete(id);
   };
 
   const resetMenu = () => {
     setMenu(fakeMenu.MEDIUM);
   };
 
-  const handleProductSelected = (id) => {
-    const menuCopy = [...menu];
+  const handleProductSelected = async (id) => {
+    const menuCopy = deepClone(menu);
     const productSelected = menuCopy.find((product) => product.id === id);
-    setProductSelected(productSelected);
-    setPanelTabIndex("edit");
-    setIsProductSelected(true);
+    await setProductSelected(productSelected);
+    await setPanelTabIndex("edit");
+    await setIsProductSelected(true);
+    inputTitleRef.current?.focus();
   };
 
   const globalContextValue = {
     isModeAdmin,
-    setIsModeAdmin: setIsModeAdmin,
+    setIsModeAdmin,
     panelTabIndex,
     setPanelTabIndex,
     isPannelCollapsed,
@@ -56,13 +73,16 @@ export default function OrderPage() {
     isSubmitSuccess,
     setIsSubmitSuccess,
     handleAdd,
-    handleDelete,
+    onDelete,
     resetMenu,
     handleProductSelected,
     productSelected,
     setProductSelected,
     isProductSelected,
     inputTitleRef,
+    EMPTY_PRODUCT,
+    newProduct,
+    setNewProduct,
   };
 
   return (
