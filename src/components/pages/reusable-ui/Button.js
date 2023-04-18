@@ -7,9 +7,15 @@ export default function Button({
   Icon,
   className,
   variant = "normal",
+  onClick,
 }) {
   return (
-    <ButtonStyled type={type} className={className} variant={variant}>
+    <ButtonStyled
+      type={type}
+      className={className}
+      variant={variant}
+      onClick={onClick}
+    >
       {text}
       {Icon && Icon}
     </ButtonStyled>

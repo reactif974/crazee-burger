@@ -28,7 +28,9 @@ export default function Card({
       )}
       <div className="pics-container"></div>
       <h2>{title}</h2>
-      <PriceContainer price={price} />
+      <div className="price-container">
+        <PriceContainer price={price} />
+      </div>
     </CardStyled>
   );
 }
@@ -99,7 +101,15 @@ const CardStyled = styled.div`
 
 const selectedStyle = css`
   background-color: ${theme.colors.primary};
-  color: ${theme.colors.white};
+  .price-container {
+    h3 {
+      color: ${theme.colors.white};
+    }
+    button {
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.primary};
+    }
+  }
   .delete-button {
     .icon {
       color: ${theme.colors.background_white};

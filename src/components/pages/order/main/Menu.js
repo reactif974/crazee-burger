@@ -10,11 +10,16 @@ import { checkIfProductIsClicked } from "./helper";
 export default function Menu() {
   const {
     menu,
-    onDelete,
+    handleDelete,
     handleProductSelected,
     isModeAdmin,
     productSelected,
   } = useContext(GlobalContext);
+
+  const handleCardDelete = (event, id) => {
+    event.stopPropagation();
+    handleDelete(id);
+  };
 
   return (
     <MenuStyled className="menu-container">
@@ -38,7 +43,7 @@ export default function Menu() {
                 price={
                   productSelected.id === id ? productSelected.price : price
                 }
-                onDelete={(e) => onDelete(e, id)}
+                onDelete={(event) => handleCardDelete(event, id)}
                 onClick={isModeAdmin ? () => handleProductSelected(id) : null}
                 hasButton={isModeAdmin}
                 isSelected={checkIfProductIsClicked(id, productSelected.id)}

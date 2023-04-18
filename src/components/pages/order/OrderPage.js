@@ -41,14 +41,9 @@ export default function OrderPage() {
     const menuCopy = deepClone(menu);
     const menuUpdated = menuCopy.filter((menu) => menu.id !== id);
     setMenu(menuUpdated);
-    if (isProductSelected) {
-      setIsProductSelected(false);
-    }
-  };
-
-  const onDelete = (event, id) => {
-    event.stopPropagation();
-    handleDelete(id);
+    // if (isProductSelected) {
+    //   setIsProductSelected(false);
+    // }
   };
 
   const resetMenu = () => {
@@ -75,7 +70,7 @@ export default function OrderPage() {
     isSubmitSuccess,
     setIsSubmitSuccess,
     handleAdd,
-    onDelete,
+    handleDelete,
     resetMenu,
     handleProductSelected,
     productSelected,
