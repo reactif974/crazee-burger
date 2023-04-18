@@ -50,15 +50,6 @@ export default function OrderPage() {
     setMenu(fakeMenu.MEDIUM);
   };
 
-  const handleProductSelected = async (id) => {
-    const menuCopy = deepClone(menu);
-    const productSelected = menuCopy.find((product) => product.id === id);
-    await setProductSelected(productSelected);
-    await setPanelTabIndex("edit");
-    await setIsProductSelected(true);
-    inputTitleRef.current?.focus();
-  };
-
   const globalContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -72,7 +63,6 @@ export default function OrderPage() {
     handleAdd,
     handleDelete,
     resetMenu,
-    handleProductSelected,
     productSelected,
     setProductSelected,
     isProductSelected,
@@ -80,6 +70,7 @@ export default function OrderPage() {
     EMPTY_PRODUCT,
     newProduct,
     setNewProduct,
+    setIsProductSelected,
   };
 
   return (

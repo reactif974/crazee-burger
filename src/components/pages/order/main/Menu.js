@@ -6,19 +6,35 @@ import Card from "../../reusable-ui/Card";
 import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
+import { deepClone } from "../../../../utils/array/array";
 
 export default function Menu() {
   const {
     menu,
     handleDelete,
-    handleProductSelected,
+    setProductSelected,
+    setIsProductSelected,
+    setPanelTabIndex,
+    inputTitleRef,
     isModeAdmin,
     productSelected,
   } = useContext(GlobalContext);
 
+  // gestionnaire d'événements -> event handlers
+
   const handleCardDelete = (event, id) => {
     event.stopPropagation();
     handleDelete(id);
+  };
+
+  const handleProductSelected = async (id) => {
+    if (!isModeAdmin) return;
+    const menuCopy = deepClone(menu);
+    const productSelected = menuCopy.find((product) => product.id === id);
+    await setProductSelected(productSelected);
+    await setPanelTabIndex("edit");
+    await setIsProductSelected(true);
+    inputTitleRef.current?.focus();
   };
 
   return (
@@ -44,7 +60,7 @@ export default function Menu() {
                   productSelected.id === id ? productSelected.price : price
                 }
                 onDelete={(event) => handleCardDelete(event, id)}
-                onClick={isModeAdmin ? () => handleProductSelected(id) : null}
+                onClick={() => handleProductSelected(id)}
                 hasButton={isModeAdmin}
                 isSelected={checkIfProductIsClicked(id, productSelected.id)}
               />
