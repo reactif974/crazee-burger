@@ -29,6 +29,8 @@ export default function OrderPage() {
 
   const inputTitleRef = useRef();
 
+  // gestionnaire de state - state handlers
+
   const handleAdd = (productToAdd) => {
     const menuCopy = deepClone(menu);
     const menuUpdated = [productToAdd, ...menuCopy];

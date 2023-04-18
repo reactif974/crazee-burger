@@ -10,8 +10,8 @@ export default function Card({
   price,
   onDelete,
   onClick,
-  className,
   hasButton,
+  isSelected,
 }) {
   return (
     <CardStyled
@@ -19,7 +19,7 @@ export default function Card({
       title={title}
       hasButton={hasButton}
       onClick={onClick}
-      className={className}
+      isSelected={isSelected}
     >
       {hasButton && (
         <button className="delete-button" onClick={onDelete}>
@@ -28,7 +28,7 @@ export default function Card({
       )}
       <div className="pics-container"></div>
       <h2>{title}</h2>
-      <PriceContainer price={price} className={className} />
+      <PriceContainer price={price} />
     </CardStyled>
   );
 }
@@ -43,21 +43,9 @@ const CardStyled = styled.div`
   box-shadow: ${theme.shadows.medium};
   border-radius: ${theme.borderRadius.extraRound};
   transition: all 0.2s ease-in-out;
-  ${(props) =>
-    props.className === "selected"
-      ? css`
-          background-color: ${theme.colors.primary};
-          color: ${theme.colors.white};
-          .delete-button {
-            .icon {
-              color: ${theme.colors.background_white};
-              &:hover {
-                color: ${theme.colors.red};
-              }
-            }
-          }
-        `
-      : theme.colors.background_white};
+  ${({ isSelected }) => {
+    return isSelected ? selectedStyle : theme.colors.background_white;
+  }};
   ${(props) =>
     props.hasButton &&
     css`
@@ -106,5 +94,18 @@ const CardStyled = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+`;
+
+const selectedStyle = css`
+  background-color: ${theme.colors.primary};
+  color: ${theme.colors.white};
+  .delete-button {
+    .icon {
+      color: ${theme.colors.background_white};
+      &:hover {
+        color: ${theme.colors.red};
+      }
+    }
   }
 `;

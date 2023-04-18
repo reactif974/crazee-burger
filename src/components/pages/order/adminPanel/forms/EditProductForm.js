@@ -12,6 +12,8 @@ export default function EditProductForm() {
   const { productSelected, setProductSelected, inputTitleRef } =
     useContext(GlobalContext);
 
+  // gestionnaire d'événements -> event handlers
+
   const handleChange = (event) => {
     setProductSelected({
       ...productSelected,

@@ -20,6 +20,8 @@ export default function AddProductForm() {
     newProduct,
   } = useContext(GlobalContext);
 
+  // gestionnaire d'événements -> event handlers
+
   const handleChange = (event) => {
     setNewProduct({
       ...newProduct,

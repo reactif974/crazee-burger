@@ -5,6 +5,7 @@ import { theme } from "../../../../theme";
 import Card from "../../reusable-ui/Card";
 import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
+import { checkIfProductIsClicked } from "./helper";
 
 export default function Menu() {
   const {
@@ -23,34 +24,24 @@ export default function Menu() {
         </>
       ) : (
         <div className="card-container">
-          {menu?.map((product) => (
-            <div key={product.id} className="grille-item">
+          {menu?.map(({ id, title, imageSource, price }) => (
+            <div key={id} className="grille-item">
               <Card
                 title={
-                  productSelected.id === product.id
-                    ? productSelected.title
-                    : product.title
+                  productSelected.id === id ? productSelected.title : title
                 }
                 imageSource={
-                  productSelected.id === product.id
+                  productSelected.id === id
                     ? productSelected.imageSource
-                    : product.imageSource
+                    : imageSource
                 }
                 price={
-                  productSelected.id === product.id
-                    ? productSelected.price
-                    : product.price
+                  productSelected.id === id ? productSelected.price : price
                 }
-                onDelete={(e) => onDelete(e, product.id)}
-                onClick={
-                  isModeAdmin ? () => handleProductSelected(product.id) : null
-                }
-                className={
-                  isModeAdmin && productSelected.id === product.id
-                    ? "selected"
-                    : ""
-                }
+                onDelete={(e) => onDelete(e, id)}
+                onClick={isModeAdmin ? () => handleProductSelected(id) : null}
                 hasButton={isModeAdmin}
+                isSelected={checkIfProductIsClicked(id, productSelected.id)}
               />
             </div>
           ))}
