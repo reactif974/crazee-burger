@@ -9,7 +9,6 @@ export default createContext({
   isProductSelected: false,
   productSelected: {},
   inputTitleRef: {},
-  EMPTY_PRODUCT: {},
   newProduct: {},
   setIsModeAdmin: () => {},
   setIsPannelCollapsed: () => {},

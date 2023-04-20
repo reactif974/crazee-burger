@@ -8,15 +8,9 @@ import { useRef, useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { deepClone } from "../../../utils/array/array";
+import { EMPTY_PRODUCT } from "../../../enums/product";
 
 export default function OrderPage() {
-  const EMPTY_PRODUCT = {
-    id: "",
-    title: "",
-    imageSource: "",
-    price: 0,
-  };
-
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [panelTabIndex, setPanelTabIndex] = useState("add");
@@ -67,7 +61,6 @@ export default function OrderPage() {
     setProductSelected,
     isProductSelected,
     inputTitleRef,
-    EMPTY_PRODUCT,
     newProduct,
     setNewProduct,
     setIsProductSelected,

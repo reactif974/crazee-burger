@@ -7,6 +7,7 @@ import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
 import { deepClone } from "../../../../utils/array/array";
+import { EMPTY_PRODUCT } from "../../../../enums/product";
 
 export default function Menu() {
   const {
@@ -18,7 +19,6 @@ export default function Menu() {
     inputTitleRef,
     isModeAdmin,
     productSelected,
-    EMPTY_PRODUCT,
   } = useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers

@@ -6,13 +6,13 @@ import GlobalContext from "../../../../../context/GlobalContext";
 import ImagePreview from "../ImagePreview";
 import SubmitMessage from "../SubmitMessage";
 import { getInputTextConfig } from "../inpuTextConfig";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 export default function AddProductForm() {
   const {
     isSubmitSuccess,
     setIsSubmitSuccess,
     handleAdd,
-    EMPTY_PRODUCT,
     setNewProduct,
     newProduct,
   } = useContext(GlobalContext);
