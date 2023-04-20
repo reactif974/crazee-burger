@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import NavBar from "../reusable-ui/NavBar";
 import styled from "styled-components";
-import { theme } from "../../../theme";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
 import { useRef, useState } from "react";
@@ -9,6 +8,7 @@ import GlobalContext from "../../../context/GlobalContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { deepClone } from "../../../utils/array/array";
 import { EMPTY_PRODUCT } from "../../../enums/product";
+import Basket from "./basket/Basket";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -68,8 +68,7 @@ export default function OrderPage() {
       <OrderPageStyled>
         <NavBar userName={name} />
         <main className="main-container">
-          {/* Keep this basket container for the basket feature ticket */}
-          {/* <div className="sideBar-left"></div> */}
+          <Basket />
           <Menu />
         </main>
       </OrderPageStyled>
@@ -92,14 +91,7 @@ const OrderPageStyled = styled.div`
     width: 1400px;
     max-width: 1400px;
     display: grid;
-    // TODO: with basket container
-    /* grid-template-columns: 20% 1fr; */
-    grid-template-columns: 1fr;
+    grid-template-columns: 350px 1fr;
     align-self: center;
-    .sideBar-left {
-      background-color: ${theme.colors.background_dark};
-      height: 80vh;
-      border-bottom-left-radius: ${theme.borderRadius.extraRound};
-    }
   }
 `;
