@@ -13,7 +13,7 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 export default function OrderPage() {
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
-  const [panelTabIndex, setPanelTabIndex] = useState("add");
+  const [panelTabIndex, setPanelTabIndex] = useState("edit");
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
