@@ -91,6 +91,7 @@ const AddProductFormStyled = styled.form`
   grid-template-columns: 16% 48% 1fr;
   grid-gap: 15px;
   padding-left: 73px;
+  padding-top: 30px;
   .input-container {
     display: grid;
     grid-gap: 13px;

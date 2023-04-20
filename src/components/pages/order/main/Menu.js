@@ -18,6 +18,7 @@ export default function Menu() {
     inputTitleRef,
     isModeAdmin,
     productSelected,
+    EMPTY_PRODUCT,
   } = useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers
@@ -25,6 +26,8 @@ export default function Menu() {
   const handleCardDelete = (event, id) => {
     event.stopPropagation();
     handleDelete(id);
+    productSelected.id === id && setProductSelected(EMPTY_PRODUCT);
+    productSelected.id === id && setIsProductSelected(false);
   };
 
   const handleProductSelected = async (id) => {
