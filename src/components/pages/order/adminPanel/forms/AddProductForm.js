@@ -1,20 +1,17 @@
 import styled from "styled-components";
 import TextInput from "../../../reusable-ui/TextInput";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../reusable-ui/Button";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
 import ImagePreview from "../ImagePreview";
 import SubmitMessage from "../SubmitMessage";
+import { getInputTextConfig } from "../inpuTextConfig";
 
 export default function AddProductForm() {
   const {
     isSubmitSuccess,
     setIsSubmitSuccess,
     handleAdd,
-    inputTitleRef,
     EMPTY_PRODUCT,
     setNewProduct,
     newProduct,
@@ -42,35 +39,28 @@ export default function AddProductForm() {
     setNewProduct(EMPTY_PRODUCT);
   };
 
+  const inputTexts = getInputTextConfig(newProduct);
+
   return (
     <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
-      <ImagePreview imageSource={newProduct.imageSource} />
+      <ImagePreview
+        imageSource={newProduct.imageSource}
+        title={newProduct.title}
+      />
       <div className="input-container">
-        <TextInput
-          Icon={<FaHamburger />}
-          name="title"
-          value={newProduct.title}
-          onChange={handleChange}
-          placeholder="Nom du produit (ex: Super Burger)"
-          variant="add"
-          ref={inputTitleRef}
-        />
-        <TextInput
-          Icon={<BsFillCameraFill />}
-          name="imageSource"
-          value={newProduct.imageSource}
-          onChange={handleChange}
-          placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-          variant="add"
-        />
-        <TextInput
-          Icon={<MdOutlineEuro />}
-          name="price"
-          value={newProduct.price || ""}
-          onChange={handleChange}
-          placeholder="Prix"
-          variant="add"
-        />
+        {inputTexts.map((input) => {
+          return (
+            <TextInput
+              key={input.id}
+              Icon={input.Icon}
+              name={input.name}
+              value={input.value}
+              onChange={handleChange}
+              placeholder={input.placeholder}
+              variant={input.variant}
+            />
+          );
+        })}
         <span className="submit-container">
           <Button
             text="Ajouter un nouveau produit au menu"

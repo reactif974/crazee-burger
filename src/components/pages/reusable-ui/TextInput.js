@@ -16,6 +16,7 @@ const TextInput = React.forwardRef(
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          type="text"
           {...extraProps}
         />
       </InputStyled>

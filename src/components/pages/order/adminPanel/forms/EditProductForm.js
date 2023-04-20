@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import TextInput from "../../../reusable-ui/TextInput";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
 import ImagePreview from "../ImagePreview";
 import { theme } from "../../../../../theme";
+import { getInputTextConfig } from "../inpuTextConfig";
 
 export default function EditProductForm() {
   const { productSelected, setProductSelected, inputTitleRef } =
@@ -21,35 +19,29 @@ export default function EditProductForm() {
     });
   };
 
+  const inputTexts = getInputTextConfig(productSelected);
+
   return (
     <EditProductFormStyled>
-      <ImagePreview imageSource={productSelected.imageSource} />
+      <ImagePreview
+        imageSource={productSelected.imageSource}
+        title={productSelected.title}
+      />
       <div className="input-container">
-        <TextInput
-          Icon={<FaHamburger />}
-          name="title"
-          value={productSelected.title}
-          onChange={handleChange}
-          placeholder="Nom du produit (ex: Super Burger)"
-          variant="add"
-          ref={inputTitleRef}
-        />
-        <TextInput
-          Icon={<BsFillCameraFill />}
-          name="imageSource"
-          value={productSelected.imageSource}
-          onChange={handleChange}
-          placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-          variant="add"
-        />
-        <TextInput
-          Icon={<MdOutlineEuro />}
-          name="price"
-          value={productSelected.price || ""}
-          onChange={handleChange}
-          placeholder="Prix"
-          variant="add"
-        />
+        {inputTexts.map((input) => {
+          return (
+            <TextInput
+              key={input.id}
+              Icon={input.Icon}
+              name={input.name}
+              value={input.value}
+              onChange={handleChange}
+              placeholder={input.placeholder}
+              variant={input.variant}
+              ref={input.name === "title" ? inputTitleRef : null}
+            />
+          );
+        })}
         <span className="title-action">
           Cliquer sur un produit du menu pour le modifier
           <span className="underline">en temps réel</span>
