@@ -83,7 +83,7 @@ const MenuStyled = styled.div`
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   .card-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
     row-gap: 4em;
     column-gap: 1em;
