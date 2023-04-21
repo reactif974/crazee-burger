@@ -17,13 +17,42 @@ const TabStyled = styled.button`
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  border-style: solid;
+  border-width: 1px 1px 2px 1px;
   border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
   background-color: ${theme.colors.background_white};
-  color: ${theme.colors.background_dark};
+  border-color: ${theme.colors.greyLight};
+  color: ${theme.colors.greyDark};
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: ${theme.weights.regular};
+  box-shadow: ${theme.shadows.subtle};
+  &.tabs-one {
+    width: 60px;
+    svg {
+      font-size: ${theme.fonts.P0};
+    }
+  }
+  &.tabs-two {
+    justify-content: space-evenly;
+    width: 212px;
+  }
+  &.tabs-three {
+    width: 220px;
+    justify-content: space-evenly;
+  }
   &:hover {
     cursor: pointer;
+    text-decoration: underline;
+    border-bottom: 2px solid transparent;
+  }
+  &.is-active-tab {
+    background-color: ${theme.colors.background_dark};
+    color: ${theme.colors.background_white};
+    border: 1px solid ${theme.colors.background_dark};
+    svg {
+      color: ${theme.colors.background_white};
+      font-size: ${theme.fonts.P0};
+    }
   }
 `;
