@@ -40,7 +40,6 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  ${(props) => props.isHoverable && hoverableStyle}
   border-radius: ${theme.borderRadius.extraRound};
   .card {
     position: relative;
@@ -58,6 +57,7 @@ const CardStyled = styled.div`
         ? selectedStyle
         : theme.colors.background_white;
     }};
+    ${(props) => props.isHoverable && hoverableStyle}
     .delete-button {
       border: 1px solid red;
       position: absolute;
@@ -132,7 +132,7 @@ const selectedStyle = css`
 `;
 
 const hoverableStyle = css`
-  :hover {
+  &:hover {
     cursor: pointer;
     transform: scale(1.05);
     transition: transform 0.4s ease-out;
