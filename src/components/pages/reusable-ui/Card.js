@@ -110,6 +110,15 @@ const selectedStyle = css`
     button {
       background-color: ${theme.colors.white};
       color: ${theme.colors.primary};
+      &:hover {
+        background-color: ${theme.colors.primary};
+        color: ${theme.colors.white};
+        border-color: ${theme.colors.white};
+      }
+      &:active {
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.primary};
+      }
     }
   }
   .delete-button {
