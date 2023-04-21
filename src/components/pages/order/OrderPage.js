@@ -20,6 +20,8 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [isProductSelected, setIsProductSelected] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [basketProducts, setBasketProducts] = useState([]);
+  const [product, setProduct] = useState(EMPTY_PRODUCT);
 
   const inputTitleRef = useRef();
 
@@ -39,6 +41,17 @@ export default function OrderPage() {
 
   const resetMenu = () => {
     setMenu(fakeMenu.MEDIUM);
+  };
+
+  const handleAddProductInBasket = (event, id) => {
+    event.stopPropagation();
+    const menuCopy = deepClone(menu);
+    const productAdd = menuCopy.find((product) => product.id === id);
+    setProduct(productAdd);
+
+    const basketProductsCopy = deepClone(basketProducts);
+    const basketProductsUpdated = [productAdd, ...basketProductsCopy];
+    setBasketProducts(basketProductsUpdated);
   };
 
   const globalContextValue = {
@@ -61,6 +74,9 @@ export default function OrderPage() {
     newProduct,
     setNewProduct,
     setIsProductSelected,
+    handleAddProductInBasket,
+    basketProducts,
+    product,
   };
 
   return (
