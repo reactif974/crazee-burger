@@ -12,6 +12,7 @@ export default function Card({
   onClick,
   hasButton,
   isSelected,
+  isHoverable,
 }) {
   return (
     <CardStyled
@@ -20,84 +21,83 @@ export default function Card({
       hasButton={hasButton}
       onClick={onClick}
       isSelected={isSelected}
+      isHoverable={isHoverable}
     >
-      {hasButton && (
-        <button className="delete-button" onClick={onDelete}>
-          <TiDelete className="icon" />
-        </button>
-      )}
-      <div className="pics-container"></div>
-      <h2>{title}</h2>
-      <div className="price-container">
-        <PriceContainer price={price} />
+      <div className="card">
+        {hasButton && (
+          <button className="delete-button" onClick={onDelete}>
+            <TiDelete className="icon" />
+          </button>
+        )}
+        <div className="pics-container"></div>
+        <h2>{title}</h2>
+        <div className="price-container">
+          <PriceContainer price={price} />
+        </div>
       </div>
     </CardStyled>
   );
 }
 
 const CardStyled = styled.div`
-  position: relative;
-  width: 240px;
-  height: 330px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: ${theme.shadows.medium};
+  ${(props) => props.isHoverable && hoverableStyle}
   border-radius: ${theme.borderRadius.extraRound};
-  transition: all 0.5s ease-in-out;
-  ${({ isSelected, hasButton }) => {
-    return isSelected && hasButton
-      ? selectedStyle
-      : theme.colors.background_white;
-  }};
-  ${(props) =>
-    props.hasButton &&
-    css`
-      &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-        box-shadow: 0px 0px 8px #ff9a23;
+  .card {
+    position: relative;
+    width: 240px;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    box-shadow: ${theme.shadows.medium};
+    border-radius: ${theme.borderRadius.extraRound};
+    transition: all 0.5s ease-in-out;
+    ${({ isSelected, hasButton }) => {
+      return isSelected && hasButton
+        ? selectedStyle
+        : theme.colors.background_white;
+    }};
+    .delete-button {
+      border: 1px solid red;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      color: ${theme.colors.primary};
+      z-index: 0;
+      padding: 0;
+      border: none;
+      background: none;
+      .icon {
+        height: 100%;
+        width: 100%;
       }
-    `}
-  .delete-button {
-    border: 1px solid red;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    color: ${theme.colors.primary};
-    z-index: 0;
-    padding: 0;
-    border: none;
-    background: none;
-    .icon {
-      height: 100%;
+      &:hover {
+        color: ${theme.colors.red};
+      }
+    }
+    .pics-container {
+      height: 145px;
+      margin: 29px 30px 20px 27px;
+      background: url(${(props) => (!props.image ? comingSoon : props.image)});
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    h2 {
       width: 100%;
+      text-align: left;
+      font-family: "Amatic SC", cursive;
+      padding-left: 27px;
+      font-size: ${theme.fonts["P3.1"]};
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    &:hover {
-      color: ${theme.colors.red};
-    }
-  }
-  .pics-container {
-    height: 145px;
-    margin: 29px 30px 20px 27px;
-    background: url(${(props) => (!props.image ? comingSoon : props.image)});
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  h2 {
-    width: 100%;
-    text-align: left;
-    font-family: "Amatic SC", cursive;
-    padding-left: 27px;
-    font-size: ${theme.fonts["P3.1"]};
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 `;
 
@@ -119,5 +119,14 @@ const selectedStyle = css`
         color: ${theme.colors.red};
       }
     }
+  }
+`;
+
+const hoverableStyle = css`
+  :hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.4s ease-out;
+    box-shadow: ${theme.shadows.orangeHightLight};
   }
 `;

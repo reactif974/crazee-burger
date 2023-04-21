@@ -66,6 +66,7 @@ export default function Menu() {
                 onClick={() => handleProductSelected(id)}
                 hasButton={isModeAdmin}
                 isSelected={checkIfProductIsClicked(id, productSelected.id)}
+                isHoverable={isModeAdmin}
               />
             </div>
           ))}
