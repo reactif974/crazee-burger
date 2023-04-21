@@ -1,31 +1,30 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import BasketCard from "./BasketCard";
 import GlobalContext from "../../../../context/GlobalContext";
+import BasketCardList from "./BasketCardList";
 
 export default function BasketBody() {
   const { basketProducts } = useContext(GlobalContext);
 
   return (
     <BasketBodyStyled>
-      {basketProducts.map((product) => {
-        return (
-          <BasketCard
-            key={product.id}
-            imageSource={product.imageSource}
-            title={product.title}
-            price={product.price}
-          />
-        );
-      })}
-      <span className="message">Votre commande est vide.</span>
+      {basketProducts.length === 0 ? (
+        <span className="message">Votre commande est vide.</span>
+      ) : (
+        <BasketCardList />
+      )}
     </BasketBodyStyled>
   );
 }
 
 const BasketBodyStyled = styled.div`
+  flex: 1;
   box-shadow: ${theme.shadows.basket};
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   .message {
     display: flex;
     justify-content: center;
