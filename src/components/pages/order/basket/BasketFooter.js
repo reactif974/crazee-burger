@@ -14,6 +14,7 @@ const BasketFooterStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 70px;
   background-color: ${theme.colors.background_dark};
   font-family: "Amatic SC";
   font-style: normal;
