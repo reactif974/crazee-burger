@@ -19,6 +19,7 @@ export default function Menu() {
     inputTitleRef,
     isModeAdmin,
     productSelected,
+    setIsPannelCollapsed,
   } = useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers
@@ -35,7 +36,8 @@ export default function Menu() {
     const menuCopy = deepClone(menu);
     const productSelected = menuCopy.find((product) => product.id === id);
     await setProductSelected(productSelected);
-    await setPanelTabIndex("edit");
+    setPanelTabIndex("edit");
+    setIsPannelCollapsed(false);
     await setIsProductSelected(true);
     inputTitleRef.current?.focus();
   };

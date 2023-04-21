@@ -12,12 +12,23 @@ export default function BlocTabs() {
     panelTabIndex,
     setIsPannelCollapsed,
     isModeAdmin,
+    inputTitleRef,
   } = useContext(GlobalContext);
 
   // management of the display of different content according to the index
-  const toggleTab = (index) => {
-    setPanelTabIndex(index);
-    setIsPannelCollapsed(false);
+  const toggleTab = async (index) => {
+    await setPanelTabIndex(index);
+    await setIsPannelCollapsed(false);
+    inputTitleRef.current?.focus();
+  };
+
+  const selectTab = async (indexTab) => {
+    if (indexTab === "chevronUpDown") {
+      await setIsPannelCollapsed(!isPannelCollapsed);
+      inputTitleRef.current?.focus();
+    } else {
+      toggleTab(indexTab);
+    }
   };
 
   const tabs = getTabsConfig(
@@ -26,14 +37,6 @@ export default function BlocTabs() {
     toggleTab,
     setIsPannelCollapsed
   );
-
-  const selectTab = (indexTab) => {
-    if (indexTab === "chevronUpDown") {
-      setIsPannelCollapsed(!isPannelCollapsed);
-    } else {
-      toggleTab(indexTab);
-    }
-  };
 
   return (
     <>
