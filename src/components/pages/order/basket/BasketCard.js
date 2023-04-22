@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import ImagePreview from "../adminPanel/ImagePreview";
 
-export default function BasketCard({ imageSource, title, price }) {
+export default function BasketCard({ imageSource, title, price, quantity }) {
   return (
     <BasketCardStyled>
       <div className="card">
@@ -14,7 +14,7 @@ export default function BasketCard({ imageSource, title, price }) {
           <h3>{title}</h3>
           <div className="price-container">{price}</div>
         </div>
-        <div className="count">X1</div>
+        <div className="count">X{quantity}</div>
       </div>
     </BasketCardStyled>
   );

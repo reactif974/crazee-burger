@@ -49,9 +49,26 @@ export default function OrderPage() {
     const productAdd = menuCopy.find((product) => product.id === id);
     setProduct(productAdd);
 
+    // on vérifie si l'article est pas déjà dans le panier par son index
+    const indexProduct = basketProducts.findIndex(
+      (product) => product.id === id
+    );
+    // on fait une copie du tableau basket
     const basketProductsCopy = deepClone(basketProducts);
-    const basketProductsUpdated = [productAdd, ...basketProductsCopy];
-    setBasketProducts(basketProductsUpdated);
+    // on initialise le tableau basket updated
+    let basketProductsUpdated = [];
+
+    // s'il est nouveau, on l'ajoute et on lui set la quantité à 1
+    if (indexProduct === -1) {
+      basketProductsUpdated = [
+        { ...productAdd, quantity: 1 },
+        ...basketProductsCopy,
+      ];
+      setBasketProducts(basketProductsUpdated);
+    } else {
+      // si l'article est déjà présent dans le panier, on incrémente la quantité
+      basketProducts[indexProduct].quantity++;
+    }
   };
 
   const globalContextValue = {

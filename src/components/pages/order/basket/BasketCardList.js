@@ -14,6 +14,7 @@ export default function BasketCardList() {
             imageSource={product.imageSource}
             title={product.title}
             price={product.price}
+            quantity={product.quantity}
           />
         );
       })}
