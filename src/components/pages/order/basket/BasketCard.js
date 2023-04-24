@@ -5,6 +5,7 @@ import ImagePreview from "../adminPanel/ImagePreview";
 import GlobalContext from "../../../../context/GlobalContext";
 import { MdDeleteForever } from "react-icons/md";
 import Button from "../../reusable-ui/Button";
+import comingSoon from "../../../../assets/coming-soon.png";
 
 export default function BasketCard({
   imageSource,
@@ -18,7 +19,11 @@ export default function BasketCard({
     <BasketCardStyled>
       <div className="card">
         <div className="pics-preview">
-          <ImagePreview imageSource={imageSource} title={title} />
+          {!imageSource ? (
+            <img src={comingSoon} alt={title} className="comingsoon" />
+          ) : (
+            <ImagePreview imageSource={imageSource} title={title} />
+          )}
         </div>
         <div className="infos-card">
           <h3>{title}</h3>
@@ -72,6 +77,11 @@ const BasketCardStyled = styled.div`
           height: 60px;
         }
       }
+    }
+    .comingsoon {
+      width: 85px;
+      height: 86px;
+      object-fit: contain;
     }
     .infos-card {
       display: flex;
