@@ -31,6 +31,7 @@ export default function OrderPage() {
     handleBasketProduct,
     handleDeleteBasketProduct,
     totalBasketPrice,
+    setTotalBasketPrice,
   } = useBasketProduct(menu);
 
   const globalContextValue = {
@@ -57,6 +58,7 @@ export default function OrderPage() {
     handleBasketProduct,
     handleDeleteBasketProduct,
     totalBasketPrice,
+    setTotalBasketPrice,
   };
 
   return (
