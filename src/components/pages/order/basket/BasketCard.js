@@ -81,19 +81,27 @@ const BasketCardStyled = styled.div`
         margin: 0;
         font-family: "Amatic SC";
         font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
+        font-weight: ${theme.weights.bold};
+        font-size: ${theme.fonts.P3};
         line-height: 32px;
-        color: #17161a;
+        color: ${theme.colors.dark};
+      }
+      .price-container {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: ${theme.weights.regular};
+        font-size: ${theme.fonts.P0};
+        line-height: 20px;
+        color: ${theme.colors.primary};
       }
     }
     .count {
       font-family: "Open Sans";
       font-style: normal;
-      font-weight: 400;
+      font-weight: ${theme.weights.regular};
       font-size: 16px;
       line-height: 22px;
-      color: #ffa01b;
+      color: ${theme.colors.primary};
     }
   }
 `;
