@@ -3,6 +3,7 @@ import { deepClone } from "../utils/array/array";
 
 export const useBasketProduct = (menu) => {
   const [basket, setBasket] = useState([]);
+  let [totalBasketPrice, setTotalBasketPrice] = useState(0);
 
   const handleBasketProduct = (event, productId) => {
     event.stopPropagation();
@@ -18,11 +19,23 @@ export const useBasketProduct = (menu) => {
     if (indexProduct === -1) {
       const newProduct = { ...productInfos, quantity: 1 };
       const basketUpdated = [newProduct, ...basketCopy];
+
+      const calcTotalPriceOfBasket = basketUpdated.reduce((totalPrice, el) => {
+        return totalPrice + el.price * el.quantity;
+      }, 0);
+
       setBasket(basketUpdated);
+      setTotalBasketPrice(calcTotalPriceOfBasket);
     } else {
       // otherwise if it is already present in basket we increment its quantity
       basketCopy[indexProduct].quantity++;
+
+      const calcTotalPriceOfBasket = basketCopy.reduce((totalPrice, el) => {
+        return totalPrice + el.price * el.quantity;
+      }, 0);
+
       setBasket(basketCopy);
+      setTotalBasketPrice(calcTotalPriceOfBasket);
     }
   };
 
@@ -34,5 +47,10 @@ export const useBasketProduct = (menu) => {
     setBasket(basketUpdated);
   };
 
-  return { basket, handleBasketProduct, handleDeleteBasketProduct };
+  return {
+    basket,
+    handleBasketProduct,
+    handleDeleteBasketProduct,
+    totalBasketPrice,
+  };
 };
