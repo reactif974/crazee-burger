@@ -43,7 +43,9 @@ export const useBasketProduct = (menu) => {
     const basketUpdated = basketCopy.filter(
       (product) => product.id !== productId
     );
+    const amountTotalOfBasket = calcTotalBasketPrice(basketUpdated);
     setBasket(basketUpdated);
+    setTotalBasketPrice(amountTotalOfBasket);
   };
 
   return {
