@@ -9,6 +9,7 @@ import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { deepClone } from "../../../utils/array/array";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import Basket from "./basket/Basket";
+import { useBasketProduct } from "../../../hooks/useBasketProduct";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -20,7 +21,6 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [isProductSelected, setIsProductSelected] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [basket, setBasket] = useState([]);
 
   const inputTitleRef = useRef();
 
@@ -42,35 +42,8 @@ export default function OrderPage() {
     setMenu(fakeMenu.MEDIUM);
   };
 
-  const handleBasketProduct = (event, productId) => {
-    event.stopPropagation();
-    // we make a copy of the basket
-    const basketCopy = deepClone(basket);
-    // we retrieve the information of the product to add
-    const productInfos = menu.find((el) => el.id === productId);
-    // we check by its index if the product is not already in the basket
-    const indexProduct = basket.findIndex(
-      (product) => product.id === productId
-    );
-    // if it is new, we add it and we set the quantity to 1
-    if (indexProduct === -1) {
-      const newProduct = { ...productInfos, quantity: 1 };
-      const basketUpdated = [newProduct, ...basketCopy];
-      setBasket(basketUpdated);
-    } else {
-      // otherwise if it is already present in basket we increment its quantity
-      basketCopy[indexProduct].quantity++;
-      setBasket(basketCopy);
-    }
-  };
-
-  const handleDeleteBasketProduct = (productId) => {
-    const basketCopy = deepClone(basket);
-    const basketUpdated = basketCopy.filter(
-      (product) => product.id !== productId
-    );
-    setBasket(basketUpdated);
-  };
+  const { basket, handleBasketProduct, handleDeleteBasketProduct } =
+    useBasketProduct(menu);
 
   const globalContextValue = {
     isModeAdmin,
