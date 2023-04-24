@@ -4,10 +4,10 @@ import GlobalContext from "../../../../context/GlobalContext";
 import BasketCard from "./BasketCard";
 
 export default function BasketCardList() {
-  const { basketProducts } = useContext(GlobalContext);
+  const { basket } = useContext(GlobalContext);
   return (
     <BasketCardListStyled>
-      {basketProducts.map((product) => {
+      {basket.map((product) => {
         return (
           <BasketCard
             key={product.id}

@@ -5,11 +5,11 @@ import GlobalContext from "../../../../context/GlobalContext";
 import BasketCardList from "./BasketCardList";
 
 export default function BasketBody() {
-  const { basketProducts } = useContext(GlobalContext);
+  const { basket } = useContext(GlobalContext);
 
   return (
     <BasketBodyStyled>
-      {basketProducts.length === 0 ? (
+      {basket.length === 0 ? (
         <span className="message">Votre commande est vide.</span>
       ) : (
         <BasketCardList />

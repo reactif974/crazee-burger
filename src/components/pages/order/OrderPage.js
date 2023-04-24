@@ -20,8 +20,7 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [isProductSelected, setIsProductSelected] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [basketProducts, setBasketProducts] = useState([]);
-  const [product, setProduct] = useState(EMPTY_PRODUCT);
+  const [basket, setBasket] = useState([]);
 
   const inputTitleRef = useRef();
 
@@ -43,33 +42,29 @@ export default function OrderPage() {
     setMenu(fakeMenu.MEDIUM);
   };
 
-  const handleAddProductInBasket = (event, id) => {
+  const handleBasketProduct = (event, productId) => {
     event.stopPropagation();
-    const menuCopy = deepClone(menu);
-    const productAdd = menuCopy.find((product) => product.id === id);
-    setProduct(productAdd);
-
-    // on vérifie si l'article est pas déjà dans le panier par son index
-    const indexProduct = basketProducts.findIndex(
-      (product) => product.id === id
+    // we make a copy of the basket
+    const basketCopy = deepClone(basket);
+    // we retrieve the information of the product to add
+    const productInfos = menu.find((el) => el.id === productId);
+    // we check by its index if the product is not already in the basket
+    const indexProduct = basket.findIndex(
+      (product) => product.id === productId
     );
-    // on fait une copie du tableau basket
-    const basketProductsCopy = deepClone(basketProducts);
-    // on initialise le tableau basket updated
-    let basketProductsUpdated = [];
-
-    // s'il est nouveau, on l'ajoute et on lui set la quantité à 1
+    // if it is new, we add it and we set the quantity to 1
     if (indexProduct === -1) {
-      basketProductsUpdated = [
-        { ...productAdd, quantity: 1 },
-        ...basketProductsCopy,
-      ];
-      setBasketProducts(basketProductsUpdated);
+      const newProduct = { ...productInfos, quantity: 1 };
+      const basketUpdated = [newProduct, ...basketCopy];
+      setBasket(basketUpdated);
     } else {
-      // si l'article est déjà présent dans le panier, on incrémente la quantité
-      basketProducts[indexProduct].quantity++;
+      // otherwise if it is already present in basket we increment its quantity
+      basketCopy[indexProduct].quantity++;
+      setBasket(basketCopy);
     }
   };
+
+  console.log("basket", basket);
 
   const globalContextValue = {
     isModeAdmin,
@@ -91,9 +86,8 @@ export default function OrderPage() {
     newProduct,
     setNewProduct,
     setIsProductSelected,
-    handleAddProductInBasket,
-    basketProducts,
-    product,
+    basket,
+    handleBasketProduct,
   };
 
   return (

@@ -5,8 +5,8 @@ import { formatPrice } from "../../../../utils/number/format";
 import Button from "../../reusable-ui/Button";
 import GlobalContext from "../../../../context/GlobalContext";
 
-export default function PriceContainer({ price, id }) {
-  const { handleAddProductInBasket } = useContext(GlobalContext);
+export default function PriceContainer({ price, productId }) {
+  const { handleBasketProduct } = useContext(GlobalContext);
 
   return (
     <PriceContainerStyled>
@@ -15,7 +15,7 @@ export default function PriceContainer({ price, id }) {
         text="Ajouter"
         type="submit"
         variant="add"
-        onClick={(event) => handleAddProductInBasket(event, id)}
+        onClick={(event) => handleBasketProduct(event, productId)}
       />
     </PriceContainerStyled>
   );

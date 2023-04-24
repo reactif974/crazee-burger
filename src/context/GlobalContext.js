@@ -5,7 +5,7 @@ export default createContext({
   isPannelCollapsed: false,
   panelTabIndex: "add",
   menu: [],
-  basketProducts: [],
+  basket: [],
   isSubmitSuccess: false,
   isProductSelected: false,
   productSelected: {},
