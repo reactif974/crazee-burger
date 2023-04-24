@@ -27,6 +27,7 @@ const ButtonStyled = styled.button`
   ${(props) => props.variant === "success" && getSuccessStyle()}
   ${(props) => props.variant === "refresh" && getRefreshStyle()}
   ${(props) => props.variant === "add" && getAddStyle()}
+  ${(props) => props.variant === "delete" && getDeleteBasketProductStyle()}
 `;
 
 const getSuccessStyle = () => {
@@ -116,6 +117,27 @@ const getAddStyle = () => {
     }
     &:active {
       background-color: ${theme.colors.primary_burger};
+      color: ${theme.colors.white};
+    }
+  `;
+};
+
+const getDeleteBasketProductStyle = () => {
+  return css`
+    width: 68px;
+    height: 86px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 30.5px 21.5px;
+    background-color: #e25549;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    &:hover {
+      cursor: pointer;
+    }
+    svg {
+      font-size: ${theme.fonts.P3};
       color: ${theme.colors.white};
     }
   `;

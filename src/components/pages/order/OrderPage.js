@@ -64,7 +64,13 @@ export default function OrderPage() {
     }
   };
 
-  console.log("basket", basket);
+  const handleDeleteBasketProduct = (productId) => {
+    const basketCopy = deepClone(basket);
+    const basketUpdated = basketCopy.filter(
+      (product) => product.id !== productId
+    );
+    setBasket(basketUpdated);
+  };
 
   const globalContextValue = {
     isModeAdmin,
@@ -88,6 +94,7 @@ export default function OrderPage() {
     setIsProductSelected,
     basket,
     handleBasketProduct,
+    handleDeleteBasketProduct,
   };
 
   return (

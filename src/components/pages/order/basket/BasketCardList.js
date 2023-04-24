@@ -15,6 +15,7 @@ export default function BasketCardList() {
             title={product.title}
             price={product.price}
             quantity={product.quantity}
+            productId={product.id}
           />
         );
       })}
