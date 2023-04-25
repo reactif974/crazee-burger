@@ -20,6 +20,8 @@ export default function Menu() {
     isModeAdmin,
     productSelected,
     setIsPannelCollapsed,
+    handleDeleteBasketProduct,
+    basket,
   } = useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers
@@ -29,6 +31,10 @@ export default function Menu() {
     handleDelete(id);
     productSelected.id === id && setProductSelected(EMPTY_PRODUCT);
     productSelected.id === id && setIsProductSelected(false);
+    const productExistInBasket = basket.find((product) => product.id === id);
+    if (productExistInBasket) {
+      handleDeleteBasketProduct(id);
+    }
   };
 
   const handleProductSelected = async (id) => {
