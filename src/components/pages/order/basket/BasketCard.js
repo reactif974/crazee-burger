@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../theme";
-import ImagePreview from "../adminPanel/ImagePreview";
 import GlobalContext from "../../../../context/GlobalContext";
 import { MdDeleteForever } from "react-icons/md";
 import Button from "../../reusable-ui/Button";
@@ -13,21 +12,32 @@ export default function BasketCard({
   price,
   quantity,
   productId,
+  variant,
 }) {
-  const { handleDeleteBasketProduct } = useContext(GlobalContext);
+  const { handleDeleteBasketProduct, productSelected, isModeAdmin } =
+    useContext(GlobalContext);
+
+  const imgSource =
+    productSelected.id === productId
+      ? productSelected.imageSource
+      : imageSource;
   return (
-    <BasketCardStyled>
+    <BasketCardStyled variant={variant} isModeAdmin={isModeAdmin}>
       <div className="card">
         <div className="pics-preview">
-          {!imageSource ? (
-            <img src={comingSoon} alt={title} className="comingsoon" />
-          ) : (
-            <ImagePreview imageSource={imageSource} title={title} />
-          )}
+          <img
+            src={!imgSource ? comingSoon : imgSource}
+            className="comingsoon"
+            alt={title}
+          />
         </div>
         <div className="infos-card">
-          <h3>{title}</h3>
-          <div className="price-container">{price}</div>
+          <h3>
+            {productSelected.id === productId ? productSelected.title : title}
+          </h3>
+          <div className="price-container">
+            {productSelected.id === productId ? productSelected.price : price}
+          </div>
         </div>
         <div className="count">X{quantity}</div>
         <div className="delete-product-button">
@@ -58,6 +68,11 @@ const BasketCardStyled = styled.div`
     background: ${theme.colors.background_white};
     box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    ${({ variant, isModeAdmin }) => {
+      return variant === "selected" && isModeAdmin
+        ? selectedStyle
+        : theme.colors.background_white;
+    }};
     .delete-product-button {
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
@@ -69,19 +84,13 @@ const BasketCardStyled = styled.div`
       }
     }
     .pics-preview {
-      height: 86px;
-      & > div {
-        height: 86px !important;
-        img {
-          width: 85px;
-          height: 60px;
-        }
+      width: 86px;
+      height: 60px;
+      .comingsoon {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
-    }
-    .comingsoon {
-      width: 85px;
-      height: 86px;
-      object-fit: contain;
     }
     .infos-card {
       display: flex;
@@ -115,3 +124,13 @@ const BasketCardStyled = styled.div`
     }
   }
 `;
+
+const selectedStyle = () => {
+  return css`
+    background: ${theme.colors.primary};
+    .price-container,
+    .count {
+      color: ${theme.colors.white}!important;
+    }
+  `;
+};

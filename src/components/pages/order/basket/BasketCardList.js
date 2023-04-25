@@ -4,7 +4,7 @@ import GlobalContext from "../../../../context/GlobalContext";
 import BasketCard from "./BasketCard";
 
 export default function BasketCardList() {
-  const { basket } = useContext(GlobalContext);
+  const { basket, productSelected } = useContext(GlobalContext);
   return (
     <BasketCardListStyled>
       {basket.map((product) => {
@@ -16,6 +16,7 @@ export default function BasketCardList() {
             price={product.price}
             quantity={product.quantity}
             productId={product.id}
+            variant={productSelected.id === product.id ? "selected" : ""}
           />
         );
       })}
