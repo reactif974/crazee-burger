@@ -5,11 +5,17 @@ import GlobalContext from "../../../../context/GlobalContext";
 import { formatPrice } from "../../../../utils/number/format";
 
 export default function BasketHeader() {
-  const { totalBasketPrice } = useContext(GlobalContext);
+  const { basket } = useContext(GlobalContext);
+
+  const sumToPay = basket.reduce((total, basketProduct) => {
+    const currentValue = basketProduct.price * basketProduct.quantity;
+    return total + currentValue;
+  }, 0);
+
   return (
     <BasketHeaderStyled>
       <h2>Total</h2>
-      <div className="total-price">{formatPrice(totalBasketPrice)}</div>
+      <div className="total-price">{formatPrice(sumToPay)}</div>
     </BasketHeaderStyled>
   );
 }

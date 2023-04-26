@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { deepClone } from "../utils/array/array";
-import { calcTotalBasketPrice } from "../utils/number/math";
 
 export const useBasketProduct = (menu) => {
   const [basket, setBasket] = useState([]);
-  const [totalBasketPrice, setTotalBasketPrice] = useState(0);
 
   const handleBasketProduct = (event, productId) => {
     event.stopPropagation();
@@ -20,21 +18,11 @@ export const useBasketProduct = (menu) => {
     if (indexProduct === -1) {
       const newProduct = { ...productInfos, quantity: 1 };
       const basketUpdated = [newProduct, ...basketCopy];
-
       setBasket(basketUpdated);
-
-      // calculation of the total amount of the basket
-      const amountTotalOfBasket = calcTotalBasketPrice(basketUpdated);
-      setTotalBasketPrice(amountTotalOfBasket);
     } else {
       // otherwise if it is already present in basket we increment its quantity
       basketCopy[indexProduct].quantity++;
-
       setBasket(basketCopy);
-
-      // calculation of the total amount of the basket
-      const amountTotalOfBasket = calcTotalBasketPrice(basketCopy);
-      setTotalBasketPrice(amountTotalOfBasket);
     }
   };
 
@@ -43,16 +31,12 @@ export const useBasketProduct = (menu) => {
     const basketUpdated = basketCopy.filter(
       (product) => product.id !== productId
     );
-    const amountTotalOfBasket = calcTotalBasketPrice(basketUpdated);
     setBasket(basketUpdated);
-    setTotalBasketPrice(amountTotalOfBasket);
   };
 
   return {
     basket,
     handleBasketProduct,
     handleDeleteBasketProduct,
-    totalBasketPrice,
-    setTotalBasketPrice,
   };
 };

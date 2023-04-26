@@ -21,6 +21,7 @@ export default function BasketCard({
     productSelected.id === productId
       ? productSelected.imageSource
       : imageSource;
+
   return (
     <BasketCardStyled variant={variant} isModeAdmin={isModeAdmin}>
       <div className="card">
@@ -32,12 +33,8 @@ export default function BasketCard({
           />
         </div>
         <div className="infos-card">
-          <h3>
-            {productSelected.id === productId ? productSelected.title : title}
-          </h3>
-          <div className="price-container">
-            {productSelected.id === productId ? productSelected.price : price}
-          </div>
+          <h3>{title}</h3>
+          <div className="price-container">{price}</div>
         </div>
         <div className="count">X{quantity}</div>
         <div className="delete-product-button">
@@ -97,6 +94,7 @@ const BasketCardStyled = styled.div`
       flex-direction: column;
       padding-left: 14px;
       h3 {
+        width: 93px;
         margin: 0;
         font-family: "Amatic SC";
         font-style: normal;
@@ -104,6 +102,9 @@ const BasketCardStyled = styled.div`
         font-size: ${theme.fonts.P3};
         line-height: 32px;
         color: ${theme.colors.dark};
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .price-container {
         font-family: "Open Sans";

@@ -26,13 +26,8 @@ export default function OrderPage() {
 
   const { menu, handleAdd, handleDelete, resetMenu } = useMenuProduct();
 
-  const {
-    basket,
-    handleBasketProduct,
-    handleDeleteBasketProduct,
-    totalBasketPrice,
-    setTotalBasketPrice,
-  } = useBasketProduct(menu);
+  const { basket, handleBasketProduct, handleDeleteBasketProduct } =
+    useBasketProduct(menu);
 
   const globalContextValue = {
     isModeAdmin,
@@ -57,8 +52,6 @@ export default function OrderPage() {
     basket,
     handleBasketProduct,
     handleDeleteBasketProduct,
-    totalBasketPrice,
-    setTotalBasketPrice,
   };
 
   return (
