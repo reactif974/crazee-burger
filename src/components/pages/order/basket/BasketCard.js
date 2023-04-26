@@ -23,8 +23,8 @@ export default function BasketCard({
       ? productSelected.imageSource
       : imageSource;
 
-  // événements
-  const onDeleteProductCard = (id) => {
+  // gestionnaire d'événements -> event handlers
+  const handleDeleteProductCard = (id) => {
     handleDeleteBasketProduct(id);
   };
 
@@ -47,7 +47,7 @@ export default function BasketCard({
           <Button
             variant="delete"
             Icon={<MdDeleteForever />}
-            onClick={() => onDeleteProductCard(productId)}
+            onClick={() => handleDeleteProductCard(productId)}
           />
         </div>
       </div>
