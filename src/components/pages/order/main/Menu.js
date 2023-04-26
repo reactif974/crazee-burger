@@ -6,7 +6,7 @@ import Card from "../../reusable-ui/Card";
 import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
-import { deepClone } from "../../../../utils/array/array";
+import { deepClone, findInArray } from "../../../../utils/array/array";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
 
 export default function Menu() {
@@ -31,7 +31,7 @@ export default function Menu() {
     handleDelete(id);
     productSelected.id === id && setProductSelected(EMPTY_PRODUCT);
     productSelected.id === id && setIsProductSelected(false);
-    const productExistInBasket = basket.find((product) => product.id === id);
+    const productExistInBasket = findInArray(basket, id);
     if (productExistInBasket) {
       handleDeleteBasketProduct(id);
     }
@@ -40,7 +40,7 @@ export default function Menu() {
   const handleProductSelected = async (id) => {
     if (!isModeAdmin) return;
     const menuCopy = deepClone(menu);
-    const productSelected = menuCopy.find((product) => product.id === id);
+    const productSelected = findInArray(menuCopy, id);
     await setProductSelected(productSelected);
     setPanelTabIndex("edit");
     setIsPannelCollapsed(false);

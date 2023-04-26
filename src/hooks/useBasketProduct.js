@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deepClone } from "../utils/array/array";
+import { deepClone, findInArray } from "../utils/array/array";
 
 export const useBasketProduct = (menu) => {
   const [basket, setBasket] = useState([]);
@@ -9,7 +9,7 @@ export const useBasketProduct = (menu) => {
     // we make a copy of the basket
     const basketCopy = deepClone(basket);
     // we retrieve the information of the product to add
-    const productInfos = menu.find((el) => el.id === productId);
+    const productInfos = findInArray(menu, productId);
     // we check by its index if the product is not already in the basket
     const indexProduct = basket.findIndex(
       (product) => product.id === productId
