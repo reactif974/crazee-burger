@@ -19,11 +19,11 @@ export const useBasketProduct = (menu) => {
       const newProduct = { ...productInfos, quantity: 1 };
       const basketUpdated = [newProduct, ...basketCopy];
       setBasket(basketUpdated);
-    } else {
-      // otherwise if it is already present in basket we increment its quantity
-      basketCopy[indexProduct].quantity++;
-      setBasket(basketCopy);
+      return;
     }
+    // otherwise if it is already present in basket we increment its quantity
+    basketCopy[indexProduct].quantity++;
+    setBasket(basketCopy);
   };
 
   const handleDeleteBasketProduct = (productId) => {

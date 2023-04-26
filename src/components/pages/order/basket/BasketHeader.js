@@ -8,6 +8,7 @@ export default function BasketHeader() {
   const { basket } = useContext(GlobalContext);
 
   const sumToPay = basket.reduce((total, basketProduct) => {
+    if (isNaN(basketProduct.price)) return total;
     const currentValue = basketProduct.price * basketProduct.quantity;
     return total + currentValue;
   }, 0);
