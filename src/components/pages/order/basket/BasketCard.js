@@ -14,6 +14,7 @@ export default function BasketCard({
   productId,
   variant,
 }) {
+  // state
   const { handleDeleteBasketProduct, productSelected, isModeAdmin } =
     useContext(GlobalContext);
 
@@ -21,6 +22,11 @@ export default function BasketCard({
     productSelected.id === productId
       ? productSelected.imageSource
       : imageSource;
+
+  // événements
+  const onDeleteProductCard = (id) => {
+    handleDeleteBasketProduct(id);
+  };
 
   return (
     <BasketCardStyled variant={variant} isModeAdmin={isModeAdmin}>
@@ -41,7 +47,7 @@ export default function BasketCard({
           <Button
             variant="delete"
             Icon={<MdDeleteForever />}
-            onClick={() => handleDeleteBasketProduct(productId)}
+            onClick={() => onDeleteProductCard(productId)}
           />
         </div>
       </div>
@@ -65,6 +71,7 @@ const BasketCardStyled = styled.div`
     background: ${theme.colors.background_white};
     box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    user-select: none;
     ${({ variant, isModeAdmin }) => {
       return variant === "selected" && isModeAdmin
         ? selectedStyle
@@ -73,10 +80,7 @@ const BasketCardStyled = styled.div`
     .delete-product-button {
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
-    }
-    &:hover {
-      cursor: pointer;
-      .delete-product-button {
+      &:hover {
         opacity: 1;
       }
     }
@@ -123,6 +127,7 @@ const BasketCardStyled = styled.div`
       line-height: 22px;
       color: ${theme.colors.primary};
     }
+    ${({ isModeAdmin }) => isModeAdmin && hoverableStyle}
   }
 `;
 
@@ -132,6 +137,14 @@ const selectedStyle = () => {
     .price-container,
     .count {
       color: ${theme.colors.white}!important;
+    }
+  `;
+};
+
+const hoverableStyle = () => {
+  return css`
+    &:hover {
+      cursor: pointer;
     }
   `;
 };
