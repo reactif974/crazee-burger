@@ -16,14 +16,26 @@ export const useBasketProduct = (menu) => {
     );
     // if it is new, we add it and we set the quantity to 1
     if (indexProduct === -1) {
-      const newProduct = { ...productInfos, quantity: 1 };
-      const basketUpdated = [newProduct, ...basketCopy];
-      setBasket(basketUpdated);
+      createNewProductInBasket(productInfos, basketCopy, setBasket);
       return;
     }
     // otherwise if it is already present in basket we increment its quantity
+    incrementeProductAllReadyInBasket(basketCopy, indexProduct, setBasket);
+  };
+
+  const incrementeProductAllReadyInBasket = (
+    basketCopy,
+    indexProduct,
+    setBasket
+  ) => {
     basketCopy[indexProduct].quantity++;
     setBasket(basketCopy);
+  };
+
+  const createNewProductInBasket = (productInfos, basketCopy, setBasket) => {
+    const newProduct = { ...productInfos, quantity: 1 };
+    const basketUpdated = [newProduct, ...basketCopy];
+    setBasket(basketUpdated);
   };
 
   const handleDeleteBasketProduct = (productId) => {
