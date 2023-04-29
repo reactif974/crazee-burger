@@ -5,6 +5,7 @@ import GlobalContext from "../../../../context/GlobalContext";
 import { MdDeleteForever } from "react-icons/md";
 import Button from "../../reusable-ui/Button";
 import comingSoon from "../../../../assets/coming-soon.png";
+import { formatPrice } from "../../../../utils/number/format";
 
 export default function BasketCard({
   imageSource,
@@ -13,24 +14,20 @@ export default function BasketCard({
   quantity,
   productId,
   variant,
+  onDelete,
+  onClick,
 }) {
   // state
-  const { handleDeleteBasketProduct, productSelected, isModeAdmin } =
-    useContext(GlobalContext);
+  const { productSelected, isModeAdmin } = useContext(GlobalContext);
 
   const imgSource =
     productSelected.id === productId
       ? productSelected.imageSource
       : imageSource;
 
-  // gestionnaire d'événements -> event handlers
-  const handleDeleteProductCard = (id) => {
-    handleDeleteBasketProduct(id);
-  };
-
   return (
     <BasketCardStyled variant={variant} isModeAdmin={isModeAdmin}>
-      <div className="card" onClick={() => console.log("clicked")}>
+      <div className="card" onClick={onClick}>
         <div className="pics-preview">
           <img
             src={!imgSource ? comingSoon : imgSource}
@@ -40,14 +37,14 @@ export default function BasketCard({
         </div>
         <div className="infos-card">
           <h3>{title}</h3>
-          <div className="price-container">{price}</div>
+          <div className="price-container">{formatPrice(price)}</div>
         </div>
         <div className="count">X{quantity}</div>
         <div className="delete-product-button">
           <Button
             variant="delete"
             Icon={<MdDeleteForever />}
-            onClick={() => handleDeleteProductCard(productId)}
+            onClick={onDelete}
           />
         </div>
       </div>
