@@ -7,16 +7,20 @@ import { theme } from "../../../../../theme";
 import { getInputTextConfig } from "../inpuTextConfig";
 
 export default function EditProductForm() {
-  const { productSelected, setProductSelected, inputTitleRef } =
+  const { productSelected, setProductSelected, inputTitleRef, handleEdit } =
     useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers
 
   const handleChange = (event) => {
-    setProductSelected({
+    const { name, value } = event.target;
+
+    const productBeingUpdated = {
       ...productSelected,
-      [event.target.name]: event.target.value,
-    });
+      [name]: value,
+    };
+    setProductSelected(productBeingUpdated);
+    handleEdit(productBeingUpdated);
   };
 
   const inputTexts = getInputTextConfig(productSelected);

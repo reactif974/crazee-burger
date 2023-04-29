@@ -24,7 +24,8 @@ export default function OrderPage() {
 
   // gestionnaire de state - state handlers
 
-  const { menu, handleAdd, handleDelete, resetMenu } = useMenuProduct();
+  const { menu, handleAdd, handleDelete, resetMenu, handleEdit } =
+    useMenuProduct();
 
   const { basket, handleBasketProduct, handleDeleteBasketProduct } =
     useBasketProduct();
@@ -52,6 +53,7 @@ export default function OrderPage() {
     basket,
     handleBasketProduct,
     handleDeleteBasketProduct,
+    handleEdit,
   };
 
   return (

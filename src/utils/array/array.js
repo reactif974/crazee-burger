@@ -9,3 +9,7 @@ export const findInArray = (id, array) => {
 export const filter = (array, id) => {
   return array.filter((item) => item.id !== id);
 };
+
+export const removeObjectById = (idOfItemToRemove, array) => {
+  return array.filter((item) => item.id !== idOfItemToRemove);
+};

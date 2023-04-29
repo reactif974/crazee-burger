@@ -17,9 +17,23 @@ export const useMenuProduct = () => {
     setMenu(menuUpdated);
   };
 
+  const handleEdit = (productBeingEdited) => {
+    // 1. copie du state (deep clone)
+    const menuCopy = deepClone(menu);
+
+    // 2. manip de la copie du state
+    const indexOfProductToEdit = menu.findIndex(
+      (menuProduct) => menuProduct.id === productBeingEdited.id
+    );
+    menuCopy[indexOfProductToEdit] = productBeingEdited;
+
+    // 3. update du state
+    setMenu(menuCopy);
+  };
+
   const resetMenu = () => {
     setMenu(fakeMenu.MEDIUM);
   };
 
-  return { menu, handleAdd, handleDelete, resetMenu };
+  return { menu, handleAdd, handleDelete, resetMenu, handleEdit };
 };

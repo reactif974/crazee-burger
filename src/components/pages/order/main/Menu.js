@@ -21,26 +21,22 @@ export default function Menu() {
     productSelected,
     setIsPannelCollapsed,
     handleDeleteBasketProduct,
-    basket,
   } = useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers
 
-  const handleCardDelete = (event, id) => {
+  const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
-    handleDelete(id);
-    productSelected.id === id && setProductSelected(EMPTY_PRODUCT);
-    productSelected.id === id && setIsProductSelected(false);
-    const productExistInBasket = findInArray(basket, id);
-    if (productExistInBasket) {
-      handleDeleteBasketProduct(id);
-    }
+    handleDelete(idProductToDelete);
+    handleDeleteBasketProduct(idProductToDelete);
+    idProductToDelete === productSelected.id &&
+      setProductSelected(EMPTY_PRODUCT);
   };
 
   const handleProductSelected = async (id) => {
     if (!isModeAdmin) return;
     const menuCopy = deepClone(menu);
-    const productSelected = findInArray(menuCopy, id);
+    const productSelected = findInArray(id, menuCopy);
     await setProductSelected(productSelected);
     setPanelTabIndex("edit");
     setIsPannelCollapsed(false);
