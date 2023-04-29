@@ -8,6 +8,11 @@ import GlobalContext from "../../../../context/GlobalContext";
 export default function PriceContainer({ price, productId }) {
   const { handleBasketProduct } = useContext(GlobalContext);
 
+  const handleAddButton = (event, productId) => {
+    event.stopPropagation();
+    handleBasketProduct(productId);
+  };
+
   return (
     <PriceContainerStyled>
       <h3>{formatPrice(price)}</h3>
@@ -15,7 +20,7 @@ export default function PriceContainer({ price, productId }) {
         text="Ajouter"
         type="submit"
         variant="add"
-        onClick={(event) => handleBasketProduct(event, productId)}
+        onClick={(event) => handleAddButton(event, productId)}
       />
     </PriceContainerStyled>
   );

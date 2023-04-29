@@ -30,7 +30,7 @@ export default function BasketCard({
 
   return (
     <BasketCardStyled variant={variant} isModeAdmin={isModeAdmin}>
-      <div className="card">
+      <div className="card" onClick={() => console.log("clicked")}>
         <div className="pics-preview">
           <img
             src={!imgSource ? comingSoon : imgSource}
