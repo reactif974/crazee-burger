@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import GlobalContext from "../../../../context/GlobalContext";
 import { formatPrice } from "../../../../utils/number/format";
+import { findInArray } from "../../../../utils/array/array";
 
 export default function BasketHeader() {
-  const { basket } = useContext(GlobalContext);
+  const { basket, menu } = useContext(GlobalContext);
 
   const sumToPay = basket.reduce((total, basketProduct) => {
-    if (isNaN(basketProduct.price)) return total;
-    const currentValue = basketProduct.price * basketProduct.quantity;
+    const menuProduct = findInArray(basketProduct.id, menu);
+    if (isNaN(menuProduct.price)) return total;
+    const currentValue = menuProduct.price * basketProduct.quantity;
     return total + currentValue;
   }, 0);
 
