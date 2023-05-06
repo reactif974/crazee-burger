@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Tab from "../../reusable-ui/Tab";
-import { theme } from "../../../../theme";
 import { useContext } from "react";
 import GlobalContext from "../../../../context/GlobalContext";
 import BlocAdminPanelContent from "./BlocAdminPanelContent";
@@ -13,12 +12,23 @@ export default function BlocTabs() {
     panelTabIndex,
     setIsPannelCollapsed,
     isModeAdmin,
+    inputTitleRef,
   } = useContext(GlobalContext);
 
   // management of the display of different content according to the index
-  const toggleTab = (index) => {
-    setPanelTabIndex(index);
-    setIsPannelCollapsed(false);
+  const toggleTab = async (index) => {
+    await setPanelTabIndex(index);
+    await setIsPannelCollapsed(false);
+    inputTitleRef.current?.focus();
+  };
+
+  const selectTab = async (indexTab) => {
+    if (indexTab === "chevronUpDown") {
+      await setIsPannelCollapsed(!isPannelCollapsed);
+      inputTitleRef.current?.focus();
+    } else {
+      toggleTab(indexTab);
+    }
   };
 
   const tabs = getTabsConfig(
@@ -27,14 +37,6 @@ export default function BlocTabs() {
     toggleTab,
     setIsPannelCollapsed
   );
-
-  const selectTab = (indexTab) => {
-    if (indexTab === "chevronUpDown") {
-      setIsPannelCollapsed(!isPannelCollapsed);
-    } else {
-      toggleTab(indexTab);
-    }
-  };
 
   return (
     <>
@@ -78,48 +80,5 @@ const BlocTabsStyled = styled.div`
     justify-content: start;
     padding-left: 71px;
     background-color: transparent;
-    .tabs {
-      cursor: pointer;
-      border-width: 1px 1px 2px 1px;
-      border-style: solid;
-      border-color: ${theme.colors.greyLight};
-      color: ${theme.colors.greyDark};
-      box-shadow: ${theme.shadows.subtle};
-      &:hover {
-        text-decoration: underline;
-        border-bottom: 1px solid transparent;
-      }
-      svg {
-        color: ${theme.colors.greyDark};
-        font-size: ${theme.fonts.P0};
-      }
-    }
-
-    .tabs-one {
-      width: 60px;
-      svg {
-        font-size: ${theme.fonts.P0};
-      }
-    }
-
-    .tabs-two {
-      justify-content: space-evenly;
-      width: 212px;
-    }
-
-    .tabs-three {
-      width: 220px;
-      justify-content: space-evenly;
-    }
-
-    .is-active-tab {
-      background-color: ${theme.colors.background_dark};
-      color: ${theme.colors.background_white};
-      border: 1px solid ${theme.colors.background_dark};
-      svg {
-        color: ${theme.colors.background_white};
-        font-size: ${theme.fonts.P0};
-      }
-    }
   }
 `;

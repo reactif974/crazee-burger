@@ -1,51 +1,31 @@
 import styled from "styled-components";
 import TextInput from "../../../reusable-ui/TextInput";
-import Button from "../../../reusable-ui/Button";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
 import ImagePreview from "../ImagePreview";
-import SubmitMessage from "../SubmitMessage";
+import { theme } from "../../../../../theme";
 import { getInputTextConfig } from "../inpuTextConfig";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
-export default function AddProductForm() {
-  const {
-    isSubmitSuccess,
-    setIsSubmitSuccess,
-    handleAdd,
-    setNewProduct,
-    newProduct,
-  } = useContext(GlobalContext);
+export default function EditProductForm() {
+  const { productSelected, setProductSelected, inputTitleRef } =
+    useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers
 
   const handleChange = (event) => {
-    setNewProduct({
-      ...newProduct,
+    setProductSelected({
+      ...productSelected,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    handleAdd({
-      ...newProduct,
-      id: crypto.randomUUID(),
-    });
-    setIsSubmitSuccess(true);
-    setTimeout(() => {
-      setIsSubmitSuccess(false);
-    }, 2000);
-    setNewProduct(EMPTY_PRODUCT);
-  };
-
-  const inputTexts = getInputTextConfig(newProduct);
+  const inputTexts = getInputTextConfig(productSelected);
 
   return (
-    <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
+    <EditProductFormStyled>
       <ImagePreview
-        imageSource={newProduct.imageSource}
-        title={newProduct.title}
+        imageSource={productSelected.imageSource}
+        title={productSelected.title}
       />
       <div className="input-container">
         {inputTexts.map((input) => {
@@ -58,23 +38,20 @@ export default function AddProductForm() {
               onChange={handleChange}
               placeholder={input.placeholder}
               variant={input.variant}
+              ref={input.name === "title" ? inputTitleRef : null}
             />
           );
         })}
-        <span className="submit-container">
-          <Button
-            text="Ajouter un nouveau produit au menu"
-            type="submit"
-            variant="success"
-          />
-          {isSubmitSuccess && <SubmitMessage />}
+        <span className="title-action">
+          Cliquer sur un produit du menu pour le modifier
+          <span className="underline">en temps réel</span>
         </span>
       </div>
-    </AddProductFormStyled>
+    </EditProductFormStyled>
   );
 }
 
-const AddProductFormStyled = styled.form`
+const EditProductFormStyled = styled.form`
   width: 100%;
   height: auto;
   display: grid;
@@ -86,6 +63,17 @@ const AddProductFormStyled = styled.form`
     display: grid;
     grid-gap: 13px;
     width: 645px;
+    .title-action {
+      font-family: "Open Sans", sans-serif;
+      font-weight: ${theme.weights.regular};
+      font-size: ${theme.fonts.P0};
+      color: ${theme.colors.primary};
+      padding: 8px, 16px, 8px, 24px;
+    }
+    .underline {
+      text-decoration: underline;
+      padding-left: 3px;
+    }
     .submit-container {
       display: flex;
       justify-content: flex-start;

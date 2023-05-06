@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { useContext } from "react";
 import GlobalContext from "../../../../context/GlobalContext";
@@ -19,24 +19,6 @@ export default function PanelAdminTabs() {
   );
 }
 
-const showPanelTabsAnimation = keyframes`
-   0% {
-      transform: translateY(100%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-`;
-
-const hidePanelTabsAnimation = keyframes`
-  0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(100%);
-    }
-`;
-
 const PanelAdminTabsStyled = styled.div`
   position: absolute;
   width: 100%;
@@ -45,15 +27,10 @@ const PanelAdminTabsStyled = styled.div`
 
   .showAdminPanel {
     display: block;
-    height: 100%;
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
-    animation: ${showPanelTabsAnimation} 0.6s ease;
   }
 
   .closeAdminPanel {
-    display: block;
-    height: 0;
-    transition: height 0.5s;
-    animation: ${hidePanelTabsAnimation} 0.5s;
+    display: none;
   }
 `;

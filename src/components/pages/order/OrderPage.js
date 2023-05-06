@@ -4,26 +4,35 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { deepClone } from "../../../utils/array/array";
+import { EMPTY_PRODUCT } from "../../../enums/product";
 
 export default function OrderPage() {
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
-  const [panelTabIndex, setPanelTabIndex] = useState("add");
+  const [panelTabIndex, setPanelTabIndex] = useState("edit");
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const [isProductSelected, setIsProductSelected] = useState(false);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+
+  const inputTitleRef = useRef();
+
+  // gestionnaire de state - state handlers
 
   const handleAdd = (productToAdd) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
     const menuUpdated = [productToAdd, ...menuCopy];
     setMenu(menuUpdated);
   };
 
   const handleDelete = (id) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
     const menuUpdated = menuCopy.filter((menu) => menu.id !== id);
     setMenu(menuUpdated);
   };
@@ -34,7 +43,7 @@ export default function OrderPage() {
 
   const globalContextValue = {
     isModeAdmin,
-    setIsModeAdmin: setIsModeAdmin,
+    setIsModeAdmin,
     panelTabIndex,
     setPanelTabIndex,
     isPannelCollapsed,
@@ -45,6 +54,13 @@ export default function OrderPage() {
     handleAdd,
     handleDelete,
     resetMenu,
+    productSelected,
+    setProductSelected,
+    isProductSelected,
+    inputTitleRef,
+    newProduct,
+    setNewProduct,
+    setIsProductSelected,
   };
 
   return (

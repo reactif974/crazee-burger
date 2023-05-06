@@ -7,9 +7,15 @@ export default function Button({
   Icon,
   className,
   variant = "normal",
+  onClick,
 }) {
   return (
-    <ButtonStyled type={type} className={className} variant={variant}>
+    <ButtonStyled
+      type={type}
+      className={className}
+      variant={variant}
+      onClick={onClick}
+    >
       {text}
       {Icon && Icon}
     </ButtonStyled>
@@ -53,7 +59,10 @@ const getNormalStyle = () => {
     align-items: center;
     border: none;
     border-radius: ${theme.borderRadius.round};
-    background-color: ${theme.colors.background_button_submit};
+    background-color: ${(props) =>
+      props.className === "selected"
+        ? theme.colors.background_white
+        : theme.colors.background_button_submit};
     color: ${theme.colors.white};
     font-family: "Open Sans", sans-serif;
     font-size: ${theme.fonts.P1};
@@ -90,8 +99,14 @@ const getAddStyle = () => {
     font-family: "Open Sans", sans-serif;
     border: 1px solid ${theme.colors.primary_burger};
     border-radius: ${theme.borderRadius.round};
-    background-color: ${theme.colors.primary_burger};
-    color: ${theme.colors.white};
+    background-color: ${(props) =>
+      props.className === "selected"
+        ? theme.colors.background_white
+        : theme.colors.background_button_submit};
+    color: ${(props) =>
+      props.className === "selected"
+        ? theme.colors.primary
+        : theme.colors.white};
     transition: background-color 0.4s ease, color 0.4s ease;
     padding: 13px, 28px, 13px, 28px;
     cursor: pointer;

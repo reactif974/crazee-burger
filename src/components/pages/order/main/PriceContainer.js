@@ -8,7 +8,12 @@ export default function PriceContainer({ price }) {
   return (
     <PriceContainerStyled>
       <h3>{formatPrice(price)}</h3>
-      <Button text="Ajouter" type="submit" variant="add" />
+      <Button
+        text="Ajouter"
+        type="submit"
+        variant="add"
+        onClick={(event) => event.stopPropagation()}
+      />
     </PriceContainerStyled>
   );
 }
