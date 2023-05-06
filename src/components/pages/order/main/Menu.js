@@ -83,7 +83,6 @@ const MenuStyled = styled.div`
   position: relative;
   overflow: hidden;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
-  border-bottom-left-radius: ${theme.borderRadius.extraRound};
   .card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

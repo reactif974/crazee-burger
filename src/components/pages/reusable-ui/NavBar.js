@@ -21,6 +21,7 @@ const NavBarStyled = styled.nav`
   width: 1400px;
   max-width: 1400px;
   height: 93px;
+  z-index: 1;
   background-color: ${theme.colors.white};
   padding: 0 ${theme.spacing.md} 0 ${theme.spacing.md};
   border-bottom: 1px solid ${theme.colors.greyLight};
