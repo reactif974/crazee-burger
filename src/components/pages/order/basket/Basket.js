@@ -19,8 +19,6 @@ const BasketStyled = styled.div`
   background-color: ${theme.colors.background_white};
   height: 80vh;
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 70px 1fr 70px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
 `;

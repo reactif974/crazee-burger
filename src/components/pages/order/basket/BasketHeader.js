@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
+import GlobalContext from "../../../../context/GlobalContext";
+import { formatPrice } from "../../../../utils/number/format";
 
 export default function BasketHeader() {
+  const { totalBasketPrice } = useContext(GlobalContext);
   return (
     <BasketHeaderStyled>
       <h2>Total</h2>
-      <div className="total-price">0,00 €</div>
+      <div className="total-price">{formatPrice(totalBasketPrice)}</div>
     </BasketHeaderStyled>
   );
 }

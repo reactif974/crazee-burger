@@ -13,6 +13,7 @@ export default function Card({
   hasButton,
   isSelected,
   isHoverable,
+  productId,
 }) {
   return (
     <CardStyled
@@ -32,7 +33,7 @@ export default function Card({
         <div className="pics-container"></div>
         <h2>{title}</h2>
         <div className="price-container">
-          <PriceContainer price={price} />
+          <PriceContainer price={price} productId={productId} />
         </div>
       </div>
     </CardStyled>

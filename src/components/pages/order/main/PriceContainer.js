@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/number/format";
 import Button from "../../reusable-ui/Button";
+import GlobalContext from "../../../../context/GlobalContext";
 
-export default function PriceContainer({ price }) {
+export default function PriceContainer({ price, productId }) {
+  const { handleBasketProduct } = useContext(GlobalContext);
+
   return (
     <PriceContainerStyled>
       <h3>{formatPrice(price)}</h3>
@@ -12,7 +15,7 @@ export default function PriceContainer({ price }) {
         text="Ajouter"
         type="submit"
         variant="add"
-        onClick={(event) => event.stopPropagation()}
+        onClick={(event) => handleBasketProduct(event, productId)}
       />
     </PriceContainerStyled>
   );

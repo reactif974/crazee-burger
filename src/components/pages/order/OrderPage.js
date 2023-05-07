@@ -5,17 +5,16 @@ import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
 import { useRef, useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
-import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { deepClone } from "../../../utils/array/array";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import Basket from "./basket/Basket";
+import { useBasketProduct } from "../../../hooks/useBasketProduct";
+import { useMenuProduct } from "../../../hooks/useMenuProduct";
 
 export default function OrderPage() {
   const { name } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [panelTabIndex, setPanelTabIndex] = useState("edit");
   const [isPannelCollapsed, setIsPannelCollapsed] = useState(false);
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [isProductSelected, setIsProductSelected] = useState(false);
@@ -25,21 +24,15 @@ export default function OrderPage() {
 
   // gestionnaire de state - state handlers
 
-  const handleAdd = (productToAdd) => {
-    const menuCopy = deepClone(menu);
-    const menuUpdated = [productToAdd, ...menuCopy];
-    setMenu(menuUpdated);
-  };
+  const { menu, handleAdd, handleDelete, resetMenu } = useMenuProduct();
 
-  const handleDelete = (id) => {
-    const menuCopy = deepClone(menu);
-    const menuUpdated = menuCopy.filter((menu) => menu.id !== id);
-    setMenu(menuUpdated);
-  };
-
-  const resetMenu = () => {
-    setMenu(fakeMenu.MEDIUM);
-  };
+  const {
+    basket,
+    handleBasketProduct,
+    handleDeleteBasketProduct,
+    totalBasketPrice,
+    setTotalBasketPrice,
+  } = useBasketProduct(menu);
 
   const globalContextValue = {
     isModeAdmin,
@@ -61,6 +54,11 @@ export default function OrderPage() {
     newProduct,
     setNewProduct,
     setIsProductSelected,
+    basket,
+    handleBasketProduct,
+    handleDeleteBasketProduct,
+    totalBasketPrice,
+    setTotalBasketPrice,
   };
 
   return (
