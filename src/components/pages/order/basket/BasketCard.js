@@ -39,7 +39,7 @@ export default function BasketCard({
           <h3>{title}</h3>
           <div className="price-container">{formatPrice(price)}</div>
         </div>
-        <div className="count">X{quantity}</div>
+        <div className="count">x {quantity}</div>
         <div className="delete-product-button">
           <Button
             variant="delete"
@@ -120,7 +120,7 @@ const BasketCardStyled = styled.div`
       font-family: "Open Sans";
       font-style: normal;
       font-weight: ${theme.weights.regular};
-      font-size: 16px;
+      font-size: ${theme.fonts.P0};
       line-height: 22px;
       color: ${theme.colors.primary};
     }
