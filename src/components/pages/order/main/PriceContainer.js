@@ -21,6 +21,7 @@ export default function PriceContainer({ price, productId }) {
         type="submit"
         variant="add"
         onClick={(event) => handleAddButton(event, productId)}
+        className="add-button"
       />
     </PriceContainerStyled>
   );
@@ -31,6 +32,9 @@ const PriceContainerStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 4px 30px 30px 30px;
+  .add-button {
+    font-weight: ${theme.weights.heavy};
+  }
   h3 {
     font-family: "Open Sans", sans-serif;
     color: ${theme.colors.primary_burger};
