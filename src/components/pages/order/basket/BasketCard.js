@@ -69,6 +69,11 @@ const BasketCardStyled = styled.div`
     box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     user-select: none;
+    &:hover {
+      .delete-product-button {
+        opacity: 1;
+      }
+    }
     ${({ variant, isModeAdmin }) => {
       return variant === "selected" && isModeAdmin
         ? selectedStyle
@@ -76,10 +81,6 @@ const BasketCardStyled = styled.div`
     }};
     .delete-product-button {
       opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      &:hover {
-        opacity: 1;
-      }
     }
     .pics-preview {
       width: 86px;
