@@ -84,6 +84,7 @@ const BasketCardStyled = styled.div`
     .pics-preview {
       width: 86px;
       height: 60px;
+      margin-left: 16px;
       .comingsoon {
         width: 100%;
         height: 100%;
