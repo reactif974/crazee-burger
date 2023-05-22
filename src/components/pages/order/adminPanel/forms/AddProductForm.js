@@ -7,6 +7,7 @@ import ImagePreview from "../ImagePreview";
 import SubmitMessage from "../SubmitMessage";
 import { getInputTextConfig } from "../inpuTextConfig";
 import { EMPTY_PRODUCT } from "../../../../../enums/product";
+import { replaceFrenchCommaWithDot } from "../../../../../utils/number/format";
 
 export default function AddProductForm() {
   const {
@@ -31,6 +32,7 @@ export default function AddProductForm() {
     handleAdd({
       ...newProduct,
       id: crypto.randomUUID(),
+      price: replaceFrenchCommaWithDot(newProduct.price),
     });
     setIsSubmitSuccess(true);
     setTimeout(() => {
