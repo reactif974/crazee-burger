@@ -87,7 +87,7 @@ const MenuStyled = styled.div`
     padding-top: 45px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 170px;
+    padding-bottom: 35%;
     background-color: ${theme.colors.background_white};
     box-shadow: ${theme.shadows.strong};
     overflow-y: scroll;
