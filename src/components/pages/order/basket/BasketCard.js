@@ -5,7 +5,10 @@ import GlobalContext from "../../../../context/GlobalContext";
 import { MdDeleteForever } from "react-icons/md";
 import Button from "../../reusable-ui/Button";
 import comingSoon from "../../../../assets/coming-soon.png";
-import { formatPrice } from "../../../../utils/number/format";
+import {
+  formatPrice,
+  replaceFrenchCommaWithDot,
+} from "../../../../utils/number/format";
 
 export default function BasketCard({
   imageSource,
@@ -37,7 +40,9 @@ export default function BasketCard({
         </div>
         <div className="infos-card">
           <h3>{title}</h3>
-          <div className="price-container">{formatPrice(price)}</div>
+          <div className="price-container">
+            {replaceFrenchCommaWithDot(formatPrice(price))} €
+          </div>
         </div>
         <div className="count">x {quantity}</div>
         <div className="delete-product-button">
