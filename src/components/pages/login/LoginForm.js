@@ -11,7 +11,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function LoginForm() {
   // state
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState("bob");
   const navigate = useNavigate();
 
   // form submission

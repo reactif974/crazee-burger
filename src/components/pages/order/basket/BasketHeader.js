@@ -3,13 +3,17 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import GlobalContext from "../../../../context/GlobalContext";
 import { formatPrice } from "../../../../utils/number/format";
+import { calculSumToPay } from "../../../../utils/math/math";
 
 export default function BasketHeader() {
-  const { totalBasketPrice } = useContext(GlobalContext);
+  const { basket, menu } = useContext(GlobalContext);
+
+  const sumToPay = calculSumToPay(basket, menu);
+
   return (
     <BasketHeaderStyled>
       <h2>Total</h2>
-      <div className="total-price">{formatPrice(totalBasketPrice)}</div>
+      <div className="total-price">{formatPrice(sumToPay)}</div>
     </BasketHeaderStyled>
   );
 }

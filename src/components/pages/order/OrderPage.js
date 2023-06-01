@@ -9,6 +9,7 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 import Basket from "./basket/Basket";
 import { useBasketProduct } from "../../../hooks/useBasketProduct";
 import { useMenuProduct } from "../../../hooks/useMenuProduct";
+import { deepClone, findInArray } from "../../../utils/array/array";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -19,20 +20,28 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [isProductSelected, setIsProductSelected] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [errors, setErrors] = useState([]);
 
   const inputTitleRef = useRef();
 
   // gestionnaire de state - state handlers
 
-  const { menu, handleAdd, handleDelete, resetMenu } = useMenuProduct();
+  const { menu, handleAdd, handleDelete, resetMenu, handleEdit } =
+    useMenuProduct();
 
-  const {
-    basket,
-    handleBasketProduct,
-    handleDeleteBasketProduct,
-    totalBasketPrice,
-    setTotalBasketPrice,
-  } = useBasketProduct(menu);
+  const { basket, handleBasketProduct, handleDeleteBasketProduct } =
+    useBasketProduct();
+
+  const handleProductSelected = async (id) => {
+    if (!isModeAdmin) return;
+    const menuCopy = deepClone(menu);
+    const productSelected = findInArray(id, menuCopy);
+    await setProductSelected(productSelected);
+    setPanelTabIndex("edit");
+    setIsPannelCollapsed(false);
+    await setIsProductSelected(true);
+    inputTitleRef.current?.focus();
+  };
 
   const globalContextValue = {
     isModeAdmin,
@@ -57,8 +66,10 @@ export default function OrderPage() {
     basket,
     handleBasketProduct,
     handleDeleteBasketProduct,
-    totalBasketPrice,
-    setTotalBasketPrice,
+    handleEdit,
+    handleProductSelected,
+    errors,
+    setErrors,
   };
 
   return (

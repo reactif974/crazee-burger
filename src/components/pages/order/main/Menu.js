@@ -6,7 +6,6 @@ import Card from "../../reusable-ui/Card";
 import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
-import { deepClone } from "../../../../utils/array/array";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
 
 export default function Menu() {
@@ -14,32 +13,25 @@ export default function Menu() {
     menu,
     handleDelete,
     setProductSelected,
-    setIsProductSelected,
-    setPanelTabIndex,
-    inputTitleRef,
     isModeAdmin,
     productSelected,
-    setIsPannelCollapsed,
+    handleDeleteBasketProduct,
+    handleProductSelected,
   } = useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers
 
-  const handleCardDelete = (event, id) => {
+  const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
-    handleDelete(id);
-    productSelected.id === id && setProductSelected(EMPTY_PRODUCT);
-    productSelected.id === id && setIsProductSelected(false);
+    handleDelete(idProductToDelete);
+    handleDeleteBasketProduct(idProductToDelete);
+    idProductToDelete === productSelected.id &&
+      setProductSelected(EMPTY_PRODUCT);
   };
 
-  const handleProductSelected = async (id) => {
+  const handleClick = (idProductClicked) => {
     if (!isModeAdmin) return;
-    const menuCopy = deepClone(menu);
-    const productSelected = menuCopy.find((product) => product.id === id);
-    await setProductSelected(productSelected);
-    setPanelTabIndex("edit");
-    setIsPannelCollapsed(false);
-    await setIsProductSelected(true);
-    inputTitleRef.current?.focus();
+    handleProductSelected(idProductClicked);
   };
 
   return (
@@ -65,7 +57,7 @@ export default function Menu() {
                   productSelected.id === id ? productSelected.price : price
                 }
                 onDelete={(event) => handleCardDelete(event, id)}
-                onClick={() => handleProductSelected(id)}
+                onClick={() => handleClick(id)}
                 hasButton={isModeAdmin}
                 isSelected={checkIfProductIsClicked(id, productSelected.id)}
                 isHoverable={isModeAdmin}
@@ -95,7 +87,7 @@ const MenuStyled = styled.div`
     padding-top: 45px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 170px;
+    padding-bottom: 35%;
     background-color: ${theme.colors.background_white};
     box-shadow: ${theme.shadows.strong};
     overflow-y: scroll;

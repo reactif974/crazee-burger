@@ -137,6 +137,6 @@ const hoverableStyle = css`
     cursor: pointer;
     transform: scale(1.05);
     transition: transform 0.4s ease-out;
-    box-shadow: ${theme.shadows.orangeHightLight};
+    box-shadow: ${theme.shadows.medium}, ${theme.shadows.orangeHightLight};
   }
 `;

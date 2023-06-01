@@ -6,7 +6,7 @@ export default createContext({
   panelTabIndex: "add",
   menu: [],
   basket: [],
-  totalBasketPrice: 0,
+  errors: [],
   isSubmitSuccess: false,
   isProductSelected: false,
   productSelected: {},
@@ -17,7 +17,9 @@ export default createContext({
   setPanelTabIndex: () => {},
   setIsSubmitSuccess: () => {},
   setNewProduct: () => {},
+  setErrors: () => {},
   handleAdd: () => {},
   handleDelete: () => {},
   handleProductSelected: () => {},
+  handleDeleteBasketProduct: () => {},
 });
