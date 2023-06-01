@@ -1,31 +1,36 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { checkHasExistingAccount } from "../../../utils/user/user";
-import { users } from "../../../utils/user/userDataBase";
+// import { checkHasExistingAccount } from "../../../utils/user/user";
+// import { users } from "../../../utils/user/userDataBase";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import TextInput from "../reusable-ui/TextInput";
 import Button from "../reusable-ui/Button";
 import { BsPersonCircle } from "react-icons/bs";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 export default function LoginForm() {
   // state
-  const [newName, setNewName] = useState("bob");
+  //const [newName, setNewName] = useState("bob");
+  const [newName, setNewName] = useState("");
   const navigate = useNavigate();
+
+  const { currentUser, signInAnonymously } = useContext(AuthContext);
 
   // form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // check if user is authorized or not to access orderPage
-    const hasAccount = checkHasExistingAccount(users, newName);
+    if (!currentUser) navigate("/");
+    signInAnonymously();
+
+    navigate(`/order/${newName}`);
 
     // input clear
     setNewName("");
-    navigate(`/order/${newName}`);
-
-    if (!hasAccount) navigate("/");
   };
 
   // registration of the new name from the input form
