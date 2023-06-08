@@ -9,7 +9,7 @@ export default function UserProfil({ userName }) {
   const { signOut } = useContext(AuthContext);
 
   const handleSignOut = () => {
-    signOut();
+    signOut(userName);
   };
 
   return (

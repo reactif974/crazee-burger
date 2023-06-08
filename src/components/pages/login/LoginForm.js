@@ -1,35 +1,56 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { checkHasExistingAccount } from "../../../utils/user/user";
-// import { users } from "../../../utils/user/userDataBase";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import TextInput from "../reusable-ui/TextInput";
 import Button from "../reusable-ui/Button";
 import { BsPersonCircle } from "react-icons/bs";
+import { AiOutlineCheck } from "react-icons/ai";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import { createUser, getUser } from "../../../api/users";
+import Toast from "../reusable-ui/Toast";
+import { toast } from "react-toastify";
+import { doc, updateDoc } from "firebase/firestore";
+import db from "../../../api/firebase-config";
 
 export default function LoginForm() {
   // state
-  //const [newName, setNewName] = useState("bob");
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState("patrick");
   const navigate = useNavigate();
 
-  const { currentUser, signInAnonymously } = useContext(AuthContext);
+  // Toast notify - registration success
+  const showToastNotification = () => {
+    toast.success(
+      `Bravo ! vous êtes inscrit, vous pouvez vous connecter en tant que - ${newName}`,
+      {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+        theme: "light",
+        icon: <AiOutlineCheck size={30} />,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }
+    );
+  };
 
   // form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const currentUser = await getUser(newName);
 
-    // check if user is authorized or not to access orderPage
-    if (!currentUser) navigate("/");
-    signInAnonymously();
-
+    if (!currentUser) {
+      createUser(newName);
+      showToastNotification();
+      setNewName("");
+      return;
+    }
+    const userRef = doc(db, "users", newName);
+    await updateDoc(userRef, { isLoggedIn: true });
     navigate(`/order/${newName}`);
-
-    // input clear
+    // //input clear
     setNewName("");
   };
 
@@ -39,27 +60,30 @@ export default function LoginForm() {
   };
 
   return (
-    <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-      <h2>Bienvenue chez nous !</h2>
-      <br />
-      <hr />
-      <h3>Connectez-vous</h3>
-      <div className="submit-container">
-        <TextInput
-          value={newName}
-          onChange={onChange}
-          placeholder="Entrez votre prénom"
-          type="text"
-          Icon={<BsPersonCircle />}
-          required
-        />
-        <Button
-          text="Accéder à mon espace"
-          type="submit"
-          Icon={<MdOutlineKeyboardArrowRight />}
-        />
-      </div>
-    </LoginFormStyled>
+    <>
+      <LoginFormStyled action="submit" onSubmit={handleSubmit}>
+        <h2>Bienvenue chez nous !</h2>
+        <br />
+        <hr />
+        <h3>Connectez-vous</h3>
+        <div className="submit-container">
+          <TextInput
+            value={newName}
+            onChange={onChange}
+            placeholder="Entrez votre prénom"
+            type="text"
+            Icon={<BsPersonCircle />}
+            //required
+          />
+          <Button
+            text="Accéder à mon espace"
+            type="submit"
+            Icon={<MdOutlineKeyboardArrowRight />}
+          />
+        </div>
+        <Toast className={"toaster"} bodyClassName={"body-toast"} />
+      </LoginFormStyled>
+    </>
   );
 }
 

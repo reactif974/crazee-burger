@@ -10,6 +10,7 @@ import Basket from "./basket/Basket";
 import { useBasketProduct } from "../../../hooks/useBasketProduct";
 import { useMenuProduct } from "../../../hooks/useMenuProduct";
 import { deepClone, findInArray } from "../../../utils/array/array";
+import { AuthProvider } from "../../../context/AuthContext";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -74,13 +75,15 @@ export default function OrderPage() {
 
   return (
     <GlobalContext.Provider value={globalContextValue}>
-      <OrderPageStyled>
-        <NavBar userName={name} />
-        <main className="main-container">
-          <Basket />
-          <Menu />
-        </main>
-      </OrderPageStyled>
+      <AuthProvider>
+        <OrderPageStyled>
+          <NavBar userName={name} />
+          <main className="main-container">
+            <Basket />
+            <Menu />
+          </main>
+        </OrderPageStyled>
+      </AuthProvider>
     </GlobalContext.Provider>
   );
 }

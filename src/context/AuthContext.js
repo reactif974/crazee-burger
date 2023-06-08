@@ -1,41 +1,45 @@
 import React, { createContext, useEffect, useState } from "react";
-import firebase from "../firebase-config";
+//import firebase from "../firebase-config";
+import db from "../api/firebase-config";
+import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Écoute les changements d'état de l'utilisateur
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      setCurrentUser(user);
+    const unsubscribe = onSnapshot(collection(db, "users"), (querySnapshot) => {
+      const updatedUsers = [];
+      querySnapshot.forEach((doc) => {
+        const user = doc.data();
+        if (user.isLoggedIn) updatedUsers.push(user);
+      });
+      setUsers(updatedUsers);
     });
 
-    // Nettoyage au démontage du composant
     return () => unsubscribe();
   }, []);
 
-  const signInAnonymously = async () => {
+  const signOut = async (userName) => {
     try {
-      await firebase.auth().signInAnonymously();
+      const userRef = doc(db, "users", userName);
+      await updateDoc(userRef, { isLoggedIn: false });
+      const updatedUsers = users.filter((user) => user.name !== userName);
+      setUsers(updatedUsers);
+      console.log("Utilisateur déconnecté avec succès");
     } catch (error) {
-      console.log(error);
-    }
-  };
-  const signOut = async () => {
-    try {
-      await firebase.auth().signOut();
-    } catch (error) {
-      console.log(error);
+      console.log(
+        "Une erreur s'est produite lors de la déconnexion de l'utilisateur:",
+        error
+      );
     }
   };
 
   return (
     <AuthContext.Provider
       value={{
-        currentUser,
-        signInAnonymously,
+        users,
         signOut,
       }}
     >
