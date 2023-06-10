@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { doc, updateDoc } from "firebase/firestore";
 import db from "../../../api/firebase-config";
 
-export default function LoginForm() {
+export default function LoginForm({ setLoader }) {
   // state
   const [newName, setNewName] = useState("patrick");
   const navigate = useNavigate();
@@ -39,12 +39,13 @@ export default function LoginForm() {
   // form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoader(true);
     const currentUser = await getUser(newName);
-
     if (!currentUser) {
       createUser(newName);
       showToastNotification();
       setNewName("");
+      setLoader(false);
       return;
     }
     const userRef = doc(db, "users", newName);
