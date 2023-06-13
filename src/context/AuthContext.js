@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from "react";
-//import firebase from "../firebase-config";
 import db from "../api/firebase-config";
 import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 
@@ -13,7 +12,7 @@ export const AuthProvider = ({ children }) => {
       const updatedUsers = [];
       querySnapshot.forEach((doc) => {
         const user = doc.data();
-        if (user.isLoggedIn) updatedUsers.push(user);
+        if (user.isLoggedIn) updatedUsers.push({ id: doc.id, ...user });
       });
       setUsers(updatedUsers);
     });

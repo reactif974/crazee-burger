@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
@@ -7,10 +7,14 @@ import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
+import Loader from "../../../../utils/loader/Loader";
+import { getProductsMenu } from "../../../../api/products";
+import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Menu() {
   const {
     menu,
+    setMenu,
     handleDelete,
     setProductSelected,
     isModeAdmin,
@@ -18,6 +22,27 @@ export default function Menu() {
     handleDeleteBasketProduct,
     handleProductSelected,
   } = useContext(GlobalContext);
+
+  const { users } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuProducts = async () => {
+      try {
+        setIsLoading(true);
+        const menuProductsFromDb = await getProductsMenu(users);
+        setMenu(menuProductsFromDb);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(
+          "Erreur lors de la récupération des produits du menu :",
+          error
+        );
+        setIsLoading(false);
+      }
+    };
+    fetchMenuProducts();
+  }, [users]);
 
   // gestionnaire d'événements -> event handlers
 
@@ -34,39 +59,33 @@ export default function Menu() {
     handleProductSelected(idProductClicked);
   };
 
+  if (isModeAdmin && !menu.length) return <EmptyMenu />;
+
   return (
     <MenuStyled className="menu-container">
-      {!menu.length ? (
-        <>
-          <EmptyMenu />
-        </>
-      ) : (
-        <div className="card-container">
-          {menu?.map(({ id, title, imageSource, price }) => (
-            <div key={id} className="grille-item">
-              <Card
-                title={
-                  productSelected.id === id ? productSelected.title : title
-                }
-                imageSource={
-                  productSelected.id === id
-                    ? productSelected.imageSource
-                    : imageSource
-                }
-                price={
-                  productSelected.id === id ? productSelected.price : price
-                }
-                onDelete={(event) => handleCardDelete(event, id)}
-                onClick={() => handleClick(id)}
-                hasButton={isModeAdmin}
-                isSelected={checkIfProductIsClicked(id, productSelected.id)}
-                isHoverable={isModeAdmin}
-                productId={id}
-              />
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="card-container">
+        {isLoading && <Loader />}
+        {menu?.map(({ id, title, imageSource, price }) => (
+          <div key={id} className="grille-item">
+            <Card
+              key={id}
+              title={productSelected.id === id ? productSelected.title : title}
+              imageSource={
+                productSelected.id === id
+                  ? productSelected.imageSource
+                  : imageSource
+              }
+              price={productSelected.id === id ? productSelected.price : price}
+              onDelete={(event) => handleCardDelete(event, id)}
+              onClick={() => handleClick(id)}
+              hasButton={isModeAdmin}
+              isSelected={checkIfProductIsClicked(id, productSelected.id)}
+              isHoverable={isModeAdmin}
+              productId={id}
+            />
+          </div>
+        ))}
+      </div>
       <PanelAdminTabs />
     </MenuStyled>
   );

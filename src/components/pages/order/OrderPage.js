@@ -27,7 +27,7 @@ export default function OrderPage() {
 
   // gestionnaire de state - state handlers
 
-  const { menu, handleAdd, handleDelete, resetMenu, handleEdit } =
+  const { menu, setMenu, handleAdd, handleDelete, resetMenu, handleEdit } =
     useMenuProduct();
 
   const { basket, handleBasketProduct, handleDeleteBasketProduct } =
@@ -52,6 +52,7 @@ export default function OrderPage() {
     isPannelCollapsed,
     setIsPannelCollapsed,
     menu,
+    setMenu,
     isSubmitSuccess,
     setIsSubmitSuccess,
     handleAdd,
