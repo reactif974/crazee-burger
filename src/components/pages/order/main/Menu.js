@@ -8,7 +8,10 @@ import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
 import Loader from "../../../../utils/loader/Loader";
-import { getProductsMenu } from "../../../../api/products";
+import {
+  deleteProductFromUser,
+  getProductsMenu,
+} from "../../../../api/products";
 import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Menu() {
@@ -49,6 +52,7 @@ export default function Menu() {
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
     handleDelete(idProductToDelete);
+    deleteProductFromUser(users, idProductToDelete);
     handleDeleteBasketProduct(idProductToDelete);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT);
