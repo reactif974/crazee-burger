@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone } from "../utils/array/array";
-import { updateProduct } from "../api/products";
+import { addProductToDb, updateProduct } from "../api/products";
 import { AuthContext } from "../context/AuthContext";
 
 export const useMenuProduct = () => {
@@ -12,6 +12,8 @@ export const useMenuProduct = () => {
     const menuCopy = deepClone(menu);
     const menuUpdated = [productToAdd, ...menuCopy];
     setMenu(menuUpdated);
+    // update de la db firestore
+    addProductToDb(users, productToAdd);
   };
 
   const handleDelete = (id) => {

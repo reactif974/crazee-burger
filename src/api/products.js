@@ -45,3 +45,19 @@ export const updateProduct = async (users, newMenu) => {
     console.log("Erreur lors de la mise à jour du produit :", error);
   }
 };
+
+export const addProductToDb = async (users, newProduct) => {
+  try {
+    const currentUser = users && users[0] ? users[0].name : null;
+    const userRef = doc(db, "users", currentUser);
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const products = userDoc.data().products;
+      const productsUpdated = [newProduct, ...products];
+      await updateDoc(userRef, { products: productsUpdated });
+    }
+    console.log("Produit ajouté avec succès !");
+  } catch (error) {
+    console.log("Erreur lors de l'ajout du produit :", error);
+  }
+};
