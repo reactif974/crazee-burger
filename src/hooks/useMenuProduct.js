@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone } from "../utils/array/array";
+import { updateProduct } from "../api/products";
+import { AuthContext } from "../context/AuthContext";
 
 export const useMenuProduct = () => {
   const [menu, setMenu] = useState([]);
+  const { users } = useContext(AuthContext);
 
   const handleAdd = (productToAdd) => {
     const menuCopy = deepClone(menu);
@@ -32,7 +35,9 @@ export const useMenuProduct = () => {
   };
 
   const resetMenu = () => {
-    setMenu(fakeMenu.MEDIUM);
+    const newMenu = fakeMenu.LARGE;
+    setMenu(newMenu);
+    updateProduct(users, newMenu);
   };
 
   return { menu, setMenu, handleAdd, handleDelete, resetMenu, handleEdit };

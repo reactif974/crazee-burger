@@ -18,8 +18,8 @@ export const getProductsMenu = async (users) => {
 };
 
 export const deleteProductFromUser = async (users, productId) => {
-  const currentUser = users && users[0] ? users[0].name : null;
   try {
+    const currentUser = users && users[0] ? users[0].name : null;
     const userRef = doc(db, "users", currentUser);
     const userDoc = await getDoc(userRef);
     if (userDoc.exists()) {
@@ -32,5 +32,16 @@ export const deleteProductFromUser = async (users, productId) => {
     }
   } catch (error) {
     console.log("Erreur lors de la suppression du produit :", error);
+  }
+};
+
+export const updateProduct = async (users, newMenu) => {
+  try {
+    const currentUser = users && users[0] ? users[0].name : null;
+    const userRef = doc(db, "users", currentUser);
+    await updateDoc(userRef, { products: newMenu });
+    console.log("Produit mis à jour avec succès !");
+  } catch (error) {
+    console.log("Erreur lors de la mise à jour du produit :", error);
   }
 };
