@@ -1,19 +1,16 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import db from "./firebase-config";
 
-export const getProductsMenu = async (users) => {
-  const currentUser = users && users[0] ? users[0].name : null;
+export const getUser = async (username) => {
+  // const currentUser = users && users[0] ? users[0].name : null;
 
-  if (currentUser) {
-    const productsMenuRef = doc(db, "users", currentUser);
-    const productsMenuSnapshot = await getDoc(productsMenuRef);
+  const productsMenuRef = doc(db, "users", username);
+  const productsMenuSnapshot = await getDoc(productsMenuRef);
 
-    if (productsMenuSnapshot.exists()) {
-      return productsMenuSnapshot.data().products;
-    } else {
-      console.log("Pas de document disponible !");
-      return null;
-    }
+  if (productsMenuSnapshot.exists()) {
+    return productsMenuSnapshot.data().products;
+  } else {
+    console.log("Pas de document disponible !");
   }
 };
 

@@ -40,19 +40,17 @@ export default function LoginForm({ setLoader }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoader(true);
-    const currentUser = await getUser(newName);
-    if (!currentUser) {
+    const existingUser = await getUser(newName);
+    if (!existingUser) {
       createUser(newName);
       showToastNotification();
-      setNewName("");
-      setLoader(false);
-      return;
     }
-    const userRef = doc(db, "users", newName);
-    await updateDoc(userRef, { isLoggedIn: true });
-    navigate(`/order/${newName}`);
+    // const userRef = doc(db, "users", newName);
+    // await updateDoc(userRef, { isLoggedIn: true });
     // //input clear
     setNewName("");
+    setLoader(false);
+    navigate(`/order/${newName}`);
   };
 
   // registration of the new name from the input form
