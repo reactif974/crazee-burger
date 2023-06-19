@@ -27,7 +27,7 @@ const LoginPageStyled = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(${burgerBg});
   background-size: cover;
   background-repeat: no-repeat;
