@@ -20,7 +20,7 @@ export default function UserProfil({ userName }) {
           <span>{userName}</span>
         </h3>
         <Link to="/" onClick={handleSignOut}>
-          Se déconnecter
+          <span className="title-deconnect">Se déconnecter</span>
         </Link>
       </div>
       <span className="profil-icon">
@@ -69,12 +69,14 @@ const UserProfilStyled = styled.div`
       font-family: "Open Sans", sans-serif;
       font-size: ${theme.fonts.XS};
       color: ${theme.colors.greyDark};
-      border-bottom: 2px solid transparent;
       @media ${theme.devices.mobileM} {
         font-size: ${theme.fonts.XXXS};
       }
-      &:hover {
-        border-color: ${theme.colors.greyDark};
+      .title-deconnect {
+        border-bottom: 2px solid transparent;
+        &:hover {
+          border-color: ${theme.colors.greyDark};
+        }
       }
     }
     h3 {
