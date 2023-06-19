@@ -24,7 +24,7 @@ const LoaderStyled = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #000000;
+  background-color: rgba(255, 158, 28, 0.5);
   color: white;
   opacity: 0.8;
   z-index: 56;
