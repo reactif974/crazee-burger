@@ -1,10 +1,8 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import db from "./firebase-config";
 
-export const getUser = async (username) => {
-  // const currentUser = users && users[0] ? users[0].name : null;
-
-  const productsMenuRef = doc(db, "users", username);
+export const getMenuProducts = async (user) => {
+  const productsMenuRef = doc(db, "users", user);
   const productsMenuSnapshot = await getDoc(productsMenuRef);
 
   if (productsMenuSnapshot.exists()) {
@@ -14,10 +12,24 @@ export const getUser = async (username) => {
   }
 };
 
-export const deleteProductFromUser = async (users, productId) => {
+export const addProductToDb = async (user, newProduct) => {
   try {
-    const currentUser = users && users[0] ? users[0].name : null;
-    const userRef = doc(db, "users", currentUser);
+    const userRef = doc(db, "users", user);
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const products = userDoc.data().products;
+      const productsUpdated = [newProduct, ...products];
+      await updateDoc(userRef, { products: productsUpdated });
+    }
+    console.log("Produit ajouté avec succès !");
+  } catch (error) {
+    console.log("Erreur lors de l'ajout du produit :", error);
+  }
+};
+
+export const deleteProductFromUser = async (user, productId) => {
+  try {
+    const userRef = doc(db, "users", user);
     const userDoc = await getDoc(userRef);
     if (userDoc.exists()) {
       const products = userDoc.data().products;
@@ -32,29 +44,12 @@ export const deleteProductFromUser = async (users, productId) => {
   }
 };
 
-export const updateProduct = async (users, newMenu) => {
+export const updateProduct = async (user, newMenu) => {
   try {
-    const currentUser = users && users[0] ? users[0].name : null;
-    const userRef = doc(db, "users", currentUser);
+    const userRef = doc(db, "users", user);
     await updateDoc(userRef, { products: newMenu });
     console.log("Produit mis à jour avec succès !");
   } catch (error) {
     console.log("Erreur lors de la mise à jour du produit :", error);
-  }
-};
-
-export const addProductToDb = async (users, newProduct) => {
-  try {
-    const currentUser = users && users[0] ? users[0].name : null;
-    const userRef = doc(db, "users", currentUser);
-    const userDoc = await getDoc(userRef);
-    if (userDoc.exists()) {
-      const products = userDoc.data().products;
-      const productsUpdated = [newProduct, ...products];
-      await updateDoc(userRef, { products: productsUpdated });
-    }
-    console.log("Produit ajouté avec succès !");
-  } catch (error) {
-    console.log("Erreur lors de l'ajout du produit :", error);
   }
 };

@@ -10,9 +10,8 @@ import { EMPTY_PRODUCT } from "../../../../enums/product";
 import Loader from "../../../../utils/loader/Loader";
 import {
   deleteProductFromUser,
-  getProductsMenu,
+  getMenuProducts,
 } from "../../../../api/products";
-import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Menu() {
   const {
@@ -24,16 +23,17 @@ export default function Menu() {
     productSelected,
     handleDeleteBasketProduct,
     handleProductSelected,
+    name,
   } = useContext(GlobalContext);
 
-  const { users } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMenuProducts = async () => {
       try {
         setIsLoading(true);
-        const menuProductsFromDb = await getProductsMenu(users);
+        const menuProductsFromDb = await getMenuProducts(name);
+        console.log("menuProductsFromDb", menuProductsFromDb);
         setMenu(menuProductsFromDb);
         setIsLoading(false);
       } catch (error) {
@@ -45,14 +45,14 @@ export default function Menu() {
       }
     };
     fetchMenuProducts();
-  }, [users]);
+  }, [name]);
 
   // gestionnaire d'événements -> event handlers
 
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
     handleDelete(idProductToDelete);
-    deleteProductFromUser(users, idProductToDelete);
+    deleteProductFromUser(name, idProductToDelete);
     handleDeleteBasketProduct(idProductToDelete);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT);
@@ -64,12 +64,13 @@ export default function Menu() {
   };
 
   if (isModeAdmin && !menu.length) return <EmptyMenu />;
+  if (!menu.length) return <EmptyMenu />;
 
   return (
     <MenuStyled className="menu-container">
       <div className="card-container">
         {isLoading && <Loader />}
-        {menu?.map(({ id, title, imageSource, price }) => (
+        {menu.map(({ id, title, imageSource, price }) => (
           <div key={id} className="grille-item">
             <Card
               key={id}

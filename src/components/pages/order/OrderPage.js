@@ -3,14 +3,13 @@ import NavBar from "../reusable-ui/NavBar";
 import styled from "styled-components";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import Basket from "./basket/Basket";
 import { useBasketProduct } from "../../../hooks/useBasketProduct";
 import { useMenuProduct } from "../../../hooks/useMenuProduct";
 import { deepClone, findInArray } from "../../../utils/array/array";
-import { AuthProvider } from "../../../context/AuthContext";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -72,19 +71,18 @@ export default function OrderPage() {
     handleProductSelected,
     errors,
     setErrors,
+    name,
   };
 
   return (
     <GlobalContext.Provider value={globalContextValue}>
-      <AuthProvider>
-        <OrderPageStyled>
-          <NavBar userName={name} />
-          <main className="main-container">
-            <Basket />
-            <Menu />
-          </main>
-        </OrderPageStyled>
-      </AuthProvider>
+      <OrderPageStyled>
+        <NavBar userName={name} />
+        <main className="main-container">
+          <Basket />
+          <Menu />
+        </main>
+      </OrderPageStyled>
     </GlobalContext.Provider>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../theme";
@@ -10,12 +10,14 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { createUser, getUser } from "../../../api/users";
 import Toast from "../reusable-ui/Toast";
 import { toast } from "react-toastify";
-import { doc, updateDoc } from "firebase/firestore";
-import db from "../../../api/firebase-config";
+// import { doc, updateDoc } from "firebase/firestore";
+// import db from "../../../api/firebase-config";
+import { AuthContext } from "../../../context/AuthContext";
 
 export default function LoginForm({ setLoader }) {
   // state
   const [newName, setNewName] = useState("patrick");
+  const { signUp } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // Toast notify - registration success
@@ -40,17 +42,20 @@ export default function LoginForm({ setLoader }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoader(true);
-    const existingUser = await getUser(newName);
-    if (!existingUser) {
-      createUser(newName);
-      showToastNotification();
+    try {
+      const existingUser = await getUser(newName);
+      if (!existingUser) {
+        createUser(newName);
+        showToastNotification();
+        setLoader(false);
+        return;
+      }
+      setNewName("");
+      setLoader(false);
+      signUp(newName);
+    } catch (error) {
+      console.log("Erreur lors de la soummission du formulaire :", error);
     }
-    // const userRef = doc(db, "users", newName);
-    // await updateDoc(userRef, { isLoggedIn: true });
-    // //input clear
-    setNewName("");
-    setLoader(false);
-    navigate(`/order/${newName}`);
   };
 
   // registration of the new name from the input form

@@ -1,31 +1,43 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext } from "react";
 import db from "../api/firebase-config";
-import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "users"), (querySnapshot) => {
-      const updatedUsers = [];
-      querySnapshot.forEach((doc) => {
-        const user = doc.data();
-        if (user.isLoggedIn) updatedUsers.push({ id: doc.id, ...user });
-      });
-      setUsers(updatedUsers);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const signOut = async (userName) => {
+  const signUp = async (username) => {
     try {
-      const userRef = doc(db, "users", userName);
+      const userRef = doc(db, "users", username);
+      await updateDoc(userRef, { isLoggedIn: true });
+      navigate(`/order/${username}`);
+    } catch (error) {
+      console.log("L'utilisateur n'existe pas");
+    }
+  };
+
+  // useEffect(() => {
+  //   const unsubscribe = onSnapshot(collection(db, "users"), (querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       const users = doc.data();
+  //       users.forEach((user) => {
+  //         if(user.name)
+  //       })
+
+  //       console.log("user in context :", user);
+  //       if (user.isLoggedIn) setCurrentUser(user);
+  //     });
+  //   });
+
+  //   return () => unsubscribe();
+  // }, []);
+
+  const signOut = async (username) => {
+    try {
+      const userRef = doc(db, "users", username);
       await updateDoc(userRef, { isLoggedIn: false });
-      const updatedUsers = users.filter((user) => user.name !== userName);
-      setUsers(updatedUsers);
       console.log("Utilisateur déconnecté avec succès");
     } catch (error) {
       console.log(
@@ -38,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        users,
+        signUp,
         signOut,
       }}
     >
