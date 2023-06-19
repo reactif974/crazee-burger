@@ -18,22 +18,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const unsubscribe = onSnapshot(collection(db, "users"), (querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       const users = doc.data();
-  //       users.forEach((user) => {
-  //         if(user.name)
-  //       })
-
-  //       console.log("user in context :", user);
-  //       if (user.isLoggedIn) setCurrentUser(user);
-  //     });
-  //   });
-
-  //   return () => unsubscribe();
-  // }, []);
-
   const signOut = async (username) => {
     try {
       const userRef = doc(db, "users", username);

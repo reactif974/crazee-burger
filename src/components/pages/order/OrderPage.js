@@ -3,7 +3,7 @@ import NavBar from "../reusable-ui/NavBar";
 import styled from "styled-components";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import Basket from "./basket/Basket";
@@ -11,6 +11,8 @@ import { useBasketProduct } from "../../../hooks/useBasketProduct";
 import { useMenuProduct } from "../../../hooks/useMenuProduct";
 import { deepClone, findInArray } from "../../../utils/array/array";
 import { getMenuProducts } from "../../../api/products";
+import { getUser } from "../../../api/users";
+import { retrieveFromLocalStorage } from "../../../utils/window/storage";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -31,16 +33,21 @@ export default function OrderPage() {
   const { menu, setMenu, handleAdd, handleDelete, resetMenu, handleEdit } =
     useMenuProduct();
 
-  const { basket, handleBasketProduct, handleDeleteBasketProduct } =
-    useBasketProduct();
+  const { basket, setBasket, handleBasketProduct, handleDeleteBasketProduct } =
+    useBasketProduct(name);
 
   useEffect(() => {
     const fetchMenuProducts = async () => {
       try {
-        setIsLoading(true);
-        const menuProductsFromDb = await getMenuProducts(name);
-        setMenu(menuProductsFromDb);
-        setIsLoading(false);
+        const existingUser = await getUser(name);
+        if (existingUser) {
+          setIsLoading(true);
+          const menuProductsFromDb = await getMenuProducts(name);
+          const productInStorage = retrieveFromLocalStorage(name, "basket");
+          if (productInStorage) setBasket(productInStorage);
+          setMenu(menuProductsFromDb);
+          setIsLoading(false);
+        }
       } catch (error) {
         console.log(
           "Erreur lors de la récupération des produits du menu :",
