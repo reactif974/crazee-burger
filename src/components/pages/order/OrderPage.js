@@ -3,13 +3,14 @@ import NavBar from "../reusable-ui/NavBar";
 import styled from "styled-components";
 import logoOrange from "../../../assets/logo-orange.png";
 import Menu from "./main/Menu";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import GlobalContext from "../../../context/GlobalContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import Basket from "./basket/Basket";
 import { useBasketProduct } from "../../../hooks/useBasketProduct";
 import { useMenuProduct } from "../../../hooks/useMenuProduct";
 import { deepClone, findInArray } from "../../../utils/array/array";
+import { getMenuProducts } from "../../../api/products";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -21,6 +22,7 @@ export default function OrderPage() {
   const [isProductSelected, setIsProductSelected] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const inputTitleRef = useRef();
 
@@ -31,6 +33,24 @@ export default function OrderPage() {
 
   const { basket, handleBasketProduct, handleDeleteBasketProduct } =
     useBasketProduct();
+
+  useEffect(() => {
+    const fetchMenuProducts = async () => {
+      try {
+        setIsLoading(true);
+        const menuProductsFromDb = await getMenuProducts(name);
+        setMenu(menuProductsFromDb);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(
+          "Erreur lors de la récupération des produits du menu :",
+          error
+        );
+        setIsLoading(false);
+      }
+    };
+    fetchMenuProducts();
+  }, [name]);
 
   const handleProductSelected = async (id) => {
     if (!isModeAdmin) return;
@@ -80,7 +100,7 @@ export default function OrderPage() {
         <NavBar userName={name} />
         <main className="main-container">
           <Basket />
-          <Menu />
+          <Menu isLoading={isLoading} />
         </main>
       </OrderPageStyled>
     </GlobalContext.Provider>

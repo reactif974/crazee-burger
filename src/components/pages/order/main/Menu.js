@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
@@ -7,17 +7,13 @@ import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
-import {
-  deleteProductFromUser,
-  getMenuProducts,
-} from "../../../../api/products";
+import { deleteProductFromUser } from "../../../../api/products";
 import EmptyMessageForCustomers from "./EmptyMessageForCustomers";
 import LoadingMessage from "./LoadingMessage";
 
-export default function Menu() {
+export default function Menu({ isLoading }) {
   const {
     menu,
-    setMenu,
     handleDelete,
     setProductSelected,
     isModeAdmin,
@@ -26,26 +22,6 @@ export default function Menu() {
     handleProductSelected,
     name,
   } = useContext(GlobalContext);
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMenuProducts = async () => {
-      try {
-        setIsLoading(true);
-        const menuProductsFromDb = await getMenuProducts(name);
-        setMenu(menuProductsFromDb);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(
-          "Erreur lors de la récupération des produits du menu :",
-          error
-        );
-        setIsLoading(false);
-      }
-    };
-    fetchMenuProducts();
-  }, [name]);
 
   // gestionnaire d'événements -> event handlers
 
