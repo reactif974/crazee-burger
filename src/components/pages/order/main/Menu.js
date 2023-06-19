@@ -7,11 +7,12 @@ import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
-import Loader from "../../../../utils/loader/Loader";
 import {
   deleteProductFromUser,
   getMenuProducts,
 } from "../../../../api/products";
+import EmptyMessageForCustomers from "./EmptyMessageForCustomers";
+import LoadingMessage from "./LoadingMessage";
 
 export default function Menu() {
   const {
@@ -33,7 +34,6 @@ export default function Menu() {
       try {
         setIsLoading(true);
         const menuProductsFromDb = await getMenuProducts(name);
-        console.log("menuProductsFromDb", menuProductsFromDb);
         setMenu(menuProductsFromDb);
         setIsLoading(false);
       } catch (error) {
@@ -63,13 +63,13 @@ export default function Menu() {
     handleProductSelected(idProductClicked);
   };
 
+  if (isLoading) return <LoadingMessage />;
+  if (!isModeAdmin && !menu.length) return <EmptyMessageForCustomers />;
   if (isModeAdmin && !menu.length) return <EmptyMenu />;
-  if (!menu.length) return <EmptyMenu />;
 
   return (
     <MenuStyled className="menu-container">
       <div className="card-container">
-        {isLoading && <Loader />}
         {menu.map(({ id, title, imageSource, price }) => (
           <div key={id} className="grille-item">
             <Card
