@@ -93,9 +93,8 @@ const OrderPageStyled = styled.div`
   height: 100vh;
   flex-direction: column;
   justify-content: center;
-  // background: url(${logoOrange}), #FF9E1C;
-  background: #ff9e1c;
-  background-size: 110px;
+  background: url(${logoOrange}), rgba(255, 158, 28, 0.8);
+  background-size: 70px;
   background-repeat: repeat;
   background-position: cover;
   .main-container {
