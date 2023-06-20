@@ -1,12 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone } from "../utils/array/array";
 import { addProductToDb, updateProduct } from "../api/products";
-import GlobalContext from "../context/GlobalContext";
 
-export const useMenuProduct = () => {
+export const useMenuProduct = (name) => {
   const [menu, setMenu] = useState(fakeMenu.EMPTY);
-  const { name } = useContext(GlobalContext);
 
   const handleAdd = (productToAdd) => {
     const menuCopy = deepClone(menu);

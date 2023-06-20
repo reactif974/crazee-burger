@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import TextInput from "../reusable-ui/TextInput";
@@ -10,15 +9,12 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { createUser, getUser } from "../../../api/users";
 import Toast from "../reusable-ui/Toast";
 import { toast } from "react-toastify";
-// import { doc, updateDoc } from "firebase/firestore";
-// import db from "../../../api/firebase-config";
 import { AuthContext } from "../../../context/AuthContext";
 
 export default function LoginForm({ setLoader }) {
   // state
   const [newName, setNewName] = useState("patrick");
   const { signUp } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   // Toast notify - registration success
   const showToastNotification = () => {

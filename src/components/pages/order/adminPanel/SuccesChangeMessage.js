@@ -1,5 +1,4 @@
 import React from "react";
-import { FiCheck } from "react-icons/fi";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { BsCloudCheck } from "react-icons/bs";
