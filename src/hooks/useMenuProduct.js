@@ -32,6 +32,9 @@ export const useMenuProduct = (name) => {
 
     // 3. update du state
     setMenu(menuCopy);
+
+    // 4. update products in DB Firestore
+    updateProduct(name, menuCopy);
   };
 
   const resetMenu = () => {
