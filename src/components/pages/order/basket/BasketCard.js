@@ -61,13 +61,13 @@ const BasketCardStyled = styled.div`
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  padding: 20px 0;
+  padding: 10px 0;
   .card {
     position: relative;
     width: 318px;
     height: 86px;
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     grid-template-rows: 1fr;
     align-items: center;
     background: ${theme.colors.background_white};

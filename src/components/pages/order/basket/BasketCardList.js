@@ -45,4 +45,6 @@ export default function BasketCardList() {
   );
 }
 
-const BasketCardListStyled = styled.div``;
+const BasketCardListStyled = styled.div`
+  padding-top: 10px;
+`;
