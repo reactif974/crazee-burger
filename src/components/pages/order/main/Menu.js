@@ -11,7 +11,7 @@ import { deleteProductFromUser } from "../../../../api/products";
 import EmptyMessageForCustomers from "./EmptyMessageForCustomers";
 import LoadingMessage from "./LoadingMessage";
 
-export default function Menu({ isLoading }) {
+export default function Menu() {
   const {
     menu,
     handleDelete,
@@ -21,6 +21,7 @@ export default function Menu({ isLoading }) {
     handleDeleteBasketProduct,
     handleProductSelected,
     name,
+    isLoading,
   } = useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers

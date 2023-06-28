@@ -2,6 +2,7 @@ import { createContext } from "react";
 
 export default createContext({
   isModeAdmin: false,
+  isLoading: true,
   isPannelCollapsed: false,
   panelTabIndex: "add",
   menu: [],

@@ -99,6 +99,7 @@ export default function OrderPage() {
     errors,
     setErrors,
     name,
+    isLoading,
   };
 
   return (
@@ -107,7 +108,7 @@ export default function OrderPage() {
         <NavBar userName={name} />
         <main className="main-container">
           <Basket />
-          <Menu isLoading={isLoading} />
+          <Menu />
         </main>
       </OrderPageStyled>
     </GlobalContext.Provider>

@@ -16,6 +16,7 @@ const LoadingMessageStyled = styled.div`
   align-items: center;
   background-color: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.strong};
+  height: 100%;
   h1 {
     font-family: "Amatic SC", cursive;
     font-weight: ${theme.weights.regular};
