@@ -36,18 +36,22 @@ export default function OrderPage() {
   const { basket, setBasket, handleBasketProduct, handleDeleteBasketProduct } =
     useBasketProduct(name);
 
+  const initialiseMenu = async () => {
+    const existingUser = await getUser(name);
+    if (existingUser) {
+      setIsLoading(true);
+      const menuProductsFromDb = await getMenuProducts(name);
+      const productInStorage = retrieveFromLocalStorage(name, "basket");
+      if (productInStorage) setBasket(productInStorage);
+      setMenu(menuProductsFromDb);
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchMenuProducts = async () => {
+    const fetchMenuProducts = () => {
       try {
-        const existingUser = await getUser(name);
-        if (existingUser) {
-          setIsLoading(true);
-          const menuProductsFromDb = await getMenuProducts(name);
-          const productInStorage = retrieveFromLocalStorage(name, "basket");
-          if (productInStorage) setBasket(productInStorage);
-          setMenu(menuProductsFromDb);
-          setIsLoading(false);
-        }
+        initialiseMenu();
       } catch (error) {
         console.log(
           "Erreur lors de la récupération des produits du menu :",
