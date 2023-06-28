@@ -14,7 +14,7 @@ import { AuthContext } from "../../../context/AuthContext";
 export default function LoginForm({ setLoader }) {
   // state
   const [newName, setNewName] = useState("patrick");
-  const { signUp } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
   // Toast notify - registration success
   const showToastNotification = () => {
@@ -34,21 +34,26 @@ export default function LoginForm({ setLoader }) {
     );
   };
 
+  // authenticate user
+  const authenticateUser = async (name) => {
+    const existingUser = await getUser(name);
+    if (!existingUser) {
+      createUser(name);
+      showToastNotification();
+      setLoader(false);
+      return;
+    }
+    signIn(name);
+    setNewName("");
+    setLoader(false);
+  };
+
   // form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoader(true);
     try {
-      const existingUser = await getUser(newName);
-      if (!existingUser) {
-        createUser(newName);
-        showToastNotification();
-        setLoader(false);
-        return;
-      }
-      setNewName("");
-      setLoader(false);
-      signUp(newName);
+      authenticateUser(newName);
     } catch (error) {
       console.log("Erreur lors de la soummission du formulaire :", error);
     }

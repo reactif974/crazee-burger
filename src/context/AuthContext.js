@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
-  const signUp = async (username) => {
+  const signIn = async (username) => {
     try {
       const userRef = doc(db, "users", username);
       await updateDoc(userRef, { isLoggedIn: true });
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        signUp,
+        signIn,
         signOut,
       }}
     >
