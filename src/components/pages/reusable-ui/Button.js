@@ -135,6 +135,14 @@ const getDeleteBasketProductStyle = () => {
     border-radius: 0 5px 5px 0;
     &:hover {
       cursor: pointer;
+      svg {
+        color: ${theme.colors.dark};
+      }
+    }
+    &:active {
+      svg {
+        color: ${theme.colors.white};
+      }
     }
     svg {
       font-size: ${theme.fonts.P3};

@@ -2,11 +2,12 @@ import { createContext } from "react";
 
 export default createContext({
   isModeAdmin: false,
+  isLoading: true,
   isPannelCollapsed: false,
   panelTabIndex: "add",
   menu: [],
   basket: [],
-  totalBasketPrice: 0,
+  errors: [],
   isSubmitSuccess: false,
   isProductSelected: false,
   productSelected: {},
@@ -17,7 +18,9 @@ export default createContext({
   setPanelTabIndex: () => {},
   setIsSubmitSuccess: () => {},
   setNewProduct: () => {},
+  setErrors: () => {},
   handleAdd: () => {},
   handleDelete: () => {},
   handleProductSelected: () => {},
+  handleDeleteBasketProduct: () => {},
 });

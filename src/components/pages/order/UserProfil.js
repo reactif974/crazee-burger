@@ -2,8 +2,16 @@ import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "../../../theme";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 export default function UserProfil({ userName }) {
+  const { signOut } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    signOut(userName);
+  };
+
   return (
     <UserProfilStyled>
       <div className="user-infos">
@@ -11,7 +19,9 @@ export default function UserProfil({ userName }) {
           Hey,
           <span>{userName}</span>
         </h3>
-        <Link to="/">Se déconnecter</Link>
+        <Link to="/" onClick={handleSignOut}>
+          <span className="title-deconnect">Se déconnecter</span>
+        </Link>
       </div>
       <span className="profil-icon">
         <BsPersonCircle />
@@ -59,12 +69,14 @@ const UserProfilStyled = styled.div`
       font-family: "Open Sans", sans-serif;
       font-size: ${theme.fonts.XS};
       color: ${theme.colors.greyDark};
-      border-bottom: 2px solid transparent;
       @media ${theme.devices.mobileM} {
         font-size: ${theme.fonts.XXXS};
       }
-      &:hover {
-        border-color: ${theme.colors.greyDark};
+      .title-deconnect {
+        border-bottom: 2px solid transparent;
+        &:hover {
+          border-color: ${theme.colors.greyDark};
+        }
       }
     }
     h3 {
