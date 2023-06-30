@@ -4,6 +4,7 @@ import GlobalContext from "../../../../context/GlobalContext";
 import BasketCard from "./BasketCard";
 import { findInArray } from "../../../../utils/array/array";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { basketCardsAnimation } from "../../../../theme/animations";
 
 export default function BasketCardList() {
   const {
@@ -59,49 +60,5 @@ export default function BasketCardList() {
 
 const BasketCardListStyled = styled.div`
   padding-top: 10px;
-
-  // phase de mounting du composant : cible le 1er element de la liste
-  .product-card-appear {
-    .card {
-      transform: translateX(100px);
-      opacity: 0%;
-    }
-  }
-  .product-card-appear-active {
-    .card {
-      transform: translateX(0px);
-      opacity: 100%;
-      transition: 0.5s;
-    }
-  }
-
-  // phase de mounting du composant
-  .product-card-enter {
-    .card {
-      transform: translateX(100px);
-      opacity: 0%;
-    }
-  }
-  .product-card-enter-active {
-    .card {
-      transform: translateX(0px);
-      opacity: 100%;
-      transition: 0.5s;
-    }
-  }
-
-  // phase de unMounting du composant
-  .product-card-exit {
-    .card {
-      transform: translateX(0px);
-      opacity: 100%;
-    }
-  }
-  .product-card-exit-active {
-    .card {
-      transform: translateX(-100px);
-      opacity: 0%;
-      transition: 0.5s;
-    }
-  }
+  ${basketCardsAnimation}
 `;
