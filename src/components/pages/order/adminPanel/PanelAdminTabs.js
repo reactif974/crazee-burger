@@ -29,7 +29,8 @@ const PanelAdminTabsStyled = styled.div`
   .showAdminPanel {
     display: block;
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
-    animation: ${showAdminPanelAnimation} 300ms ease-out;
+    animation: ${showAdminPanelAnimation} ${theme.animations.speed.fast}
+      ease-out;
   }
 
   .closeAdminPanel {

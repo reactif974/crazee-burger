@@ -86,6 +86,13 @@ const devices = {
   desktopHd: `(max-width:${sizes.desktopHd})`,
 };
 
+const animations = {
+  speed: {
+    fast: "300ms",
+    slow: "500ms",
+  },
+};
+
 export const theme = {
   colors,
   fonts,
@@ -96,4 +103,5 @@ export const theme = {
   spacing,
   sizes,
   devices,
+  animations,
 };

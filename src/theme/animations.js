@@ -1,4 +1,5 @@
 import { css, keyframes } from "styled-components";
+import { theme } from ".";
 
 // roll effect animation on total price in basket header
 export const totalPriceAnimation = css`
@@ -8,7 +9,7 @@ export const totalPriceAnimation = css`
   }
   .count-animated-enter-active {
     transform: translateY(0%);
-    transition: 300ms;
+    transition: ${theme.animations.speed.fast};
   }
 
   // phase de unMounting du composant
@@ -19,7 +20,7 @@ export const totalPriceAnimation = css`
     transform: translateY(0%);
   }
   .count-animated-exit-active {
-    transition: 300ms;
+    transition: ${theme.animations.speed.fast};
     transform: translateY(-100%);
   }
 `;
@@ -37,7 +38,7 @@ export const basketCardsAnimation = css`
     .card {
       transform: translateX(0px);
       opacity: 100%;
-      transition: 0.5s;
+      transition: ${theme.animations.speed.slow};
     }
   }
 
@@ -52,7 +53,7 @@ export const basketCardsAnimation = css`
     .card {
       transform: translateX(0px);
       opacity: 100%;
-      transition: 0.5s;
+      transition: ${theme.animations.speed.slow};
     }
   }
 
@@ -67,7 +68,7 @@ export const basketCardsAnimation = css`
     .card {
       transform: translateX(-100px);
       opacity: 0%;
-      transition: 0.5s;
+      transition: ${theme.animations.speed.slow};
     }
   }
 `;
