@@ -74,10 +74,22 @@ export const basketCardsAnimation = css`
 
 // slide effect on admin panel
 export const showAdminPanelAnimation = keyframes`
-from {
-  transform: translateY(100%);
-}
-to {
-  transform: translateY(0%);
-}
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+`;
+
+// fadein effect on card delete button
+export const fadeInFromRight = keyframes`
+  0% {
+    opacity:0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity:1;
+    transform: translateX(0%);
+  }
 `;

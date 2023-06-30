@@ -3,6 +3,7 @@ import { theme } from "../../../theme";
 import PriceContainer from "../order/main/PriceContainer";
 import comingSoon from "../../../assets/coming-soon.png";
 import { TiDelete } from "react-icons/ti";
+import { fadeInFromRight } from "../../../theme/animations";
 
 export default function Card({
   title,
@@ -72,6 +73,7 @@ const CardStyled = styled.div`
       padding: 0;
       border: none;
       background: none;
+      animation: ${fadeInFromRight} 500ms ease-out;
       .icon {
         height: 100%;
         width: 100%;
