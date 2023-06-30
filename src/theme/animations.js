@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css, keyframes } from "styled-components";
 
 // roll effect animation on total price in basket header
 export const totalPriceAnimation = css`
@@ -70,4 +70,14 @@ export const basketCardsAnimation = css`
       transition: 0.5s;
     }
   }
+`;
+
+// slide effect on admin panel
+export const showAdminPanelAnimation = keyframes`
+from {
+  transform: translateY(100%);
+}
+to {
+  transform: translateY(0%);
+}
 `;
