@@ -13,29 +13,35 @@ export default function CasinoEffect({ className, count }) {
 }
 
 const CasinoEffectStyled = styled.div`
+  position: relative;
   font-family: "Amatic SC";
   font-style: normal;
   font-weight: ${theme.weights.bold};
   font-size: ${theme.fonts.P4};
   line-height: 45px;
   color: ${theme.colors.primary};
+  overflow-y: hidden;
 
-  .count-animated {
-    background-color: red;
+  span {
+    display: inline-block;
   }
-  .count-animated-active {
-    background-color: blue;
-    transition: 2s;
+
+  .count-animated-enter {
+    transform: translateY(100%);
   }
-  .count-animated-done {
-    background-color: green;
+  .count-animated-enter-active {
+    transform: translateY(0%);
+    transition: 300ms;
   }
 
   .count-animated-exit {
-    background-color: yellow;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateY(0%);
   }
   .count-animated-exit-active {
-    background-color: black;
-    transition: 2s;
+    transition: 300ms;
+    transform: translateY(-100%);
   }
 `;
