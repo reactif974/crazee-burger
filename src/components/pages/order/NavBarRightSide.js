@@ -29,7 +29,9 @@ export default function NavBarRightSide({ userName }) {
   const onToggle = async () => {
     await setIsModeAdmin(!isModeAdmin);
     !isModeAdmin && showToastNotification();
-    inputTitleRef.current?.focus();
+    setTimeout(() => {
+      inputTitleRef.current?.focus();
+    }, 310);
   };
 
   return (

@@ -3,6 +3,7 @@ import { theme } from "../../../../theme";
 import { useContext } from "react";
 import GlobalContext from "../../../../context/GlobalContext";
 import BlocTabs from "./BlocTabs";
+import { showAdminPanelAnimation } from "../../../../theme/animations";
 
 export default function PanelAdminTabs() {
   const { isModeAdmin } = useContext(GlobalContext);
@@ -28,6 +29,8 @@ const PanelAdminTabsStyled = styled.div`
   .showAdminPanel {
     display: block;
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
+    animation: ${showAdminPanelAnimation} ${theme.animations.speed.fast}
+      ease-out;
   }
 
   .closeAdminPanel {

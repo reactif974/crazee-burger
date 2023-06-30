@@ -5,21 +5,38 @@ import GlobalContext from "../../../../../context/GlobalContext";
 import ImagePreview from "../ImagePreview";
 import { theme } from "../../../../../theme";
 import { getInputTextConfig } from "../inpuTextConfig";
+import SuccesChangeMessage from "../SuccesChangeMessage";
+import { useState } from "react";
 
 export default function EditProductForm() {
-  const { productSelected, setProductSelected, inputTitleRef } =
+  const { productSelected, setProductSelected, inputTitleRef, handleEdit } =
     useContext(GlobalContext);
+
+  const [isOutside, setIsOutside] = useState(false);
 
   // gestionnaire d'événements -> event handlers
 
   const handleChange = (event) => {
-    setProductSelected({
+    const { name, value } = event.target;
+
+    const productBeingUpdated = {
       ...productSelected,
-      [event.target.name]: event.target.value,
-    });
+      [name]: value,
+    };
+    setProductSelected(productBeingUpdated);
+    handleEdit(productBeingUpdated);
   };
 
   const inputTexts = getInputTextConfig(productSelected);
+
+  const handleClickOutside = (event) => {
+    if (!event?.currentTarget?.contains(event?.relatedTarget)) {
+      setIsOutside(true);
+      setTimeout(() => {
+        setIsOutside(false);
+      }, 2000);
+    }
+  };
 
   return (
     <EditProductFormStyled>
@@ -39,13 +56,20 @@ export default function EditProductForm() {
               placeholder={input.placeholder}
               variant={input.variant}
               ref={input.name === "title" ? inputTitleRef : null}
+              onBlur={handleClickOutside}
             />
           );
         })}
-        <span className="title-action">
-          Cliquer sur un produit du menu pour le modifier
-          <span className="underline">en temps réel</span>
-        </span>
+        {!isOutside ? (
+          <span className="title-action">
+            Cliquer sur un produit du menu pour le modifier
+            <span className="underline">en temps réel</span>
+          </span>
+        ) : (
+          <span className="title-action">
+            <SuccesChangeMessage />
+          </span>
+        )}
       </div>
     </EditProductFormStyled>
   );

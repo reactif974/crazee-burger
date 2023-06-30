@@ -3,6 +3,7 @@ import { theme } from "../../../theme";
 import PriceContainer from "../order/main/PriceContainer";
 import comingSoon from "../../../assets/coming-soon.png";
 import { TiDelete } from "react-icons/ti";
+import { fadeInFromRight } from "../../../theme/animations";
 
 export default function Card({
   title,
@@ -52,7 +53,6 @@ const CardStyled = styled.div`
     box-sizing: border-box;
     box-shadow: ${theme.shadows.medium};
     border-radius: ${theme.borderRadius.extraRound};
-    transition: all 0.5s ease-in-out;
     ${({ isSelected, hasButton }) => {
       return isSelected && hasButton
         ? selectedStyle
@@ -72,6 +72,7 @@ const CardStyled = styled.div`
       padding: 0;
       border: none;
       background: none;
+      animation: ${fadeInFromRight} ${theme.animations.speed.slow} ease-out;
       .icon {
         height: 100%;
         width: 100%;
@@ -137,6 +138,6 @@ const hoverableStyle = css`
     cursor: pointer;
     transform: scale(1.05);
     transition: transform 0.4s ease-out;
-    box-shadow: ${theme.shadows.orangeHightLight};
+    box-shadow: ${theme.shadows.medium}, ${theme.shadows.orangeHightLight};
   }
 `;

@@ -162,7 +162,7 @@ const LARGE = [
   },
 ];
 
-export const fakeMenu = {
+export const fakeBasket = {
   EMPTY,
   SMALL,
   MEDIUM,

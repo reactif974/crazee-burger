@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../theme";
-import ImagePreview from "../adminPanel/ImagePreview";
 import GlobalContext from "../../../../context/GlobalContext";
 import { MdDeleteForever } from "react-icons/md";
 import Button from "../../reusable-ui/Button";
 import comingSoon from "../../../../assets/coming-soon.png";
+import {
+  formatPrice,
+  replaceFrenchCommaWithDot,
+} from "../../../../utils/number/format";
+import CasinoEffect from "../../reusable-ui/CasinoEffect";
 
 export default function BasketCard({
   imageSource,
@@ -13,28 +17,44 @@ export default function BasketCard({
   price,
   quantity,
   productId,
+  variant,
+  onDelete,
+  onClick,
 }) {
-  const { handleDeleteBasketProduct } = useContext(GlobalContext);
+  // state
+  const { productSelected, isModeAdmin } = useContext(GlobalContext);
+
+  const imgSource =
+    productSelected.id === productId
+      ? productSelected.imageSource
+      : imageSource;
+
   return (
-    <BasketCardStyled>
-      <div className="card">
+    <BasketCardStyled variant={variant} isModeAdmin={isModeAdmin}>
+      <div className="card" onClick={onClick}>
         <div className="pics-preview">
-          {!imageSource ? (
-            <img src={comingSoon} alt={title} className="comingsoon" />
-          ) : (
-            <ImagePreview imageSource={imageSource} title={title} />
-          )}
+          <img
+            src={!imgSource ? comingSoon : imgSource}
+            className="comingsoon"
+            alt={title}
+          />
         </div>
         <div className="infos-card">
           <h3>{title}</h3>
-          <div className="price-container">{price}</div>
+          <div className="price-container">
+            {replaceFrenchCommaWithDot(formatPrice(price))} €
+          </div>
         </div>
-        <div className="count">X{quantity}</div>
+        <CasinoEffect
+          className={"count"}
+          count={`x ${quantity}`}
+          alignment={"left"}
+        />
         <div className="delete-product-button">
           <Button
             variant="delete"
             Icon={<MdDeleteForever />}
-            onClick={() => handleDeleteBasketProduct(productId)}
+            onClick={onDelete}
           />
         </div>
       </div>
@@ -46,48 +66,48 @@ const BasketCardStyled = styled.div`
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  padding: 20px 0;
+  padding: 10px 0;
   .card {
     position: relative;
     width: 318px;
     height: 86px;
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     grid-template-rows: 1fr;
     align-items: center;
     background: ${theme.colors.background_white};
     box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    .delete-product-button {
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
+    user-select: none;
     &:hover {
-      cursor: pointer;
       .delete-product-button {
         opacity: 1;
       }
     }
-    .pics-preview {
-      height: 86px;
-      & > div {
-        height: 86px !important;
-        img {
-          width: 85px;
-          height: 60px;
-        }
-      }
+    ${({ variant, isModeAdmin }) => {
+      return variant === "selected" && isModeAdmin
+        ? selectedStyle
+        : theme.colors.background_white;
+    }};
+    .delete-product-button {
+      opacity: 0;
     }
-    .comingsoon {
-      width: 85px;
-      height: 86px;
-      object-fit: contain;
+    .pics-preview {
+      width: 86px;
+      height: 60px;
+      margin-left: 16px;
+      .comingsoon {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
     }
     .infos-card {
       display: flex;
       flex-direction: column;
       padding-left: 14px;
       h3 {
+        width: 93px;
         margin: 0;
         font-family: "Amatic SC";
         font-style: normal;
@@ -95,6 +115,9 @@ const BasketCardStyled = styled.div`
         font-size: ${theme.fonts.P3};
         line-height: 32px;
         color: ${theme.colors.dark};
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .price-container {
         font-family: "Open Sans";
@@ -109,9 +132,29 @@ const BasketCardStyled = styled.div`
       font-family: "Open Sans";
       font-style: normal;
       font-weight: ${theme.weights.regular};
-      font-size: 16px;
-      line-height: 22px;
+      font-size: ${theme.fonts.P0};
+      line-height: 45px;
       color: ${theme.colors.primary};
     }
+
+    ${({ isModeAdmin }) => isModeAdmin && hoverableStyle}
   }
 `;
+
+const selectedStyle = () => {
+  return css`
+    background: ${theme.colors.primary};
+    .price-container,
+    .count {
+      color: ${theme.colors.white}!important;
+    }
+  `;
+};
+
+const hoverableStyle = () => {
+  return css`
+    &:hover {
+      cursor: pointer;
+    }
+  `;
+};
