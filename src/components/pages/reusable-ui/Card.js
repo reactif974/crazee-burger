@@ -53,7 +53,6 @@ const CardStyled = styled.div`
     box-sizing: border-box;
     box-shadow: ${theme.shadows.medium};
     border-radius: ${theme.borderRadius.extraRound};
-    transition: all 0.5s ease-in-out;
     ${({ isSelected, hasButton }) => {
       return isSelected && hasButton
         ? selectedStyle

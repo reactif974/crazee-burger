@@ -9,7 +9,8 @@ import { EMPTY_PRODUCT } from "../../../../enums/product";
 import { deleteProductFromUser } from "../../../../api/products";
 import EmptyMessageForCustomers from "./EmptyMessageForCustomers";
 import LoadingMessage from "./LoadingMessage";
-// import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { addAndDeleteCardAnimation } from "../../../../theme/animations";
 
 export default function Menu() {
   const {
@@ -45,26 +46,31 @@ export default function Menu() {
   if (isModeAdmin && !menu.length) return <EmptyMenu />;
 
   return (
-    <MenuStyled>
+    <TransitionGroup component={MenuStyled}>
       {menu.map(({ id, title, imageSource, price }) => (
-        <Card
+        <CSSTransition
+          classNames={"menu-card-animation"}
+          timeout={300}
           key={id}
-          title={productSelected.id === id ? productSelected.title : title}
-          imageSource={
-            productSelected.id === id
-              ? productSelected.imageSource
-              : imageSource
-          }
-          price={productSelected.id === id ? productSelected.price : price}
-          onDelete={(event) => handleCardDelete(event, id)}
-          onClick={() => handleClick(id)}
-          hasButton={isModeAdmin}
-          isSelected={checkIfProductIsClicked(id, productSelected.id)}
-          isHoverable={isModeAdmin}
-          productId={id}
-        />
+        >
+          <Card
+            title={productSelected.id === id ? productSelected.title : title}
+            imageSource={
+              productSelected.id === id
+                ? productSelected.imageSource
+                : imageSource
+            }
+            price={productSelected.id === id ? productSelected.price : price}
+            onDelete={(event) => handleCardDelete(event, id)}
+            onClick={() => handleClick(id)}
+            hasButton={isModeAdmin}
+            isSelected={checkIfProductIsClicked(id, productSelected.id)}
+            isHoverable={isModeAdmin}
+            productId={id}
+          />
+        </CSSTransition>
       ))}
-    </MenuStyled>
+    </TransitionGroup>
   );
 }
 
@@ -82,4 +88,5 @@ const MenuStyled = styled.div`
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
   overflow: hidden;
   overflow-y: scroll;
+  ${addAndDeleteCardAnimation}
 `;

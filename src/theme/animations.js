@@ -94,3 +94,32 @@ export const fadeInFromRight = keyframes`
     transform: translateX(0%);
   }
 `;
+
+// menu animations
+export const addAndDeleteCardAnimation = css`
+  .menu-card-animation-enter {
+    .card {
+      transform: translateX(-120px);
+      opacity: 0;
+    }
+  }
+  .menu-card-animation-enter-active {
+    .card {
+      transform: translateX(0px);
+      opacity: 1;
+      transition: ${theme.animations.speed.fast};
+    }
+  }
+  .menu-card-animation-exit {
+    .card {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+  .menu-card-animation-exit-active {
+    .card {
+      opacity: 0;
+      transition: ${theme.animations.speed.fast};
+    }
+  }
+`;
