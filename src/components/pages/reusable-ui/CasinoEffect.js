@@ -3,13 +3,15 @@ import { theme } from "../../../theme";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { totalPriceAnimation } from "../../../theme/animations";
 
-export default function CasinoEffect({ className, count }) {
+export default function CasinoEffect({ className, count, alignment }) {
   return (
-    <TransitionGroup component={CasinoEffectStyled}>
-      <CSSTransition classNames={"count-animated"} timeout={5000} key={count}>
-        <span className={className}>{count}</span>
-      </CSSTransition>
-    </TransitionGroup>
+    <CasinoEffectStyled alignment={alignment}>
+      <TransitionGroup>
+        <CSSTransition classNames={"count-animated"} timeout={5000} key={count}>
+          <span className={className}>{count}</span>
+        </CSSTransition>
+      </TransitionGroup>
+    </CasinoEffectStyled>
   );
 }
 
@@ -27,5 +29,5 @@ const CasinoEffectStyled = styled.div`
     display: inline-block;
   }
 
-  ${totalPriceAnimation}
+  ${({ alignment }) => totalPriceAnimation(alignment)}
 `;

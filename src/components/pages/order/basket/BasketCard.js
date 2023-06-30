@@ -9,6 +9,7 @@ import {
   formatPrice,
   replaceFrenchCommaWithDot,
 } from "../../../../utils/number/format";
+import CasinoEffect from "../../reusable-ui/CasinoEffect";
 
 export default function BasketCard({
   imageSource,
@@ -44,7 +45,11 @@ export default function BasketCard({
             {replaceFrenchCommaWithDot(formatPrice(price))} €
           </div>
         </div>
-        <div className="count">x {quantity}</div>
+        <CasinoEffect
+          className={"count"}
+          count={`x ${quantity}`}
+          alignment={"left"}
+        />
         <div className="delete-product-button">
           <Button
             variant="delete"
@@ -128,9 +133,10 @@ const BasketCardStyled = styled.div`
       font-style: normal;
       font-weight: ${theme.weights.regular};
       font-size: ${theme.fonts.P0};
-      line-height: 22px;
+      line-height: 45px;
       color: ${theme.colors.primary};
     }
+
     ${({ isModeAdmin }) => isModeAdmin && hoverableStyle}
   }
 `;

@@ -2,7 +2,7 @@ import { css, keyframes } from "styled-components";
 import { theme } from ".";
 
 // roll effect animation on total price in basket header
-export const totalPriceAnimation = css`
+export const totalPriceAnimation = (alignment) => css`
   // phase de mounting du composant
   .count-animated-enter {
     transform: translateY(100%);
@@ -15,7 +15,7 @@ export const totalPriceAnimation = css`
   // phase de unMounting du composant
   .count-animated-exit {
     position: absolute;
-    right: 0;
+    ${() => (alignment === "left" ? "left:0" : "right:0")};
     bottom: 0;
     transform: translateY(0%);
   }
