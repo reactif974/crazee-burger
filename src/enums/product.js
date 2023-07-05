@@ -4,4 +4,6 @@ export const EMPTY_PRODUCT = {
   imageSource: "",
   price: 0,
   quantity: 0,
+  isAvailable: true,
+  isPublicised: false,
 };

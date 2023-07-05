@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import ImagePreview from "../../ImagePreview";
-import { theme } from "../../../../../../theme";
 import Inputs from "./Inputs";
 
 export default function Form({
@@ -18,29 +17,33 @@ export default function Form({
         imageSource={productSelected.imageSource}
         title={productSelected.title}
       />
-      <div className="inputs-container">
-        <Inputs
-          productSelected={productSelected}
-          onChange={onChange}
-          inputTitleRef={inputTitleRef}
-          onBlur={handleClickOutside}
-          ref={inputTitleRef}
-        />
-        <div className="form-footer">{children}</div>
-      </div>
+
+      <Inputs
+        productSelected={productSelected}
+        onChange={onChange}
+        inputTitleRef={inputTitleRef}
+        onBlur={handleClickOutside}
+        ref={inputTitleRef}
+      />
+      <div className="form-footer">{children}</div>
     </FormStyled>
   );
 }
 
 const FormStyled = styled.form`
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 70% 1fr;
   height: auto;
   width: 70%;
   grid-column-gap: 20px;
   padding-left: 73px;
   padding-top: 30px;
   .form-footer {
-    padding-top: 13px;
+    display: grid;
+    position: relative;
+    top: 23px;
+    grid-area: 2 / 2 / 3 / 3;
+    align-items: center;
   }
 `;

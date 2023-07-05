@@ -13,7 +13,6 @@ import { deepClone, findInArray } from "../../../utils/array/array";
 import { getMenuProducts } from "../../../api/products";
 import { getUser } from "../../../api/users";
 import { retrieveFromLocalStorage } from "../../../utils/window/storage";
-import PanelAdminTabs from "../order/adminPanel/PanelAdminTabs";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -115,7 +114,6 @@ export default function OrderPage() {
           <Basket />
           <div className="menu-container">
             <Menu />
-            <PanelAdminTabs />
           </div>
         </main>
       </OrderPageStyled>
@@ -134,6 +132,7 @@ const OrderPageStyled = styled.div`
   background-repeat: repeat;
   background-position: cover;
   .main-container {
+    position: relative;
     width: 1400px;
     max-width: 1400px;
     display: grid;

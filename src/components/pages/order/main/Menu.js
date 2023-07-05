@@ -11,6 +11,7 @@ import EmptyMessageForCustomers from "./EmptyMessageForCustomers";
 import LoadingMessage from "./LoadingMessage";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { addAndDeleteCardAnimation } from "../../../../theme/animations";
+import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 
 export default function Menu() {
   const {
@@ -70,6 +71,7 @@ export default function Menu() {
           />
         </CSSTransition>
       ))}
+      <PanelAdminTabs />
     </TransitionGroup>
   );
 }
