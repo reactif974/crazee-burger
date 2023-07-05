@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import TextInput from "../../../reusable-ui/TextInput";
 import Button from "../../../reusable-ui/Button";
 import { useContext } from "react";
 import GlobalContext from "../../../../../context/GlobalContext";
-import ImagePreview from "../ImagePreview";
 import SubmitMessage from "../SubmitMessage";
-import { getInputTextConfig } from "../inpuTextConfig";
 import { EMPTY_PRODUCT } from "../../../../../enums/product";
 import { replaceFrenchCommaWithDot } from "../../../../../utils/number/format";
+import Form from "./form/Form";
 
 export default function AddProductForm() {
   // state
@@ -20,8 +18,6 @@ export default function AddProductForm() {
     errors,
     setErrors,
   } = useContext(GlobalContext);
-
-  const inputTexts = getInputTextConfig(newProduct);
 
   const validateForm = () => {
     const validationErrors = [];
@@ -77,25 +73,12 @@ export default function AddProductForm() {
   };
 
   return (
-    <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
-      <ImagePreview
-        imageSource={newProduct.imageSource}
-        title={newProduct.title}
-      />
-      <div className="input-container">
-        {inputTexts.map((input) => {
-          return (
-            <TextInput
-              key={input.id}
-              Icon={input.Icon}
-              name={input.name}
-              value={input.value}
-              onChange={handleChange}
-              placeholder={input.placeholder}
-              variant={input.variant}
-            />
-          );
-        })}
+    <AddProductFormStyled>
+      <Form
+        productSelected={newProduct}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      >
         {errors.length > 0 && (
           <ErrorContainer>
             {errors.map((error, index) => (
@@ -111,28 +94,16 @@ export default function AddProductForm() {
           />
           {isSubmitSuccess && <SubmitMessage />}
         </span>
-      </div>
+      </Form>
     </AddProductFormStyled>
   );
 }
 
-const AddProductFormStyled = styled.form`
-  width: 100%;
-  height: auto;
-  display: grid;
-  grid-template-columns: 16% 48% 1fr;
-  grid-gap: 15px;
-  padding-left: 73px;
-  padding-top: 30px;
-  .input-container {
-    display: grid;
-    grid-gap: 13px;
-    width: 645px;
-    .submit-container {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
+const AddProductFormStyled = styled.div`
+  .submit-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 `;
 
