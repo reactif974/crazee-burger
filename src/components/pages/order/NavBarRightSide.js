@@ -14,7 +14,7 @@ export default function NavBarRightSide({ userName }) {
   // Toast notify params
   const showToastNotification = () => {
     toast.info("Mode admin activé!", {
-      position: toast.POSITION.BOTTOM_RIGHT,
+      position: toast.POSITION.TOP_RIGHT,
       autoClose: 5000,
       theme: "dark",
       icon: <FaUserSecret size={30} />,

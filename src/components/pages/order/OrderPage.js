@@ -13,6 +13,8 @@ import { deepClone, findInArray } from "../../../utils/array/array";
 import { getMenuProducts } from "../../../api/products";
 import { getUser } from "../../../api/users";
 import { retrieveFromLocalStorage } from "../../../utils/window/storage";
+import PanelAdminTabs from "./adminPanel/PanelAdminTabs";
+import { theme } from "../../../theme";
 
 export default function OrderPage() {
   const { name } = useParams();
@@ -114,6 +116,7 @@ export default function OrderPage() {
           <Basket />
           <div className="menu-container">
             <Menu />
+            <PanelAdminTabs />
           </div>
         </main>
       </OrderPageStyled>
@@ -140,6 +143,8 @@ const OrderPageStyled = styled.div`
     align-self: center;
     .menu-container {
       position: relative;
+      overflow-y: hidden;
+      border-bottom-right-radius: ${theme.borderRadius.extraRound};
     }
   }
 `;

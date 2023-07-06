@@ -11,7 +11,6 @@ import EmptyMessageForCustomers from "./EmptyMessageForCustomers";
 import LoadingMessage from "./LoadingMessage";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { addAndDeleteCardAnimation } from "../../../../theme/animations";
-import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import { convertStringToBoolean } from "../../../../utils/string/string";
 import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
 
@@ -90,12 +89,12 @@ export default function Menu() {
           </CSSTransition>
         )
       )}
-      <PanelAdminTabs />
     </TransitionGroup>
   );
 }
 
 const MenuStyled = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 60px;
@@ -106,7 +105,7 @@ const MenuStyled = styled.div`
   background-color: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.strong};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
-  overflow: hidden;
+
   overflow-y: scroll;
 
   ${addAndDeleteCardAnimation}
