@@ -5,6 +5,8 @@ import BasketCard from "./BasketCard";
 import { findInArray } from "../../../../utils/array/array";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { basketCardsAnimation } from "../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../utils/string/string";
+import { formatPrice } from "../../../../utils/number/format";
 
 export default function BasketCardList() {
   const {
@@ -42,7 +44,11 @@ export default function BasketCardList() {
             <BasketCard
               imageSource={menuProduct.imageSource}
               title={menuProduct.title}
-              price={menuProduct.price}
+              price={
+                convertStringToBoolean(menuProduct.isAvailable)
+                  ? formatPrice(menuProduct.price)
+                  : "Non disponible"
+              }
               quantity={product.quantity}
               productId={menuProduct.id}
               variant={productSelected.id === menuProduct.id ? "selected" : ""}

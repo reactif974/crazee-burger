@@ -5,10 +5,6 @@ import GlobalContext from "../../../../context/GlobalContext";
 import { MdDeleteForever } from "react-icons/md";
 import Button from "../../reusable-ui/Button";
 import comingSoon from "../../../../assets/coming-soon.png";
-import {
-  formatPrice,
-  replaceFrenchCommaWithDot,
-} from "../../../../utils/number/format";
 import CasinoEffect from "../../reusable-ui/CasinoEffect";
 
 export default function BasketCard({
@@ -41,9 +37,7 @@ export default function BasketCard({
         </div>
         <div className="infos-card">
           <h3>{title}</h3>
-          <div className="price-container">
-            {replaceFrenchCommaWithDot(formatPrice(price))} €
-          </div>
+          <div className="price-container">{price}</div>
         </div>
         <CasinoEffect
           className={"count"}
