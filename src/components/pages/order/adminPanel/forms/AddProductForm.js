@@ -22,7 +22,7 @@ export default function AddProductForm() {
   const validateForm = () => {
     const validationErrors = [];
 
-    if (!isValidURL(newProduct.imageSource)) {
+    if (!isValidURL(newProduct.imageSource) && newProduct.imageSource !== "") {
       validationErrors.push("Veuillez saisir une URL valide");
     }
     if (!isValidPrice(newProduct.price)) {
