@@ -7,3 +7,5 @@ export const EMPTY_PRODUCT = {
   isAvailable: true,
   isPublicised: false,
 };
+
+export const IMAGE_NO_STOCK = "/images/stock-epuise.png";

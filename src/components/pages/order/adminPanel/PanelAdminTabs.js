@@ -25,12 +25,13 @@ const PanelAdminTabsStyled = styled.div`
   width: 100%;
   bottom: 0;
   right: 0;
-
+  z-index: 4;
   .showAdminPanel {
     display: block;
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
     animation: ${showAdminPanelAnimation} ${theme.animations.speed.fast}
       ease-out;
+    z-index: 100;
   }
 
   .closeAdminPanel {

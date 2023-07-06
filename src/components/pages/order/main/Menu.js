@@ -5,13 +5,14 @@ import { theme } from "../../../../theme";
 import Card from "../../reusable-ui/Card";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
-import { EMPTY_PRODUCT } from "../../../../enums/product";
+import { EMPTY_PRODUCT, IMAGE_NO_STOCK } from "../../../../enums/product";
 import { deleteProductFromUser } from "../../../../api/products";
 import EmptyMessageForCustomers from "./EmptyMessageForCustomers";
 import LoadingMessage from "./LoadingMessage";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { addAndDeleteCardAnimation } from "../../../../theme/animations";
 import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
+import { convertStringToBoolean } from "../../../../utils/string/string";
 
 export default function Menu() {
   const {
@@ -48,7 +49,7 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({ id, title, imageSource, price }) => (
+      {menu.map(({ id, title, imageSource, price, isAvailable }) => (
         <CSSTransition
           classNames={"menu-card-animation"}
           timeout={300}
@@ -68,6 +69,10 @@ export default function Menu() {
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
             isHoverable={isModeAdmin}
             productId={id}
+            overLapImageSource={IMAGE_NO_STOCK}
+            isOverlapImageVisible={
+              convertStringToBoolean(isAvailable) === false
+            }
           />
         </CSSTransition>
       ))}
@@ -77,7 +82,6 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
-  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 60px;
