@@ -3,14 +3,15 @@ import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
 import Button from "../../reusable-ui/Button";
+import { MENU_EMPTY_MESSAGE } from "../../../../enums/messages";
 
 export default function EmptyMenu() {
   const { resetMenu } = useContext(GlobalContext);
 
   return (
     <EmptyMenuStyled>
-      <h2>Le menu est vide ?</h2>
-      <p>Cliquez ci-dessous pour le réinitialiser</p>
+      <h2>{MENU_EMPTY_MESSAGE.MENU_EMPTY_TITLE}</h2>
+      <p>{MENU_EMPTY_MESSAGE.MENU_EMPTY_SUBTITLE}</p>
       <div onClick={resetMenu}>
         <Button text="Générer de nouveaux produits" variant="refresh"></Button>
       </div>

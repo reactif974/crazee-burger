@@ -5,6 +5,7 @@ import SuccesChangeMessage from "../SuccesChangeMessage";
 import { useState } from "react";
 import Form from "./form/Form";
 import { theme } from "../../../../../theme";
+import { PANEL_ADMIN_MESSAGES } from "../../../../../enums/messages";
 
 export default function EditProductForm() {
   const { productSelected, setProductSelected, inputTitleRef, handleEdit } =
@@ -44,8 +45,10 @@ export default function EditProductForm() {
       >
         {!isOutside ? (
           <span className="title-action">
-            Cliquer sur un produit du menu pour le modifier
-            <span className="underline">en temps réel</span>
+            {PANEL_ADMIN_MESSAGES.HINT_MESSAGE}
+            <span className="underline">
+              {PANEL_ADMIN_MESSAGES.HINT_MESSAGE_REAL_TIME_UNDERLINE}
+            </span>
           </span>
         ) : (
           <span className="title-action">

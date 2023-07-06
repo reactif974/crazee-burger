@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
+import { BASKET_MESSAGES } from "../../../../enums/messages";
 
 export default function EmptyBasket() {
   return (
     <EmptyBasketStyled>
-      <span className="message">Votre commande est vide.</span>
+      <span className="message">{BASKET_MESSAGES.IS_EMPTY}</span>
     </EmptyBasketStyled>
   );
 }

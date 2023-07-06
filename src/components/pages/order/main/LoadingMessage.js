@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
+import { LOADING_MENU_MESSAGE } from "../../../../enums/messages";
 
 export default function LoadingMessage() {
   return (
     <LoadingMessageStyled>
-      <h1>Chargement du menu ...</h1>
+      <h1>{LOADING_MENU_MESSAGE.LOADING_MESSAGE}</h1>
     </LoadingMessageStyled>
   );
 }

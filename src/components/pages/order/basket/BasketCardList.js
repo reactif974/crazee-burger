@@ -7,6 +7,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { basketCardsAnimation } from "../../../../theme/animations";
 import { convertStringToBoolean } from "../../../../utils/string/string";
 import { formatPrice } from "../../../../utils/number/format";
+import { BASKET_MESSAGES } from "../../../../enums/messages";
 
 export default function BasketCardList() {
   const {
@@ -47,7 +48,7 @@ export default function BasketCardList() {
               price={
                 convertStringToBoolean(menuProduct.isAvailable)
                   ? formatPrice(menuProduct.price)
-                  : "Non disponible"
+                  : BASKET_MESSAGES.NOT_AVAILABLE
               }
               quantity={product.quantity}
               productId={menuProduct.id}

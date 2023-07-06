@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { HiCursorClick } from "react-icons/hi";
 import { theme } from "../../../../theme";
+import { PANEL_ADMIN_MESSAGES } from "../../../../enums/messages";
 
 export default function HintMessage() {
   return (
     <HintMessageStyled className="update-container">
-      <span>Cliquer sur un produit du menu pour le modifier</span>
+      <span>{PANEL_ADMIN_MESSAGES.HINT_MESSAGE}</span>
       <span className="cursor-icon">
         <HiCursorClick />
       </span>
