@@ -5,11 +5,19 @@ import { theme } from "../../../theme";
 
 const TextInput = React.forwardRef(
   (
-    { value, onChange, Icon, placeholder, variant = "normal", ...extraProps },
+    {
+      value,
+      onChange,
+      Icon,
+      placeholder,
+      variant = "normal",
+      className,
+      ...extraProps
+    },
     ref
   ) => {
     return (
-      <InputStyled variant={variant}>
+      <InputStyled variant={variant} className={className}>
         {Icon && <span className="icon">{Icon}</span>}
         <input
           ref={ref}

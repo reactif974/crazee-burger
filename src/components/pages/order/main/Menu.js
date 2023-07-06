@@ -3,55 +3,65 @@ import styled from "styled-components";
 import GlobalContext from "../../../../context/GlobalContext";
 import { theme } from "../../../../theme";
 import Card from "../../reusable-ui/Card";
-import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import EmptyMenu from "./EmptyMenu";
 import { checkIfProductIsClicked } from "./helper";
-import { deepClone } from "../../../../utils/array/array";
-import { EMPTY_PRODUCT } from "../../../../enums/product";
+import { EMPTY_PRODUCT, IMAGE_NO_STOCK } from "../../../../enums/product";
+import { deleteProductFromUser } from "../../../../api/products";
+import EmptyMessageForCustomers from "./EmptyMessageForCustomers";
+import LoadingMessage from "./LoadingMessage";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { addAndDeleteCardAnimation } from "../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../utils/string/string";
+import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
 
 export default function Menu() {
   const {
     menu,
     handleDelete,
     setProductSelected,
-    setIsProductSelected,
-    setPanelTabIndex,
-    inputTitleRef,
     isModeAdmin,
     productSelected,
-    setIsPannelCollapsed,
+    handleDeleteBasketProduct,
+    handleProductSelected,
+    name,
+    isLoading,
   } = useContext(GlobalContext);
 
   // gestionnaire d'événements -> event handlers
 
-  const handleCardDelete = (event, id) => {
+  const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
-    handleDelete(id);
-    productSelected.id === id && setProductSelected(EMPTY_PRODUCT);
-    productSelected.id === id && setIsProductSelected(false);
+    handleDelete(idProductToDelete);
+    deleteProductFromUser(name, idProductToDelete);
+    handleDeleteBasketProduct(idProductToDelete);
+    idProductToDelete === productSelected.id &&
+      setProductSelected(EMPTY_PRODUCT);
   };
 
-  const handleProductSelected = async (id) => {
+  const handleClick = (idProductClicked) => {
     if (!isModeAdmin) return;
-    const menuCopy = deepClone(menu);
-    const productSelected = menuCopy.find((product) => product.id === id);
-    await setProductSelected(productSelected);
-    setPanelTabIndex("edit");
-    setIsPannelCollapsed(false);
-    await setIsProductSelected(true);
-    inputTitleRef.current?.focus();
+    handleProductSelected(idProductClicked);
   };
+
+  let cardContainerClassName = isModeAdmin
+    ? "card-container is-hoverable"
+    : "card-container";
+
+  if (isLoading) return <LoadingMessage />;
+  if (!isModeAdmin && !menu.length) return <EmptyMessageForCustomers />;
+  if (isModeAdmin && !menu.length) return <EmptyMenu />;
 
   return (
-    <MenuStyled className="menu-container">
-      {!menu.length ? (
-        <>
-          <EmptyMenu />
-        </>
-      ) : (
-        <div className="card-container">
-          {menu?.map(({ id, title, imageSource, price }) => (
-            <div key={id} className="grille-item">
+    <TransitionGroup component={MenuStyled}>
+      {menu.map(
+        ({ id, title, imageSource, price, isAvailable, isPublicised }) => (
+          <CSSTransition
+            classNames={"menu-card-animation"}
+            timeout={300}
+            key={id}
+          >
+            <div className={cardContainerClassName}>
+              {convertStringToBoolean(isPublicised) && <RibbonAnimated />}
               <Card
                 title={
                   productSelected.id === id ? productSelected.title : title
@@ -65,43 +75,55 @@ export default function Menu() {
                   productSelected.id === id ? productSelected.price : price
                 }
                 onDelete={(event) => handleCardDelete(event, id)}
-                onClick={() => handleProductSelected(id)}
+                onClick={() => handleClick(id)}
                 hasButton={isModeAdmin}
                 isSelected={checkIfProductIsClicked(id, productSelected.id)}
                 isHoverable={isModeAdmin}
                 productId={id}
+                overLapImageSource={IMAGE_NO_STOCK}
+                isOverlapImageVisible={
+                  convertStringToBoolean(isAvailable) === false
+                }
               />
             </div>
-          ))}
-        </div>
+          </CSSTransition>
+        )
       )}
-      <PanelAdminTabs />
-    </MenuStyled>
+    </TransitionGroup>
   );
 }
 
 const MenuStyled = styled.div`
   position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 60px;
+  grid-column-gap: 5px;
+  justify-items: center;
+  height: 80vh;
+  padding: 45px 10px 35% 10px;
+  background-color: ${theme.colors.background_white};
+  box-shadow: ${theme.shadows.strong};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
+
+  overflow-y: scroll;
+
+  ${addAndDeleteCardAnimation}
+
   .card-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;
-    row-gap: 4em;
-    column-gap: 1em;
-    justify-content: center;
-    height: 80vh;
-    padding-top: 45px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 170px;
-    background-color: ${theme.colors.background_white};
-    box-shadow: ${theme.shadows.strong};
-    overflow-y: scroll;
-    .grille-item {
-      display: flex;
-      justify-content: center;
+    position: relative;
+    border-radius: ${theme.borderRadius.extraRound};
+
+    &.is-hoverable {
+      :hover {
+        transform: scale(1.05);
+        transition: ease-out 0.4s;
+      }
+    }
+    .ribbon {
+      z-index: 3;
     }
   }
+
+  ${ribbonAnimation}
 `;

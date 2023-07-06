@@ -14,7 +14,7 @@ export default function NavBarRightSide({ userName }) {
   // Toast notify params
   const showToastNotification = () => {
     toast.info("Mode admin activé!", {
-      position: toast.POSITION.BOTTOM_RIGHT,
+      position: toast.POSITION.TOP_RIGHT,
       autoClose: 5000,
       theme: "dark",
       icon: <FaUserSecret size={30} />,
@@ -29,7 +29,9 @@ export default function NavBarRightSide({ userName }) {
   const onToggle = async () => {
     await setIsModeAdmin(!isModeAdmin);
     !isModeAdmin && showToastNotification();
-    inputTitleRef.current?.focus();
+    setTimeout(() => {
+      inputTitleRef.current?.focus();
+    }, 310);
   };
 
   return (

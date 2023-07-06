@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import BasketHeader from "./BasketHeader";
 import BasketBody from "./BasketBody";
 import BasketFooter from "./BasketFooter";
+import GlobalContext from "../../../../context/GlobalContext";
+import LoadingMessage from "../main/LoadingMessage";
 
 export default function Basket() {
+  const { isLoading } = useContext(GlobalContext);
+
   return (
     <BasketStyled>
       <BasketHeader />
-      <BasketBody />
+      {isLoading ? <LoadingMessage /> : <BasketBody />}
       <BasketFooter />
     </BasketStyled>
   );
