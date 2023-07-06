@@ -183,8 +183,6 @@ const selectedStyle = css`
 const hoverableStyle = css`
   &:hover {
     cursor: pointer;
-    transform: scale(1.05);
-    transition: transform 0.4s ease-out;
     box-shadow: ${theme.shadows.medium}, ${theme.shadows.orangeHightLight};
   }
 `;

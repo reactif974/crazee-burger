@@ -13,6 +13,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { addAndDeleteCardAnimation } from "../../../../theme/animations";
 import PanelAdminTabs from "../adminPanel/PanelAdminTabs";
 import { convertStringToBoolean } from "../../../../utils/string/string";
+import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
 
 export default function Menu() {
   const {
@@ -43,39 +44,52 @@ export default function Menu() {
     handleProductSelected(idProductClicked);
   };
 
+  let cardContainerClassName = isModeAdmin
+    ? "card-container is-hoverable"
+    : "card-container";
+
   if (isLoading) return <LoadingMessage />;
   if (!isModeAdmin && !menu.length) return <EmptyMessageForCustomers />;
   if (isModeAdmin && !menu.length) return <EmptyMenu />;
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({ id, title, imageSource, price, isAvailable }) => (
-        <CSSTransition
-          classNames={"menu-card-animation"}
-          timeout={300}
-          key={id}
-        >
-          <Card
-            title={productSelected.id === id ? productSelected.title : title}
-            imageSource={
-              productSelected.id === id
-                ? productSelected.imageSource
-                : imageSource
-            }
-            price={productSelected.id === id ? productSelected.price : price}
-            onDelete={(event) => handleCardDelete(event, id)}
-            onClick={() => handleClick(id)}
-            hasButton={isModeAdmin}
-            isSelected={checkIfProductIsClicked(id, productSelected.id)}
-            isHoverable={isModeAdmin}
-            productId={id}
-            overLapImageSource={IMAGE_NO_STOCK}
-            isOverlapImageVisible={
-              convertStringToBoolean(isAvailable) === false
-            }
-          />
-        </CSSTransition>
-      ))}
+      {menu.map(
+        ({ id, title, imageSource, price, isAvailable, isPublicised }) => (
+          <CSSTransition
+            classNames={"menu-card-animation"}
+            timeout={300}
+            key={id}
+          >
+            <div className={cardContainerClassName}>
+              {convertStringToBoolean(isPublicised) && <RibbonAnimated />}
+              <Card
+                title={
+                  productSelected.id === id ? productSelected.title : title
+                }
+                imageSource={
+                  productSelected.id === id
+                    ? productSelected.imageSource
+                    : imageSource
+                }
+                price={
+                  productSelected.id === id ? productSelected.price : price
+                }
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={() => handleClick(id)}
+                hasButton={isModeAdmin}
+                isSelected={checkIfProductIsClicked(id, productSelected.id)}
+                isHoverable={isModeAdmin}
+                productId={id}
+                overLapImageSource={IMAGE_NO_STOCK}
+                isOverlapImageVisible={
+                  convertStringToBoolean(isAvailable) === false
+                }
+              />
+            </div>
+          </CSSTransition>
+        )
+      )}
       <PanelAdminTabs />
     </TransitionGroup>
   );
@@ -94,5 +108,23 @@ const MenuStyled = styled.div`
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
   overflow: hidden;
   overflow-y: scroll;
+
   ${addAndDeleteCardAnimation}
+
+  .card-container {
+    position: relative;
+    border-radius: ${theme.borderRadius.extraRound};
+
+    &.is-hoverable {
+      :hover {
+        transform: scale(1.05);
+        transition: ease-out 0.4s;
+      }
+    }
+    .ribbon {
+      z-index: 3;
+    }
+  }
+
+  ${ribbonAnimation}
 `;
